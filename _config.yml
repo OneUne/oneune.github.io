@@ -25,14 +25,13 @@ title:                 𝓤𝓷𝓲'𝓼𝓣𝓮𝓬𝓱𝓑𝓵𝓸𝓰
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  Hydejack is a boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  One good turn deserves another. so...
 
 # A shorter description for the sidebar.
-tagline:               Ｖａｒｉｅｔｙ ｉｓ ｔｈｅ ｓｐｉｃｅ ｏｆ ｌｉｆｅ ｂｕｔ ｆｏｃｕｓ ｏｎ ＇Ｔｅｃｈ＇ ｈｅｒｅ
+tagline:               Ｖａｒｉｅｔｙ ｉｓ ｔｈｅ ｓｐｉｃｅ ｏｆ ｌｉｆｅ ｂｕｔ ｆｏｃｕｓ ｏｎ 🅃🄴🄲🄷 ｈｅｒｅ
 
 # A list of keywords for your blog
-keywords:              [Tech blog, TIL, Computer Science, Computer Engineering, Developer, 기술블로그, 개발블로그, 개발, 개발자블로그]
+keywords:              [Tech blog, TIL, Developer, 기술블로그, 개발블로그, 개발, 개발자블로그, AWS, React, GO, Python]
 
 # A (square) logo for your site.
 # If provided, it will be shown at the top of the sidebar.
@@ -100,7 +99,7 @@ theme_color:           rgb(25,55,71)
 
 # The string encoding which fonts to fetch from Google Fonts.
 # See: <https://hydejack.com/docs/configuration/>
-google_fonts:          Roboto+Slab:700|Noto+Sans:400,400i,700,700i
+google_fonts:          Roboto+Slab:700|Noto+Sans:400,400i,700,700i|Do+Hyeon
 
 # The text font. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
@@ -108,7 +107,7 @@ font:                  Noto Sans, Helvetica, Arial, sans-serif
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 # To change font-weight, see _sass/variables.scss
-font_heading:          Roboto Slab, Helvetica, Arial, sans-serif
+font_heading:          Do Hyeon, Roboto Slab, Helvetica, Arial, sans-serif
 
 # The font used for code blocks. Expects a string that is a valid CSS font-family value.
 font_code:             Fira Code, Menlo, Monaco, Consolas, monospace;
@@ -172,11 +171,11 @@ kramdown:
 
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
-# google_analytics:      UA-XXXXXXXX-X
+google_analytics:      G-SLTFPN57WK
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-# disqus:                <username>
+disqus:                unistechblog
 
 # Setting a tinyletter username will enable the newsletter subscription box.
 # PRO version only!
@@ -252,7 +251,7 @@ hydejack:
 
   # When using Google Analytics, set to `true` to display a cookie notice banner.
   # When enabled, no user-related data will be stored until the user gives consent.
-  cookies_banner:      false
+  cookies_banner:      true
 
   # Set to `true` if you would like to add a "Powered by Hydejack" link in the footer.
   # Note that this setting has no effect when using the free version.
