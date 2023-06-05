@@ -2,168 +2,61 @@
 layout: about
 image: /assets/img/blog/hydejack-9.jpg
 description: >
-  A boutique Jekyll theme for hackers, nerds, and academics,
-  with a focus on personal sites that are meant to impress.
+  It's all about who I am, what I did, and doing.
 hide_description: true
 redirect_from:
-  - /download/
+  -
 ---
 
 # About
 
 <!--author-->
 
-## Hydejack
+<center style="margin-top:50px;">
+<span style=
+"font-size:170%; 
+font-weight:bold;">
+Yunhee Won
+</span>
+</center>
 
-A boutique Jekyll theme for hackers, nerds, and academics.  
-{:.lead}
+<center>📮 <a href="mailto:yunhee.won.swe@gmail.com">yunhee.won.swe@gmail.com </a></center>
 
-1. this list will be replaced by the toc
-   {:toc .large-only}
+## Education
 
-![Screenshot](assets/img/blog/hydejack-9.jpg){:.lead width="1920" height="1080" loading="lazy"}
+---
 
-Hydejack's cover page on a variety of screen sizes.
-{:.figcaption}
+**Hankuk University of Foreign Studies, Seoul, South Korea**
 
-**Hydejack** is a boutique Jekyll theme for hackers, nerds, and academics, with a focus on personal sites that are meant to impress.
+- 02/2017 – 08/2021
+- Bachelor of Arts in Economics and Bachelor of Science in Engineering
 
-It includes a blog that is suitable for both prose and technical documentation, a portfolio to showcase your projects, and a resume template that looks amazing on the web and in print.
+**Anglo-American University, Prague, Czech Republic**
 
-> Your complete presence on the web — A [blog], [portfolio], and [resume].
-> {:.lead}
+- 09/2019 – 12/2019
+- Study Abroad Program
 
-## A Personal Site That Won't Disappear
+## Experience
 
-**Hydejack** is 100% built on Open Source software, and is Open Source itself, save for parts of the PRO version. The PRO version is a one-time payment that gives you the right to use it forever.
+---
 
-Hydejack is all static sites. _HTML_. All you need is a web server --- any web server --- to have a professional web presence that lasts a lifetime.
+**Quality Engineer -> Software Engineer, RadiusXR, Pleasanton, CA**
 
-## Download
+- 05/2022 - Present
+- Quality Assurance: Contributed to having apps stable by performing regression tests on new versions of software and different hardware, and when bugs occur, troubleshooting and writing bug reports on Zephyr Scale of Jira. Authored test protocols. Wrote app test automation scripts to save time and reduce the likelihood of human errors in repeated regression tests using Cypress and Espresso.
+- Vision Science: Reverse engineered using open datasets and open source R packages, eliminating the need for 1,000 tests that require 10,000 hours.
+- Android Development: Developed an app that helps with algorithm validation by conducting simple and fast tests. Reduced the time to test new algorithm versions and made it easy to demonstrate at conferences.
+- Dev-ops: Established CI/CD pipelines using Gitlab and AWS. Managed costs and worked for optimization on AWS.
+- Web Development: Developed a web app to be used in Algorithm study for doctors to compare test results, grade them, and leave notes easily. Developed a web app that manages videos that can be viewed on the Android app using React and GO. Thought about and applied the good structure of apps and NOSQL databases, and created apps that are convenient to use and maintain by managing status using React Context.
 
-{% include table.md %}
+**Web Developer, Platformers, Seoul, South Korea**
 
-## A Free Blogging Theme
+- 03/2021 - 09/2021
+- Improved Recruitment Efficiency: Established and operated 7 websites for recruitment of client companies using Classic ASP and ASP.NET. Managed servers and databases using IIS and Microsoft SQL Server. Reduced the time spent on document screening by implementing the items required for job applications and the corresponding restrictions. Brought in test scores by linking them to the test site to help applicants easily fill in accurate information.
+- Assisted with Website Frontend and Product Launches: Worked on the frontend side of a website for video interviews using Angular. Participated in the production of landing pages for the launch of new products, contributing to the delivery of conspicuous information about new products.
+- Enhanced Team Communication: Improved communication skills by facilitating meetings between the operation and development teams, resulting in a 30% reduction in miscommunication and an increase in overall project efficiency.
 
-**Hydejack** started out as a free blogging theme for Jekyll — and continues to be so.
+**Python Teaching Assistant, Hankuk University of Foreign Studies, Seoul, South Korea**
 
-<!--posts-->
-
-## An Impressive Portfolio
-
-A portfolio that's guaranteed to be impressive — no matter what you put into it.
-
-<!--projects-->
-
-## A Printable Resume
-
-Get a resume that's consistent across the board — whether it's on the web, mobile, print, or [PDF](assets/Resume.pdf).
-
-[![Resume PDF](assets/img/blog/resume.png){:.lead width="884" height="632" loading="lazy"}][resume]{:.no-hover.no-mark}
-
-Front and center page of a print resume generated by Hydejack.
-{:.figcaption}
-
-## Just Markdown
-
-Write all content with Markdown. **Hydejack** gives you [additional CSS classes](docs/writing.md) to stylize your content, without losing compatibility with other Jekyll themes.
-
-## Just Markup
-
-**Hydejack** boasts a plethora of modern JavaScript, but make no mistake: It's still a _plain old web page_ at its core. It works without JavaScript and you can even view it in a text-based browser like `w3m`:
-
-![w3m Screenshot](assets/img/blog/w3m.png){:.tail width="1920" height="1260" loading="lazy"}
-
-The Hydejack blog, as seen by the text browser `w3m`.
-{:.figcaption}
-
-## Syntax Highlighting
-
-**Hydejack** features syntax highlighting, powered by [Rouge].
-
-```html
-<!-- file: `_includes/my-body.html` -->
-<script type="module">
-  document
-    .querySelector("hy-push-state")
-    .addEventListener("hy-push-state-load", () => {
-      const supportsCodeHighlights = false; // TBD!!
-    });
-</script>
-```
-
-Code blocks can have a filename and a caption.
-{:.figcaption}
-
-## Beautiful Math
-
-They say math is beautiful — and with **Hydejack**'s [math support][math] it's guaranteed to also look beautiful:
-
-$$
-\begin{aligned}
-  \phi(x,y) &= \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right) \\[2em]
-            &= \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j)            \\[2em]
-            &= (x_1, \ldots, x_n)
-               \left(\begin{array}{ccc}
-                 \phi(e_1, e_1)  & \cdots & \phi(e_1, e_n) \\
-                 \vdots          & \ddots & \vdots         \\
-                 \phi(e_n, e_1)  & \cdots & \phi(e_n, e_n)
-               \end{array}\right)
-               \left(\begin{array}{c}
-                 y_1    \\
-                 \vdots \\
-                 y_n
-               \end{array}\right)
-\end{aligned}
-$$
-
-Hydejack uses KaTeX to efficiently render math.
-{:.figcaption}
-
-## Build an Audience
-
-The PRO version has built-in support for customizable [Tinyletter] newsletter subscription boxes.
-
-If you are using a different service like MailChimp, you can build a custom newsletter subscription box using [Custom Forms][forms].
-
-## Features
-
-{% include features.md %}
-
-## Comparison
-
-{% include table.md %}
-
-## Get It Now
-
-Use the the form below to purchase Hydejack PRO:
-
-<div class="gumroad-product-embed" data-gumroad-product-id="nuOluY"><a href="https://gumroad.com/l/nuOluY">Loading…</a></div>
-
-[blog]: /
-[portfolio]: https://hydejack.com/examples/
-[resume]: https://hydejack.com/resume/
-[download]: https://hydejack.com/download/
-[welcome]: https://hydejack.com/
-[forms]: https://hydejack.com/forms-by-example/
-[features]: #features
-[news]: #build-an-audience
-[syntax]: syntax-highlighting
-[latex]: #beautiful-math
-[dark]: https://hydejack.com/blog/hydejack/2018-09-01-introducing-dark-mode/
-[search]: https://hydejack.com/#_search-input
-[grid]: https://hydejack.com/blog/hydejack/
-[lic]: LICENSE.md
-[pro]: licenses/PRO.md
-[docs]: docs/README.md
-[ofln]: docs/advanced.md#enabling-offline-support
-[math]: docs/writing.md#adding-math
-[kit]: https://github.com/hydecorp/hydejack-starter-kit/releases
-[src]: https://github.com/hydecorp/hydejack
-[gem]: https://rubygems.org/gems/jekyll-theme-hydejack
-[buy]: https://gum.co/nuOluY
-[gpss]: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fhydejack.com%2Fdocs%2F
-[rouge]: http://rouge.jneen.net
-[katex]: https://khan.github.io/KaTeX/
-[mathjax]: https://www.mathjax.org/
-[tinyletter]: https://tinyletter.com/
+- 04/2020 – 12/2020
+- Python Programming Assistance: Helped over 200 students with their Python programming assignments in Computing Thinking subjects, providing clear explanations of Python's grammar, usage, and debugging techniques, receiving a 90% satisfaction rating from both students and instructors.

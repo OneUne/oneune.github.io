@@ -20,7 +20,7 @@
 lang:                  ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 𝓤𝓷𝓲'𝓼𝓣𝓮𝓬𝓱𝓑𝓵𝓸𝓰
+title:                 𝓤𝓷𝓲'𝓼 𝓑𝓵𝓸𝓰
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -28,7 +28,7 @@ description:           >
   One good turn deserves another. so...
 
 # A shorter description for the sidebar.
-tagline:               Ｖａｒｉｅｔｙ ｉｓ ｔｈｅ ｓｐｉｃｅ ｏｆ ｌｉｆｅ ｂｕｔ ｆｏｃｕｓ ｏｎ 🅃🄴🄲🄷 ｈｅｒｅ
+tagline:               문제 해결 및 탐구의 과정들을 기록합니다.
 
 # A list of keywords for your blog
 keywords:              [Tech blog, TIL, Developer, 기술블로그, 개발블로그, 개발, 개발자블로그, AWS, React, GO, Python]
@@ -81,7 +81,7 @@ paginate_path:         /blog/:num/
 # Theme
 # ---------------------------------------------------------------------------------------
 
-# theme: jekyll-theme-hydejack
+theme: jekyll-theme-hydejack
 remote_theme: hydecorp/hydejack@v9
 
 
