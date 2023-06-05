@@ -21,20 +21,19 @@ Yunhee Won
 </center>
 
 <center>📮 <a href="mailto:yunhee.won.swe@gmail.com">yunhee.won.swe@gmail.com </a></center>
-
 ## Education
 
 ---
 
-**Hankuk University of Foreign Studies, Seoul, South Korea**
+**한국외국어대학교, Seoul, South Korea**
 
 - 02/2017 – 08/2021
-- Bachelor of Arts in Economics and Bachelor of Science in Engineering
+- 경제학, 컴퓨터공학 전공
 
 **Anglo-American University, Prague, Czech Republic**
 
 - 09/2019 – 12/2019
-- Study Abroad Program
+- 교환학생
 
 ## Experience
 
@@ -42,21 +41,51 @@ Yunhee Won
 
 **Quality Engineer -> Software Engineer, RadiusXR, Pleasanton, CA**
 
-- 05/2022 - Present
-- Quality Assurance: Contributed to having apps stable by performing regression tests on new versions of software and different hardware, and when bugs occur, troubleshooting and writing bug reports on Zephyr Scale of Jira. Authored test protocols. Wrote app test automation scripts to save time and reduce the likelihood of human errors in repeated regression tests using Cypress and Espresso.
-- Vision Science: Reverse engineered using open datasets and open source R packages, eliminating the need for 1,000 tests that require 10,000 hours.
-- Android Development: Developed an app that helps with algorithm validation by conducting simple and fast tests. Reduced the time to test new algorithm versions and made it easy to demonstrate at conferences.
-- Dev-ops: Established CI/CD pipelines using Gitlab and AWS. Managed costs and worked for optimization on AWS.
-- Web Development: Developed a web app to be used in Algorithm study for doctors to compare test results, grade them, and leave notes easily. Developed a web app that manages videos that can be viewed on the Android app using React and GO. Thought about and applied the good structure of apps and NOSQL databases, and created apps that are convenient to use and maintain by managing status using React Context.
+- 05/2022 - 현재
+- QA: 앱의 안정성을 위해 소프트웨어의 새 버전 및 다양한 하드웨어에 대한 회귀 테스트를 수행했습니다. 버그가 발생할 경우 원인 분석 및 재현을 통해 Jira의 Zephyr Scale에 버그 보고서를 작성했습니다. 또한 새로운 기능을 위한 테스트 프로토콜을 작성했습니다. Cypress와 Espresso를 사용하여 반복적인 회귀 테스트에서 인간의 실수 가능성을 줄이고 시간을 절약하기 위해 앱 테스트 자동화 스크립트를 개발했습니다.
+- Data Science: 오픈 데이터셋과 오픈 소스 R 패키지를 활용하여 역공학을 수행하며, 10,000시간이 소요되는 1,000개의 테스트를 대체할 수 있었습니다.
+- Android Development: 간단하고 빠른 테스트를 통해 알고리즘 유효성 검증을 도와주는 앱을 개발했습니다. 새로운 알고리즘 버전을 테스트하는 시간을 줄이고 학회에서 손쉽게 시연할 수 있도록 기여했습니다.
+- Dev-ops: Gitlab과 AWS를 사용하여 CI/CD 파이프라인을 구축했습니다. AWS에서 비용 관리 및 최적화를 수행했습니다.
+- Web Development: 의사들이 테스트 결과를 비교하고 평가하며 쉽게 메모를 남길 수 있는 알고리즘 연구용 웹 앱을 개발했습니다. React와 GO를 사용하여 Android 앱에서 볼 수 있는 동영상을 관리하는 웹 앱을 개발했습니다. 앱 및 NoSQL 데이터베이스의 좋은 구조에 대해 고민하고 적용하였습니다. React Context를 이용해 상태 관리를 함으로써 사용 및 유지 관리가 편리한 앱을 만들었습니다.
 
 **Web Developer, Platformers, Seoul, South Korea**
 
 - 03/2021 - 09/2021
-- Improved Recruitment Efficiency: Established and operated 7 websites for recruitment of client companies using Classic ASP and ASP.NET. Managed servers and databases using IIS and Microsoft SQL Server. Reduced the time spent on document screening by implementing the items required for job applications and the corresponding restrictions. Brought in test scores by linking them to the test site to help applicants easily fill in accurate information.
-- Assisted with Website Frontend and Product Launches: Worked on the frontend side of a website for video interviews using Angular. Participated in the production of landing pages for the launch of new products, contributing to the delivery of conspicuous information about new products.
-- Enhanced Team Communication: Improved communication skills by facilitating meetings between the operation and development teams, resulting in a 30% reduction in miscommunication and an increase in overall project efficiency.
+- 채용 효율 향상: 7개의 회사를 맡아 해당 회사의 채용을 위해 Classic ASP와 ASP.NET을 사용하여 웹사이트를 구축하고 운영했습니다. IIS와 Microsoft SQL Server를 활용하여 서버와 데이터베이스를 관리했습니다. 채용 지원서 작성 시 필요한 항목과 관련 제한 사항을 구현하여 문서 스크리닝에 소요되는 시간을 단축했습니다. 공인 시험 웹사이트와 채용 사이트를 연결하여 지원자가 정확한 정보를 쉽게 기입할 수 있도록 도움을 주었습니다.
+- 웹사이트 프론트엔드 및 제품 론칭 지원: Angular를 활용하여 화상 면접 웹사이트의 프론트엔드 개발에 참여했습니다. 신제품 론칭을 위한 랜딩 페이지 제작에 참여하여 신제품에 대한 주목할 만한 정보 전달에 기여했습니다.
+- 팀 커뮤니케이션 강화: 운영팀과 개발팀 간의 정확한 요구사항 분석 및 제한 시간 내의 제한 사항을 의논하여 전체 프로젝트 효율성을 향상시키기 위해 회의를 진행했습니다. 이로써 의사소통 오류가 감소하고 전반적인 프로젝트 효율성이 증가했습니다.
 
-**Python Teaching Assistant, Hankuk University of Foreign Studies, Seoul, South Korea**
+**컴퓨팅 사고 과목 조교, Hankuk University of Foreign Studies, Seoul, South Korea**
 
 - 04/2020 – 12/2020
-- Python Programming Assistance: Helped over 200 students with their Python programming assignments in Computing Thinking subjects, providing clear explanations of Python's grammar, usage, and debugging techniques, receiving a 90% satisfaction rating from both students and instructors.
+- 파이썬 프로그래밍 지원: 컴퓨팅 사고 과목에서 200명 이상의 학생들이 파이썬 프로그래밍 과제를 할 때 도움을 주어 파이썬의 문법, 사용법, 디버깅 기술에 대해 명확한 설명을 제공했습니다. 학생들과 강사들로부터 90%의 만족도 평가를 받았습니다.
+
+## Personal Project
+
+---
+
+**Weltrip**
+
+- Django와 Tour API의 데이터셋을 활용하여 쉽게 무장애 여행을 계획할 수 있는 웹사이트를 개발했습니다. 여행지 추천 시스템 구현을 담당하여 프로젝트를 진행했습니다. 협업 필터링의 콜드 스타트 문제 해결을 위해 신규 가입자는 콘텐츠 기반 필터링 기술로 분석하여 추천하고, 중분한 데이터가 쌓인 후부터는 협업 필터링으로 추천의 정확성을 높이는 방식인 하이브리드 추천 시스템을 구현하였습니다.
+
+**MegaCoffee Kiosk**
+
+- 메가커피의 키오스크를 보면서 요구분석 명세서, 설계 사양서, 네트워크차트, 간트차트, 유스케이스, 사용자 매뉴얼, 버그 리스트, 테스트 보고서 등을 작성하는 프로젝트를 진행하였습니다. NodeJs를 사용하여 개발하였으며, 주로 백엔드 작업을 하며 DB 설계 및 API 작성을 담당했습니다.
+
+**Subway Drop Off Program**
+
+- C/C++을 기반으로 한 아두이노를 사용하여 지하철 하차 알림을 표현하는 프로그램을 작성하였습니다. 해당 프로젝트에서 저는 블루투스와 거리센서, 서보 모터 등을 통해 지하철 스크린 도어 및 잔여 좌석수를 표현하는 일을 담당했습니다.
+
+## Skills and Certification
+
+---
+
+- Language : Python, JavaScript, ASP
+
+- FrameWork: React, Go
+
+- Database: MySQL, DynamoDB, Microsoft SQL Server
+
+- Cloud: AWS
+
+- Certification : 정보처리기사
