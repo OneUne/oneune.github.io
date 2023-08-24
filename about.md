@@ -4,6 +4,8 @@ image: /assets/img/blog/hydejack-9.jpg
 description: >
   It's all about who I am, what I did, and doing.
 hide_description: true
+sidebar: true
+order: 1
 redirect_from:
   -
 ---

@@ -19,4 +19,9 @@ description: >
 # Exclude this blog category from the sitemap.
 # DON'T USE THIS SETTING IN YOUR CATEGORIES!
 # sitemap: false
+
+
+sidebar: true
+order: 2
+type: category
 ---
