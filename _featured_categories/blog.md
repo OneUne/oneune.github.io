@@ -10,8 +10,7 @@ slug: blog
 
 # (Optional) Write a short (~150 characters) description of this featured tag.
 description: >
-  This is a featured category, which have their own page.
-  Check out `_featured_tags/blog.md` to learn how to create your own.
+  시작이 반이다.
 
 # (Optional) You can disable grouping posts by date.
 # no_groups: true
@@ -24,4 +23,5 @@ description: >
 sidebar: true
 order: 2
 type: category
+permalink: /blog/
 ---
