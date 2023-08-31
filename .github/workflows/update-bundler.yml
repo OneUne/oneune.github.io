@@ -1,0 +1,16 @@
+name: Update Bundler
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Upgrade Bundler
+        run: |
+          gem install bundler:2.4.12
+
