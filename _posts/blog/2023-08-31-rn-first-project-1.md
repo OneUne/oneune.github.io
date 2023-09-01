@@ -4,7 +4,7 @@ title: "React Native, Expo를 활용한 앱 만들기 (Feat. Nomad Coders) - Par
 category: blog
 tags: react-native weather-app
 related_posts:
-  - _posts/blog/2023-08-31-rn-first-project-1.md
+  - _posts/blog/2023-08-31-rn-first-project-2.md
 comments: true
 ---
 
