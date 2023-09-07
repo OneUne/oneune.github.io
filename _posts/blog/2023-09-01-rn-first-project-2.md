@@ -5,6 +5,7 @@ category: blog
 tags: react-native weather-app
 related_posts:
   - _posts/blog/2023-08-31-rn-first-project-1.md
+  - _posts/blog/2023-08-31-rn-first-project-3.md
 image:
   path: /assets/img/blog/2023-09-01/weather-app-design.png
 comments: true
