@@ -6,5 +6,5 @@ slug: react-native
 category: blog
 sidebar: true
 description: >
-   about react native
+   Posts related React Native
 ---

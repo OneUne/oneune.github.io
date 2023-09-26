@@ -6,5 +6,5 @@ slug: go
 category: blog
 sidebar: true
 description: >
-   about go
+   Posts related Golang
 ---

@@ -6,5 +6,5 @@ slug: aws
 category: blog
 sidebar: true
 description: >
-   about aws
+   Posts related AWS
 ---
