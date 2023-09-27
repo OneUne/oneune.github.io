@@ -14,7 +14,7 @@ comments: true
 이런 앱을 만들어 보자.
 
 - this unordered seed list will be replaced by the toc
-  {:toc}
+{:toc}
 
 # 1. Components & Styling
 

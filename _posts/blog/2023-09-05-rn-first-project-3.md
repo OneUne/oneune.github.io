@@ -16,20 +16,18 @@ Nomad Coders의 강의와 달리 현재는 Free Plan을 사용해 일기예보�
 물론 그냥 8일치 예보 주는 One Call API 써도 하루 1,000 콜 까지는 무료다만 그냥 이게 더 재밌을 거 같아서,, ~
 
 - this unordered seed list will be replaced by the toc
-  {:toc}
+{:toc}
 
 결과 코드를 보면서 글을 읽고 싶다면 [여기](https://github.com/OneUne/NomadWeather/tree/c070c0a7980be724a7fa17296d9f5f96cc3f2d53)를 클릭하자.
 
 # 0. 이전 포스트와 달라진 코드 부분
 
 1. 이전 포스트에서 언급했던대로 .env에 키를 정의하고 이를 import 하는 부분이 추가 되었다.
-
 ```jsx
 import { API_KEY } from "@env";
 ```
 
 2. react-native로부터 ActivityIndicator를 import해 데이터를 받아오기 전 loader를 표시하여 주었다.
-
 ```jsx
 import { ActivityIndicator } from "react-native";
 ```

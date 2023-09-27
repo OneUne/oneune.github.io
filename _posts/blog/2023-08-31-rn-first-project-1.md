@@ -24,7 +24,7 @@ comments: true
 빠르게 필요한 최소한의 정보들을 얻기엔 충분하다고 생각한다.
 
 - this unordered seed list will be replaced by the toc
-  {:toc}
+{:toc}
 
 # 1. Set Up
 
