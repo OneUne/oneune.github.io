@@ -5,12 +5,15 @@ category: blog
 tags: react
 image:
   path: /assets/img/blog/2023-09-18/thumb-thumb.gif
+related_posts:
+  - _posts/blog/2023-09-26-the-core-of-asynchronous.md
 comments: true
 ---
 
 엄청난 확대로 화질은 좀 깨졌지만,, 요렇게 썸네일을 만들고 선택하는 기능을 만들었습니다.
 
-1.  {:toc}
+1. 
+{:toc}
 
 회사에서 동영상 플랫폼을 개발하기 시작하면서, 썸네일의 구현은 아무래도 필수적이었다.  
 초기 요구사항에서는 동영상을 업로드하는 과정에서 썸네일을 보여줄 필요가 없었기 때문에 AWS Lambda에서 ffmpeg을 이용해 개발했었다.  
@@ -88,6 +91,10 @@ async function extractAllFramesFromVideo(file) {
 ```
 
 대략 이런 형태로 구성된다.
+
+> 위 비동기 동작에 대해 제대로 이해되지 않는다면,
+> <a class="heading flip-title" href="/blog/2023-09-26-the-core-of-asynchronous/">JavaScript의 비동기에 대해 당신이 알아야 할 필수 요소: Promise, Async, Await, Event Loop</a>을 참고하길 바란다.
+> 당시 자바스크립트에서의 비동기 프로그래밍에 대한 개념이 제대로 잡혀있지 않아 공부 했던 기록을 위 글에 남겼다.
 
 여기서 주의해야할 점은 seekResolve의 위치이다.  
 하나의 프레임만 추출하는 함수를 만든 후 모든 프레임을 추출하는 함수로 바꾸면서 프레임 추출하는 부분을 따로 extractFrame으로 분리했는데, `let seekResolve`를 extractFrame에 포함 시키지 않는다면 `Function declared in a loop contains unsafe references to variable(s) 'seekResolve'.`을 만나게 된다.
