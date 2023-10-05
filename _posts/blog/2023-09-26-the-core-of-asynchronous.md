@@ -236,7 +236,7 @@ then으로 계속 연결하는 것이 아니라, await 키워드를 사용하여
 
 
 ***
-#### 참고 문헌
+<h4>참고 문헌</h4>
 
 - [The event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop)
 - [[자바스크립트] 콜스택/메모리힙 구조, 데이터 저장/참조 원리](https://curryyou.tistory.com/276)

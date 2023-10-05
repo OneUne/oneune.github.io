@@ -18,7 +18,7 @@
   margin-bottom: 3em;
 
   li + li {
-    margin-top: .25rem;
+    margin-top: 0.25rem;
   }
 
   > header {
@@ -33,7 +33,7 @@
 
 body:not(.no-third-column) {
   .page > header {
-    > .lead + .note-sm, 
+    > .lead + .note-sm,
     > a.no-hover + .note-sm {
       @media screen and (min-width: $break-point-dynamic) {
         position: absolute;
@@ -47,26 +47,29 @@ body:not(.no-third-column) {
 }
 
 // Blog post or page title
-.page-title, .post-title { margin-top: 0; }
+.page-title,
+.post-title {
+  margin-top: 0;
+}
 
 // Meta data line below post title
 .post-date {
   @extend .h4;
   display: flex;
   justify-content: space-between;
-  margin-top: -.6rem;
+  margin-top: -0.6rem;
   height: 2rem;
-  margin-bottom: .85rem;
+  margin-bottom: 0.85rem;
   color: var(--gray);
 
   > .ellipsis {
     cursor: pointer;
   }
 
-  [class^="icon-"] { 
-    display: inline-block; 
+  [class^="icon-"] {
+    display: inline-block;
     font-size: smaller;
-    margin-right: .25rem;
+    margin-right: 0.25rem;
   }
 }
 // >>>
@@ -80,12 +83,12 @@ clap-button {
 clap-button + p.message {
   margin: -2rem auto 0;
   max-width: 32rem;
-  font-size: smaller
+  font-size: smaller;
 }
 
 hr.dingbat {
   border: 0;
-  &:after{
+  &:after {
     content: "\2756";
     display: block;
     text-align: center;
@@ -96,7 +99,12 @@ hr.dingbat {
 
 @media print {
   .page {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
+}
+
+u {
+  text-decoration: none;
+  border-bottom: 3px solid var(--accent-color);
 }
 // >>>
