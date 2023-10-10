@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "React(JavaScript)에서 썸네일 생성하기(Feat.비동기)"
+title: "React(JavaScript)에서 썸네일 생성하기 (Feat.비동기)"
 category: blog
 tags: react
 image:
