@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: Book Review
-slug: book review
+slug: book-review
 category: blog
 sidebar: true
 description: >
