@@ -21,17 +21,20 @@ Braid 자체는 상호운용 가능한(즉, 협업 가능한) 상태 동기화�
 분산 시스템<sup>*</sup>에서 <u>여러 컴퓨터나 장치에 분산된 데이터를 일관되고 편리하게 관리할 수 있는 방법</u>과 같은 느낌입니다.  
 <sup>*</sup>분산 시스템(Distributed System)은 여러 대의 컴퓨터나 장치가 네트워크를 통해 연결되어, 하나의 시스템처럼 동작하는 환경을 말합니다. AWS, GCP같은 클라우드 컴퓨팅도 그렇고, Slack이나 Google Docs같은 협업 도구들도 분산 시스템이라고 할 수 있죠.
 
-우리가 지금 로컬 변수를 하나 쓰려면 콘솔창 (F12를 눌러보세요) a = 1 해봅니다.  
-이제 a를 치면 1이 나오죠. 쉽습니다. 
+분산 시스템에서는 데이터가 여러 노드에 분산되어 있으며, 이러한 데이터에 접근하려면 *네트워크를 통해* 특정 노드에 요청을 보내거나 데이터를 업데이트해야 합니다. 이 때문에 데이터의 일관성과 동기화가 중요한 문제가 됩니다.  
+당장 여러 곳에 있는 데이터를 동시에 읽고 쓰고 실시간으로 반영하려면, 어떻게 해야하는지 떠오르나요?  
+그러기 위해서는 생각보다 신경써야할 게 많습니다.  
+예를 들면, 여러 명이 한 자원에 대해 동시에 수정하려고할 때 생기는 문제는 어떻게 방지할 것인지, 누가 수정했을 때 그걸 어떻게 실시간으로 반영할 것인지 등이 있죠.  
+근데 이제 로컬변수를 한 번 써봅시다. 쉽게 지금 인터넷의 콘솔창(F12)을 켜봅시다. <small>PC라면.. </small>  
+a = 1, 엔터, 그리고 다시 a, 엔터 그럼 1이 나오죠. 우리의 작고 소중한 로컬변수 a가 생겼습니다.  
+얘를 다루는 일은 쉽죠. a*4 엔터치면 4도 보여줍니다.  
+암튼 이렇게 쉽게 하는 걸 목표로 하고 있다는 말이라고 저는 이해했습니다.
 
-그런데 원래 분산 시스템에서는 데이터가 여러 노드에 분산되어 있으며, 이러한 데이터에 접근하려면 네트워크를 통해 특정 노드에 요청을 보내거나 데이터를 업데이트해야 합니다.  
-이 때문에 데이터의 일관성과 동기화가 중요한 문제가 됩니다.
-
-실시간 동기화를 위해 기존에는 WebSocket 프로토콜(ws://)을 활용했습니다.  
-그런데 이제, HTTP 프로토콜을 사용하면서 실시간 동기화를 할 수 있게 하겠다고 Braid-HTTP가 나온 거예요 !
+글에서는 Braid 자체보단, Braid-HTTP를 살펴보려고합니다.  
+실시간 동기화를 위해 기존에는 WebSocket 프로토콜(ws://)을 활용했다면, Braid-HTTP는 HTTP 프로토콜을 사용하면서 실시간 동기화를 할 수 있게 한다고 합니다.
 
 
-# Braid-HTTP의 주요 개념과 기능
+# Braid-HTTP의 주요 개념 • 기능 • 장점
 1. 패치 업데이트(Patch Updates):
 * Braid HTTP는 전체 리소스를 다시 전송하는 대신, 변경된 부분만을 전송하는 기능을 지원합니다. 이를 통해 네트워크 사용량을 줄이고 성능을 향상시킬 수 있습니다. 이는 HTTP의 PATCH 메서드를 확장한 것으로, 클라이언트와 서버 간에 변경된 부분만 교환하여 효율적으로 데이터를 동기화합니다.
 
@@ -47,8 +50,8 @@ Braid 자체는 상호운용 가능한(즉, 협업 가능한) 상태 동기화�
 5. 머지(Merge):
 * 여러 클라이언트가 동일한 리소스에 대한 변경 사항을 제출할 때, Braid HTTP는 이를 병합하는 기능을 제공합니다. 서버는 각 클라이언트의 변경 사항을 병합하여 최종 리소스를 생성하고, 클라이언트에 이를 반영합니다. 이 과정에서 충돌이 발생하면 이를 해결하는 전략을 적용할 수 있습니다.
 
-
-# Braid-HTTP의 장점
+  
+위 기능들에서 볼 수 있는 장점을 정리하면 이런 것 같습니다. 
 * 효율성
   * 변경된 부분만 전송하기 때문에 네트워크 트래픽과 대역폭 사용량이 감소합니다.
 * 실시간 협업
@@ -58,76 +61,77 @@ Braid 자체는 상호운용 가능한(즉, 협업 가능한) 상태 동기화�
 * 확장성
   * 기존 HTTP 프로토콜을 확장하여 새로운 기능을 추가하므로, 기존 시스템과 호환성이 좋습니다.
 
+기능들 하나하나가 그렇게 낯선 용어들은 아니라, 어떤 일들을 하는지는 대충 감이 오지만 어떻게 하겠다는 걸까요?  
 
-# 사용 예시
-## 실시간 협업 문서 편집기
+
+# 이게 무슨 원리죠?
+braid-http 라이브러리의 server 사이드 [코드](https://github.com/braid-org/braidjs/blob/master/braid-http/braid-http-server.js)를 살펴보면,
 ```javascript
-// 클라이언트에서 문서의 일부가 변경될 때
-fetch('/documents/123', {
-  method: 'PATCH',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({changes: [{start: 5, end: 10, text: 'new text'}]})
-});
+function braidify (req, res, next) {
+    // console.log('\n## Braidifying', req.method, req.url, req.headers.peer)
 
-// 서버에서 변경 사항을 다른 클라이언트로 전파
-app.patch('/documents/:id', (req, res) => {
-  const changes = req.body.changes;
-  // 문서 업데이트 로직
-  io.emit('document-updated', {documentId: req.params.id, changes});
-  res.sendStatus(200);
-});
+    // First, declare that we support Patches and JSON ranges.
+    res.setHeader('Range-Request-Allow-Methods', 'PATCH, PUT')
+    res.setHeader('Range-Request-Allow-Units', 'json')
+
+    // Extract braid info from headers
+    var version = ('version' in req.headers) && JSON.parse('['+req.headers.version+']'),
+        parents = ('parents' in req.headers) && JSON.parse('['+req.headers.parents+']'),
+        peer = req.headers['peer'],
+        url = req.url.substr(1)
+
+    // Parse the subscribe header
+    var subscribe = req.headers.subscribe
+    if (subscribe === 'true')
+        subscribe = true
+
+    // Define convenience variables
+    req.version   = version
+    req.parents   = parents
+    req.subscribe = subscribe
+
+    // Add the braidly request/response helper methods
+    res.sendUpdate = (stuff) => send_update(res, stuff, req.url, peer)
+    ...
+```
+이런 braidfy라는 미들웨어를 사용해서 HTTP의 요청, 응답을 확장합니다.  
+
+``` javascript
+var braidify = require('braid-http').http_server
+// or:
+import {http_server as braidify} from 'braid-http'
+
+require('http').createServer(
+    (req, res) => {
+        // Add braid stuff to req and res
+        braidify(req, res)
+
+        // Now use it
+        if (req.subscribe)
+            res.startSubscription({ onClose: _=> null })
+            // startSubscription automatically sets statusCode = 209
+        else
+            res.statusCode = 200
+
+        // Send the current version
+        res.sendUpdate({
+            version: ['greg'],
+            body: JSON.stringify({greg: 'greg'})
+        })
+    }
+).listen(9935)
 ```
 
-## 실시간 데이터 대시보드: 주식 시세, IoT 센서 데이터, 실시간 웹 트래픽 등 지속적으로 업데이트되는 데이터를 시각화하는 대시보드.
-```javascript
-// 클라이언트에서 데이터 구독 설정
-fetch('/stocks/subscribe', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({stocks: ['AAPL', 'GOOGL']})
-});
+구독 요청이 들어오면, 구독을 시작하고 새로운 변경사항이 있을 때마다 sendUpdate해서 구독 중인 클라이언트에게 sendUpdate합니다.  
 
-// 서버에서 데이터 변경 시 구독자에게 알림
-app.post('/stocks/subscribe', (req, res) => {
-  const stocks = req.body.stocks;
-  // 구독 로직
-  res.sendStatus(200);
-});
+연결이 어떻게 지속되는가는,
+* 기본적으로 HTTP의 Keep-alive(persistent connection)을 사용하고  
+* req.socket.server.timeout = 0.0 설정을 통한 타임아웃 비활성으로 구독 연결이 끊기지 않게 하는듯..
 
-app.post('/stocks/update', (req, res) => {
-  const updates = req.body.updates;
-  // 데이터 업데이트 로직
-  io.emit('stocks-updated', updates);
-  res.sendStatus(200);
-});
-```
-
-## 분산 파일 시스템
-```javascript
-// 노드에서 파일의 일부가 변경될 때
-fetch('/files/abc', {
-  method: 'PATCH',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({changes: [{offset: 100, data: 'new data segment'}]})
-});
-
-// 중앙 서버에서 변경 사항 병합
-app.patch('/files/:id', (req, res) => {
-  const changes = req.body.changes;
-  // 파일 업데이트 로직
-  mergeFileChanges(req.params.id, changes);
-  res.sendStatus(200);
-});
-```
+그 외의 설정으로는 X-Accel-Buffering: no 헤더로 Nginx와 같은 프록시 서버에서 버퍼링을 비활성화하여 실시간 데이터를 빠르게 전송할 수 있게 하고 있습니다.
 
 # WebSocket이랑 뭐가 다르지?
-요약: Braid HTTP는 HTTP의 확장으로서 RESTful API와의 통합이 용이하고, WebSocket은 빠르고 빈번한 양방향 통신을 필요로 하는 상황에서 강력한 성능을 발휘
+요약하자면, Braid HTTP는 HTTP의 확장으로서 RESTful API와의 통합이 용이하고, WebSocket은 빠르고 빈번한 양방향 통신을 필요로 하는 상황에서 강력한 성능을 발휘합니다.
 
 ## WebSocket
 * 목적: 클라이언트와 서버 간의 양방향 통신을 위한 지속적인 연결을 유지합니다.
@@ -158,4 +162,5 @@ app.patch('/files/:id', (req, res) => {
   * 클라이언트와 서버 간의 지속적인 연결을 요구하지 않지만, 실시간성을 유지하기 위해 폴링 또는 다른 메커니즘이 필요할 수 있습니다.
 
 
-매 2주마다 오픈 미팅을 통해 애플리케이션 및 시스템 요구사항을 논의하고, 공통점을 식별하며, 공유 프로토콜에 대한 합의를 찾음.
+
+Braid에 관심이 생긴 사람들은 매 2주마다 ^오픈 미팅^ [ZOOM](https://us02web.zoom.us/j/6459283736?pwd=cW1OcnlZQndXS3pKQ1U3K01NRHJZQT09#success)을 통해 애플리케이션 및 시스템 요구사항을 논의하고, 공통점을 식별하며, 공유 프로토콜에 대한 합의를 찾는다고 하니, 한 번 Join 해보는 것도 ~?
