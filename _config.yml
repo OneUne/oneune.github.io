@@ -342,7 +342,7 @@ plugins:
 # ---------------------------------------------------------------------------------------
 
 # Where you proof that you own this site (used by jekyll-seo-tag)
-google_site_verification: RBNqlehH-NfOp3B1MlXG84C-6iYBndPR1FXteS63s4M
+google_site_verification: "RBNqlehH-NfOp3B1MlXG84C-6iYBndPR1FXteS63s4M"
 # -- or --
 # webmaster_verifications:
 #   google:              <verification-id>
