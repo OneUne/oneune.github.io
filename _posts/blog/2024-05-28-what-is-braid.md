@@ -4,7 +4,7 @@ title: "데이터 동기화와 실시간 협업이 가능한 확장된 HTTP, Bra
 category: blog
 tags: book-review
 image:
-  path: /assets/img/blog/2024-03-16/thumb.png
+  path: /assets/img/blog/2024-05-28/thumb.webp
 comments: true
 ---
 
