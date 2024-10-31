@@ -2,7 +2,7 @@
 layout: post
 title: "데이터 동기화와 실시간 협업이 가능한 확장된 HTTP, Braid-HTTP"
 category: blog
-tags: book-review
+tags: geek
 image:
   path: /assets/img/blog/2024-05-28/thumb.webp
 comments: true

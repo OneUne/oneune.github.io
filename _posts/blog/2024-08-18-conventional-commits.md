@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "커밋 메세지에도 규칙이 있다는 걸 알고 계셨나요?: Conventional Commits"
+title: "커밋 메시지에도 규칙이 있다는 걸 알고 계셨나요?: Conventional Commits"
 category: blog
 tags: github
 image:
