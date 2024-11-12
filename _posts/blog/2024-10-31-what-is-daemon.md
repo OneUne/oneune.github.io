@@ -4,7 +4,7 @@ title: "데몬(Daemon)"
 category: blog
 tags: etc
 image:
-  path: /assets/img/blog/2024-10-31/thumb.jpg
+  path: /assets/img/blog/2024-10-31/thumb.png
 comments: true
 ---
 
@@ -52,7 +52,7 @@ Demon이 아니라, Daemon 입니다.
 - **named (bind)**: DNS 서비스
   - macOS는 기본적으로 bind 대신 mDNSResponder를 사용합니다.
     - termianl에 ```ps aux | grep mDNSResponder```을 입력해보면 아래와 같은 프로세스가 실행됨을 확인할 수 있어요.
-![mDNSResponder processes](/assets/img/blog/2024-10-31/mDNSResponder.jpg)
+![mDNSResponder processes](/assets/img/blog/2024-10-31/mDNSResponder.png)
     - 그럼 얘가 뭘 하는 친구냐
       - 프린터 연결할 때 자동으로 프린터 찾기
       - AirDrop으로 파일 전송할 때 주변 기기 찾기
