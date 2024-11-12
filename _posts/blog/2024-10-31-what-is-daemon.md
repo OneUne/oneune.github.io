@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "데몬(Daemon)"
+title: "당신도 모르게 돌아가고 있는 그 프로그램, 데몬(Daemon)"
 category: blog
 tags: etc
 image:
