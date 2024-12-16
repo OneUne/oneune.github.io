@@ -49,7 +49,7 @@ const element = (
 ```
 
 하지만 위 코드는 실제로 JavaScript 함수 호출로 변환됩니다.  
-<small>이게 바로 JSX의 핵심이에요!</small>
+<small>이게 바로 JSX의 핵심..!</small>
 
 ```javascript
 // 바벨이 JSX를 다음과 같이 변환합니다
@@ -79,7 +79,7 @@ var sum = function(a, b) { return a + b; };
 ### 제 프로젝트엔 바벨같은 거 없었는데요?
 
 최근에는 성능상의 이유로 바벨 대신 다른 도구들을 사용하는 추세입니다.  
-<small>코드 변환 속도가 엄청 빨라졌어요!</small>
+<small>코드 변환 속도가 엄청 빨라졌어요🙃</small>
 
 1. **SWC (Speedy Web Compiler)**
 - Rust로 작성된 초고속 컴파일러
@@ -122,6 +122,7 @@ module.exports = {
    - class → className
    - for → htmlFor
    - style은 객체로 전달
+   
    ```jsx
    // HTML
    <div class="container" style="background-color: blue;">
