@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Github Pages
-slug: github-pages
+title: Etc
+slug: etc
 category: blog
 sidebar: true
 description: >
-   The journey of making this blog
+   이것저것
 ---
