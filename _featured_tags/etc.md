@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: Go
-slug: go
+title: Etc
+slug: etc
 category: blog
 sidebar: true
 description: >
-   Posts related Golang
+   이것저것
 ---
