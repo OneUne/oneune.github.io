@@ -36,12 +36,14 @@
 body:not(.no-toc) #markdown-toc {
   @media screen and (min-width: $break-point-dynamic) {
     
-    position: absolute;
+    position: fixed;
     z-index: 4;
     width: 20.5rem;
+    top: 9rem;
     right: 0;
     margin: auto;
-    overflow: auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 12rem);
     
     
   }
