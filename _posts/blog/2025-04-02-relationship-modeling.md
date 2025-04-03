@@ -215,7 +215,7 @@ class Employee {
 
 ### 5. 부모-자식(Parent-Child) 관계
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1200 800 900">
-<!-- 4. 부모-자식(Parent-Child) 관계 -->
+<!-- 5. 부모-자식(Parent-Child) 관계 -->
   <rect x="100" y="1200" width="600" height="300" rx="10" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="2"/>
   <text x="400" y="1230" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#6a1b9a">4. 부모-자식(Parent-Child) 관계</text>
   <!-- Comments 테이블 -->
