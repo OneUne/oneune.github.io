@@ -4,7 +4,7 @@ title: "데이터 모델링의 다양한 관계 패턴, 그 중에서도 부모-
 category: blog
 tags: db
 image:
-  path: "@img/2025-04-02/thumb.png"
+  path: /assets/img/blog/2025-04-02/thumb.png
 comments: true
 ---
 
@@ -232,7 +232,7 @@ class Employee {
   <polygon points="605,1325 600,1320 605,1315" fill="#6a1b9a"/>
   <!-- 설명 텍스트 -->
   <text x="400" y="1470" font-family="Arial" font-size="14" text-anchor="middle">댓글(Comment)은 자신이 속한 부모 댓글을 참조</text>
-  <text x="400" y="1490" font-family="Arial" font-size="14" text-anchor="middle">하나의 테이블 내에서 레코드가 자기 자신의 다른 레코드를 참조함</text>
+  <text x="400" y="1490" font-family="Arial" font-size="14" text-anchor="middle">최상위 댓글은 parentCommentId가 null</text>
   <!-- 부모-자식 관계 구조 시각화 -->
   <rect x="100" y="1550" width="600" height="500" rx="10" fill="#e8eaf6" stroke="#283593" stroke-width="2"/>
   <text x="400" y="1580" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#283593">부모-자식 관계 구조 시각화</text><!-- 댓글 트리 구조 -->
