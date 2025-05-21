@@ -14,7 +14,6 @@ ON u.order_id = o.order_id
    AND u.status = 'active'
    AND u.region = 'Seoul';
 ```
-
 위 쿼리에서 `u.order_id`와 `o.order_id`에는 인덱스가 걸려있다고 가정합시다.  
 id만으로도 충분한데 거기다 status와 region 조건까지 추가했으니, <u>이 쿼리는 빠를 것</u>이라고 생각하는 사람들만 이 글을 읽으세요. 
 
@@ -22,6 +21,12 @@ id만으로도 충분한데 거기다 status와 region 조건까지 추가했으
 
 * toc
 {:toc}
+
+<br/>
+
+---
+
+<br/>
 
 관계형 데이터베이스에서 테이블은 주로 다음 원칙들을 기준으로 나뉩니다. 
 1. **정규화(Normalization)**: 데이터 중복을 최소화하고 데이터 무결성을 보장하기 위한 과정입니다.
