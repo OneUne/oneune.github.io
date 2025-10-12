@@ -48,6 +48,10 @@
   .list-body {
     margin: 0;
     text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 4rem;
   }
   
   .sidebar-about {
