@@ -123,6 +123,7 @@ module.exports = {
    - for → htmlFor
    - style은 객체로 전달
    
+   {% raw %}
    ```jsx
    // HTML
    <div class="container" style="background-color: blue;">
@@ -130,6 +131,7 @@ module.exports = {
    // JSX
    <div className="container" style={{ backgroundColor: 'blue' }}>
    ```
+   {% endraw %}
 
 3. **조건부 렌더링**
    ```jsx

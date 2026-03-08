@@ -1,3 +1,11 @@
+u {
+  text-decoration: none;
+  border-bottom: none;
+  background-color: rgba(253, 224, 71, 0.85);
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+}
+
 .dl-table {
   a {
     @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {
