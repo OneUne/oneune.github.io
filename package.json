@@ -15,6 +15,7 @@
     "watch:js": "webpack --watch --mode development --progress --color",
     "watch:css": "npm run build:css && onchange '_sass/**/*.scss' -e '_sass/**/__*/*' -- npm run build:css '{{changed}}'",
     "dev": "npm run watch",
+    "editor": "node editor.js",
     "preversion": "npm run preversion:js && npm run preversion:css",
     "preversion:js": "sed -i '' 's:/assets/js/\\*hydejack-\\*:#<removed/js>:' .gitignore",
     "preversion:css": "sed -i '' 's:/_sass/\\*/__\\*__/\\*:#<removed/css>:' .gitignore",
