@@ -515,6 +515,46 @@ function mountEditor(fm) {
     'Cmd-K': insertLink, 'Ctrl-K': insertLink,
     'Cmd-E': wrapCode, 'Ctrl-E': wrapCode,
   });
+
+  // Ctrl+V paste image
+  editor.codemirror.on('paste', async (cm, e) => {
+    const items = (e.clipboardData || e.originalEvent?.clipboardData)?.items;
+    if (!items) return;
+    for (const item of Array.from(items)) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (!file) break;
+        const dateMatch = currentFile && currentFile.match(/^([0-9]{4}-[0-9]{2}-[0-9]{2})/);
+        const date = dateMatch ? dateMatch[1] : today();
+        const uid = Date.now();
+        const placeholder = '![uploading-' + uid + ']()';
+        cm.replaceSelection(placeholder);
+        toast('Uploading image...', 'success');
+        try {
+          const base64 = await toBase64(file);
+          const res = await fetch('/api/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date, filename: 'paste-' + uid + '.png', base64, mimeType: file.type })
+          });
+          const data = await res.json();
+          if (data.path) {
+            editor.value(editor.value().replace(placeholder, '![image](' + data.path + ')'));
+            toast('Image pasted!', 'success');
+            markDirty();
+          } else {
+            editor.value(editor.value().replace(placeholder, ''));
+            toast('Upload failed', 'error');
+          }
+        } catch {
+          editor.value(editor.value().replace(placeholder, ''));
+          toast('Upload failed', 'error');
+        }
+        break;
+      }
+    }
+  });
 }
 
 function escHtml(s) {
