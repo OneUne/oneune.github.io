@@ -32,6 +32,9 @@
       <span class="ellipsis mr1">
         {{ foobar }}
       </span>
+      {% if no_link_title %}
+        <span class="ellipsis mr1" id="post-view-count" style="opacity:0.6; font-size:0.75em"></span>
+      {% endif %}
       {% unless site.hydejack.hide_dates or site.hydejack.hide_last_modified or post.hide_last_modified %}
         {% if post.last_modified_at %}
           {% assign d1 = post.date             | date:"%Y-%m-%d" %}

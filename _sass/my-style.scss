@@ -1,3 +1,192 @@
+// ── Navbar height override ────────────────────────────────────────────────────
+#_navbar > .content {
+  max-height: 3rem !important;
+}
+.nav-btn-bar {
+  height: 3rem !important;
+}
+.nav-btn {
+  height: 3rem !important;
+}
+
+// ── Nav custom buttons ────────────────────────────────────────────────────────
+.nav-btn-custom {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.nav-btn-off {
+  opacity: 0.3;
+}
+
+// Sidebar toggle: only show on desktop (sidebar is fixed at 64em)
+#_sidebar-toggle {
+  display: none;
+  @media screen and (min-width: 64em) { display: flex; }
+}
+// TOC toggle: show where TOC floats (1664px+) OR in focus mode (64em+)
+#_toc-toggle {
+  display: none;
+  @media screen and (min-width: 1664px) { display: flex; }
+}
+body.focus-mode #_toc-toggle {
+  @media screen and (min-width: 64em) { display: flex; }
+}
+// Hamburger: hide on desktop (sidebar-toggle replaces it)
+#_menu {
+  @media screen and (min-width: 64em) { display: none; }
+}
+
+// ── Search overlay ────────────────────────────────────────────────────────────
+#_search-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+}
+.search-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+}
+.search-container {
+  position: relative;
+  width: min(600px, calc(100vw - 2rem));
+  margin: 10vh auto 0;
+}
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+#_search-input {
+  flex: 1;
+  border: none;
+  font-size: 1.1rem;
+  padding: 0.9rem 0;
+  outline: none;
+  background: transparent;
+  color: #333;
+  font-family: var(--font-family);
+  &::placeholder { color: #aaa; }
+}
+.search-close-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0 0 0 0.5rem;
+  &:hover { color: #333; }
+}
+.search-results {
+  margin-top: 0.5rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 60vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.search-result-item {
+  display: block;
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid #f0f0f0;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.1s;
+  &:last-child { border-bottom: none; }
+  &:hover { background: #f8f8f8; }
+  mark {
+    background: rgba(253, 224, 71, 0.7);
+    border-radius: 2px;
+    padding: 0 1px;
+    color: inherit;
+  }
+}
+.search-result-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+}
+.search-result-meta {
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 0.15rem;
+}
+.search-result-desc {
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.search-no-result {
+  padding: 1.5rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+// dark mode
+.dark-mode {
+  .search-input-wrap, .search-results {
+    background: #1e293b;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  #_search-input { color: #e2e8f0; &::placeholder { color: #475569; } }
+  .search-result-item { color: #e2e8f0; &:hover { background: #263348; } }
+  .search-result-item { border-color: #334155; }
+  .search-result-meta { color: #64748b; }
+  .search-result-desc { color: #94a3b8; }
+  .search-close-btn { color: #64748b; &:hover { color: #e2e8f0; } }
+}
+
+// ── Mobile: hide sidebar peek ─────────────────────────────────────────────────
+@media screen and (max-width: 63.999em) {
+  hy-drawer {
+    visibility: hidden;
+    &[data-open] { visibility: visible; }
+  }
+}
+
+// ── TOC Scroll Spy ────────────────────────────────────────────────────────────
+#markdown-toc a.toc-active {
+  color: var(--accent-color, rgb(79,177,186));
+  font-weight: 600;
+}
+
+// ── Sidebar focus mode ────────────────────────────────────────────────────────
+@media screen and (min-width: 64em) {
+  body.focus-mode, html.focus-mode body {
+    hy-drawer { display: none !important; }
+    &::before  { width: 0 !important; }
+    .content   { margin-left: auto !important; margin-right: auto !important; }
+  }
+  // Content: make room for TOC on the right
+  body.focus-mode:not(.no-toc) .content {
+    margin-right: 21.5rem !important;
+  }
+  // TOC: show floating on right when sidebar is hidden
+  body.focus-mode:not(.no-toc) #markdown-toc {
+    position: fixed;
+    z-index: 4;
+    width: 20.5rem;
+    top: 9rem;
+    right: 0;
+    margin: auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 12rem);
+  }
+}
+
 u {
   text-decoration: none;
   border-bottom: none;

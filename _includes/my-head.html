@@ -12,6 +12,42 @@ Fill in `href`. You may have to adjust `rel`.
 <noscript><link href="<path/to/content.css>" rel="stylesheet"></noscript>
 {% endcomment %}
 
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+  import { getDatabase, ref, increment, update, get } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBk2QrdHB_AE771NQbIlh8nhJlCMg8yBeo",
+    authDomain: "oneune-github.firebaseapp.com",
+    databaseURL: "https://oneune-github-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "oneune-github",
+    storageBucket: "oneune-github.firebasestorage.app",
+    messagingSenderId: "1093447449833",
+    appId: "1:1093447449833:web:60eefaeaada7227e9f0478",
+    measurementId: "G-E3E498F4MF"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  async function trackView() {
+    const el = document.getElementById('post-view-count');
+    if (!el) return;
+
+    const key = window.location.pathname.replace(/[/.]/g, '-').replace(/^-+|-+$/g, '') || 'home';
+    const countRef = ref(db, 'views/' + key);
+
+    await update(ref(db), { ['views/' + key]: increment(1) });
+    const snapshot = await get(countRef);
+    el.textContent = (snapshot.val() || 0).toLocaleString() + ' views';
+  }
+
+  trackView();
+
+  document.addEventListener('hy-push-state-load', trackView);
+</script>
+
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5532869663745017"
      crossorigin="anonymous"></script>
