@@ -13,6 +13,7 @@ const url = require('url');
 const BLOG_ROOT = __dirname;
 const POSTS_DIR = path.join(BLOG_ROOT, '_posts', 'blog');
 const ASSETS_DIR = path.join(BLOG_ROOT, 'assets', 'img', 'blog');
+const TAGS_DIR = path.join(BLOG_ROOT, '_featured_tags');
 const PORT = 4040;
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -79,6 +80,24 @@ function savePost({ filename, content }) {
   return safe;
 }
 
+function listTags() {
+  if (!fs.existsSync(TAGS_DIR)) return [];
+  return fs.readdirSync(TAGS_DIR)
+    .filter(f => f.endsWith('.md'))
+    .map(f => f.replace(/\.md$/, ''));
+}
+
+function createTag({ slug, title }) {
+  if (!slug) return false;
+  const safe = slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/^-+|-+$/g, '');
+  if (!safe) return false;
+  const tagTitle = title || safe.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  const content = `---\nlayout: tag-list\ntype: tag\ntitle: ${tagTitle}\nslug: ${safe}\ncategory: blog\nsidebar: true\ndescription: >\n  Posts related ${tagTitle}\n---\n`;
+  if (!fs.existsSync(TAGS_DIR)) fs.mkdirSync(TAGS_DIR, { recursive: true });
+  fs.writeFileSync(path.join(TAGS_DIR, safe + '.md'), content, 'utf8');
+  return safe;
+}
+
 function uploadImage({ date, filename, base64, mimeType }) {
   if (!date || !filename || !base64) return null;
   const dir = path.join(ASSETS_DIR, date);
@@ -99,6 +118,8 @@ const HTML = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog Editor</title>
 <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Do+Hyeon&family=Fira+Code:wght@400;500&display=swap">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -171,63 +192,110 @@ const HTML = `<!DOCTYPE html>
   .CodeMirror { background: var(--bg) !important; color: var(--text) !important;
     border-color: var(--border) !important; font-size: 14px; }
   .CodeMirror-cursor { border-color: var(--accent2) !important; }
+  /* ── Preview: site-like light theme ─────────────────────────────────────── */
   .editor-preview, .editor-preview-side {
-    background: #0f172a !important; color: #e2e8f0 !important;
-    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif !important;
-    font-size: 15px !important; line-height: 1.75 !important;
-    padding: 24px 32px !important;
+    background: #fff !important; color: #333 !important;
+    font-family: 'Noto Sans', Helvetica, Arial, sans-serif !important;
+    font-size: 16px !important; line-height: 1.75 !important;
+    padding: 40px 48px !important;
   }
   .editor-preview h1, .editor-preview h2, .editor-preview h3,
   .editor-preview h4, .editor-preview h5, .editor-preview h6,
   .editor-preview-side h1, .editor-preview-side h2, .editor-preview-side h3,
   .editor-preview-side h4, .editor-preview-side h5, .editor-preview-side h6 {
-    color: #f1f5f9 !important; font-weight: 700 !important;
-    margin: 1.5em 0 0.5em !important; line-height: 1.3 !important;
+    font-family: 'Do Hyeon', 'Roboto Slab', Helvetica, Arial, sans-serif !important;
+    color: #333 !important; margin: 4rem 0 1rem !important; line-height: 1.3 !important;
+    font-weight: 400 !important;
   }
-  .editor-preview h1, .editor-preview-side h1 { font-size: 2em !important; border-bottom: 1px solid #334155; padding-bottom: 0.3em; }
-  .editor-preview h2, .editor-preview-side h2 { font-size: 1.5em !important; border-bottom: 1px solid #1e293b; padding-bottom: 0.2em; }
-  .editor-preview h3, .editor-preview-side h3 { font-size: 1.25em !important; }
-  .editor-preview p, .editor-preview-side p { margin: 0.8em 0 !important; }
-  .editor-preview a, .editor-preview-side a { color: #60a5fa !important; text-decoration: underline; }
-  .editor-preview strong, .editor-preview-side strong { color: #f1f5f9 !important; }
+  .editor-preview h1, .editor-preview-side h1 { font-size: 2rem !important; }
+  .editor-preview h2, .editor-preview-side h2 { font-size: 1.5rem !important; }
+  .editor-preview h3, .editor-preview-side h3 { font-size: 1.2em !important; }
+  .editor-preview h4, .editor-preview-side h4 { font-size: 1.08rem !important; margin: 3rem 0 0.5rem !important; }
+  .editor-preview h5, .editor-preview-side h5 { font-size: 1.04rem !important; margin: 3rem 0 0.5rem !important; }
+  .editor-preview h6, .editor-preview-side h6 { font-size: 1rem !important; margin: 3rem 0 0.5rem !important; }
+  .editor-preview p, .editor-preview-side p { margin: 0 0 1rem !important; }
+  .editor-preview a, .editor-preview-side a { color: rgb(79,177,186) !important; }
+  .editor-preview strong, .editor-preview-side strong { color: #333 !important; }
+  .editor-preview em, .editor-preview-side em { font-style: italic !important; }
   .editor-preview code, .editor-preview-side code {
-    background: #1e293b !important; color: #7dd3fc !important;
-    padding: 2px 6px !important; border-radius: 4px !important;
-    font-size: 0.88em !important; font-family: 'Fira Code',monospace !important;
+    background: rgba(0,0,0,0.05) !important; color: #333 !important;
+    padding: 0.1em 0.4em !important; border-radius: 3px !important;
+    font-size: 0.88em !important; font-family: 'Fira Code', Menlo, Monaco, Consolas, monospace !important;
   }
   .editor-preview pre, .editor-preview-side pre {
-    background: #1e293b !important; border: 1px solid #334155 !important;
-    border-radius: 8px !important; padding: 16px 20px !important;
+    background: #f6f8fa !important; border: 1px solid #ebebeb !important;
+    border-radius: 6px !important; padding: 16px 20px !important;
     overflow-x: auto !important; margin: 1em 0 !important;
   }
   .editor-preview pre code, .editor-preview-side pre code {
-    background: transparent !important; color: #e2e8f0 !important;
+    background: transparent !important; color: #333 !important;
     padding: 0 !important; font-size: 0.9em !important;
   }
   .editor-preview blockquote, .editor-preview-side blockquote {
-    border-left: 3px solid #3b82f6 !important; margin: 1em 0 !important;
-    padding: 4px 16px !important; color: #94a3b8 !important;
-    background: #1e293b !important; border-radius: 0 6px 6px 0 !important;
+    border-left: 1px solid #ebebeb !important; margin: 1rem -1rem !important;
+    padding: 1.2rem 1rem 0 1rem !important; color: #666 !important;
+    background: transparent !important; border-radius: 0 !important;
+    font-size: 0.9em !important;
   }
   .editor-preview ul, .editor-preview ol,
   .editor-preview-side ul, .editor-preview-side ol {
-    padding-left: 1.5em !important; margin: 0.5em 0 !important;
+    padding-left: 1.25em !important; margin: 0 0 1rem !important;
   }
-  .editor-preview li, .editor-preview-side li { margin: 0.25em 0 !important; }
+  .editor-preview li, .editor-preview-side li { margin: 0.2em 0 !important; }
   .editor-preview hr, .editor-preview-side hr {
-    border: none !important; border-top: 1px solid #334155 !important; margin: 1.5em 0 !important;
+    border: none !important; border-top: 1px solid #ebebeb !important; margin: 1rem 0 !important;
   }
   .editor-preview img, .editor-preview-side img {
-    max-width: 100% !important; border-radius: 8px !important; margin: 0.5em 0 !important;
+    max-width: 100% !important; margin: 0.5em 0 !important;
+    display: block !important;
   }
   .editor-preview table, .editor-preview-side table {
     border-collapse: collapse !important; width: 100% !important; margin: 1em 0 !important;
   }
   .editor-preview th, .editor-preview td,
   .editor-preview-side th, .editor-preview-side td {
-    border: 1px solid #334155 !important; padding: 8px 12px !important;
+    border: 1px solid #ebebeb !important; padding: 8px 12px !important;
   }
-  .editor-preview th, .editor-preview-side th { background: #1e293b !important; }
+  .editor-preview th, .editor-preview-side th { background: #f6f8fa !important; }
+  /* u = highlight (site style) */
+  .editor-preview u, .editor-preview-side u {
+    text-decoration: none !important; border-bottom: none !important;
+    background-color: rgba(253,224,71,0.85) !important;
+    padding: 0.05em 0.25em !important; border-radius: 3px !important;
+  }
+  /* TOC (#markdown-toc) */
+  .editor-preview #markdown-toc, .editor-preview-side #markdown-toc {
+    border-left: 1px solid #ebebeb !important;
+    padding: 1.2rem 1rem 0.5rem 2.5rem !important;
+    margin: 1.5rem 0 2rem !important;
+    font-size: 0.9em !important; position: relative !important;
+    background: transparent !important; color: #333 !important;
+  }
+  .editor-preview #markdown-toc .toc-label,
+  .editor-preview-side #markdown-toc .toc-label {
+    font-size: 0.667rem !important; font-weight: bold !important;
+    text-transform: uppercase !important; letter-spacing: 0.025rem !important;
+    color: #bbb !important; margin-bottom: 0.5rem !important;
+    display: block !important; margin-left: -1.5rem !important;
+  }
+  .editor-preview #markdown-toc ul, .editor-preview-side #markdown-toc ul {
+    list-style: disc !important; padding: 0 !important; margin: 0 !important;
+  }
+  .editor-preview #markdown-toc li, .editor-preview-side #markdown-toc li {
+    margin: 0.2em 0 !important;
+  }
+  .editor-preview #markdown-toc a, .editor-preview-side #markdown-toc a {
+    color: rgb(79,177,186) !important; text-decoration: none !important;
+  }
+  .editor-preview #markdown-toc a:hover, .editor-preview-side #markdown-toc a:hover {
+    text-decoration: underline !important;
+  }
+  /* figcaption */
+  .editor-preview .figcaption, .editor-preview-side .figcaption {
+    text-align: center !important; color: #777 !important;
+    font-size: 0.85em !important; margin-top: -0.5rem !important;
+    margin-bottom: 2rem !important; display: block !important;
+  }
   .editor-statusbar { background: var(--surface) !important; color: var(--muted) !important;
     border-color: var(--border) !important; }
   .CodeMirror-scroll { overflow-y: auto !important; }
@@ -470,7 +538,8 @@ function mountEditor(fm) {
       </div>
       <div class="fm-group">
         <label>Tags</label>
-        <input type="text" id="fmTags" value="\${escHtml(fm.tags)}" placeholder="tag1 tag2 tag3" oninput="markDirty()">
+        <input type="text" id="fmTags" value="\${escHtml(fm.tags)}" placeholder="tag1 tag2 tag3" oninput="markDirty(); checkNewTags()">
+        <div id="newTagBadges" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;"></div>
       </div>
       <div class="fm-group">
         <label>Thumb Image Path</label>
@@ -502,9 +571,12 @@ function mountEditor(fm) {
     toolbar: ['bold','italic','heading','|','quote','unordered-list','ordered-list','|','link','|','preview','side-by-side','fullscreen','|','guide'],
     status: false,
     minHeight: '200px',
+    previewRender: renderPreview,
+    renderingConfig: { breaks: true },
   });
 
   editor.codemirror.on('change', markDirty);
+  loadExistingTags().then(checkNewTags);
 
   // Keyboard shortcuts
   editor.codemirror.setOption('extraKeys', {
@@ -770,6 +842,107 @@ function insertLink() {
   cm.focus();
 }
 
+// ── Tag Management ────────────────────────────────────────────────────────────
+let existingTags = [];
+
+async function loadExistingTags() {
+  const res = await fetch('/api/tags');
+  existingTags = await res.json();
+}
+
+function checkNewTags() {
+  const input = document.getElementById('fmTags');
+  const badges = document.getElementById('newTagBadges');
+  if (!input || !badges) return;
+  const tags = input.value.trim().split(/\\s+/).filter(Boolean);
+  const newTags = tags.filter(t => t && !existingTags.includes(t));
+  badges.innerHTML = '';
+  newTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-ghost btn-sm';
+    btn.style.cssText = 'font-size:11px;padding:2px 8px;color:#f59e0b;border-color:#f59e0b;';
+    btn.textContent = '+ ' + tag;
+    btn.title = 'Click to create _featured_tags/' + tag + '.md';
+    btn.onclick = () => createNewTag(tag);
+    badges.appendChild(btn);
+  });
+}
+
+async function createNewTag(slug) {
+  const res = await fetch('/api/create-tag', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ slug })
+  });
+  const data = await res.json();
+  if (data.ok) {
+    existingTags.push(data.slug);
+    toast('Tag "' + data.slug + '" created!', 'success');
+    checkNewTags();
+  } else {
+    toast('Failed: ' + (data.error || ''), 'error');
+  }
+}
+
+// ── Preview Render ────────────────────────────────────────────────────────────
+function tocId(text) {
+  return text.toLowerCase()
+    .replace(/[^\\w\\s가-힣]/g, '')
+    .replace(/\\s+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function generateTOCHtml(markdown) {
+  const items = [];
+  const re = /^(#{1,6})\\s+(.+)$/gm;
+  let m;
+  while ((m = re.exec(markdown)) !== null) {
+    const level = m[1].length;
+    const raw = m[2]
+      .replace(/\\*\\*(.*?)\\*\\*/g, '$1')
+      .replace(/\\*(.*?)\\*/g, '$1')
+      .replace(/\`(.*?)\`/g, '$1')
+      .replace(/<[^>]+>/g, '').trim();
+    items.push({ level, text: raw, id: tocId(raw) });
+  }
+  if (!items.length) return '<nav id="markdown-toc"><span class="toc-label">목차</span><p style="color:#aaa;font-size:0.85em;margin:0.5rem 0">헤딩이 없습니다.</p></nav>';
+  const minLevel = Math.min(...items.map(i => i.level));
+  let html = '<nav id="markdown-toc"><span class="toc-label">목차</span><ul>';
+  items.forEach(item => {
+    const pad = (item.level - minLevel) * 14;
+    html += \`<li style="padding-left:\${pad}px"><a href="#\${item.id}">\${item.text}</a></li>\`;
+  });
+  html += '</ul></nav>';
+  return html;
+}
+
+function renderPreview(text) {
+  if (!editor) return '';
+  // 1. Protect SVG blocks — marked.js mangles <text> elements inside SVG
+  const svgBlocks = [];
+  let md = text.replace(/<svg[\\s\\S]*?<\\/svg>/gi, (match) => {
+    svgBlocks.push(match);
+    return 'SVGBLOCK' + (svgBlocks.length - 1) + 'ENDSVG';
+  });
+  // 2. Pre-process TOC: * toc\\n{:toc}
+  md = md.replace(/^\\*\\s+toc\\s*\\n\\{:toc\\}/gm, '\\nXTOCPLACEHOLDERX\\n');
+  let html = editor.markdown(md);
+  // 3. Restore SVG blocks (handle both plain and <p>-wrapped placeholders)
+  html = html.replace(/<p>SVGBLOCK(\\d+)ENDSVG<\\/p>/g, (_, i) => svgBlocks[+i]);
+  html = html.replace(/SVGBLOCK(\\d+)ENDSVG/g, (_, i) => svgBlocks[+i]);
+  // 4. Post-process figcaption: marked renders {:.figcaption} as <p>{:.figcaption}</p>
+  html = html.replace(/(<p>(?:(?!<p>|<\\/p>)[\\s\\S])*?<\\/p>)\\s*<p>\\{:\\.figcaption\\}<\\/p>/g,
+    (match, prevP) => '<p class="figcaption">' + prevP.slice(3));
+  // 5. Add IDs to headings (for TOC anchor links)
+  html = html.replace(/<(h[1-6])>([\\s\\S]*?)<\\/\\1>/g, (match, tag, content) => {
+    const id = tocId(content.replace(/<[^>]+>/g, '').trim());
+    return \`<\${tag} id="\${id}">\${content}</\${tag}>\`;
+  });
+  // 6. Insert TOC
+  html = html.replace('<p>XTOCPLACEHOLDERX</p>', generateTOCHtml(text));
+  return html;
+}
+
 // ── Toggle Side-by-side ───────────────────────────────────────────────────────
 function toggleSideBySide() {
   if (!editor) return;
@@ -879,6 +1052,25 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // GET /api/tags
+  if (req.method === 'GET' && pathname === '/api/tags') {
+    json(res, listTags());
+    return;
+  }
+
+  // POST /api/create-tag
+  if (req.method === 'POST' && pathname === '/api/create-tag') {
+    const body = await readBody(req);
+    try {
+      const slug = createTag(body);
+      if (!slug) { json(res, { error: 'invalid slug' }, 400); return; }
+      json(res, { ok: true, slug });
+    } catch (e) {
+      json(res, { error: e.message }, 500);
+    }
+    return;
+  }
+
   // POST /api/upload
   if (req.method === 'POST' && pathname === '/api/upload') {
     const body = await readBody(req);
@@ -915,3 +1107,11 @@ server.listen(PORT, () => {
   console.log(`  Assets dir: ${ASSETS_DIR}`);
   console.log(`\n  Press Ctrl+C to stop\n`);
 });
+
+function shutdown() {
+  server.close(() => process.exit(0));
+  // Force exit if server.close hangs (open connections)
+  setTimeout(() => process.exit(0), 500).unref();
+}
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
