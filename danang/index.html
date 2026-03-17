@@ -1,0 +1,886 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다낭 가족여행 구글맵 저장 가이드 ✈️</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', sans-serif; background: #f5f7fa; color: #1a1a2e; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 60%, #1565c0 100%);
+    color: white; padding: 48px 24px 36px; text-align: center; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '✈️'; position: absolute; font-size: 200px; opacity: 0.06; top: -40px; right: -20px; transform: rotate(15deg);
+  }
+  .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .hero p { font-size: 14px; opacity: 0.88; line-height: 1.6; max-width: 480px; margin: 0 auto 20px; }
+  .hero-stats { display: flex; justify-content: center; gap: 24px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; }
+  .stat-label { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+  /* PROGRESS */
+  .progress-bar-wrap { background: white; padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+  .progress-text { font-size: 13px; font-weight: 700; color: #1a73e8; white-space: nowrap; }
+  .bar-bg { flex: 1; height: 8px; background: #e8eaed; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, #34a853, #1a73e8); border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+
+  /* GUIDE */
+  .guide { background: #fffde7; border-left: 4px solid #fbc02d; margin: 16px 12px 4px; border-radius: 0 10px 10px 0; padding: 14px 16px; font-size: 13px; line-height: 1.8; }
+  .guide strong { color: #f57f17; }
+
+  /* SECTION */
+  .section-title { padding: 20px 16px 6px; font-size: 11px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 1.5px; display: flex; align-items: center; gap: 6px; }
+
+  /* CARD */
+  .card {
+    background: white; margin: 8px 12px; border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07); overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 2px solid transparent;
+  }
+  .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-1px); }
+  .card.done { border-color: #34a853; }
+
+  /* CARD IMAGE */
+  .card-img {
+    width: 100%; height: 180px; object-fit: cover; display: block;
+    background: linear-gradient(135deg, #e8eaed 0%, #dadce0 100%);
+  }
+  .card-img-placeholder {
+    width: 100%; height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 60px; background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+  }
+
+  /* CARD BODY */
+  .card-body { padding: 14px 16px 16px; }
+  .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .card-title { font-size: 16px; font-weight: 800; color: #1a1a2e; }
+  .card-title .emoji { margin-right: 4px; }
+  .done-badge { background: #e6f4ea; color: #137333; border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 700; display: none; }
+  .card.done .done-badge { display: inline-block; }
+
+  /* TAGS */
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tag { font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; }
+  .tag-green { background: #e6f4ea; color: #137333; }
+  .tag-blue { background: #e8f0fe; color: #1a73e8; }
+  .tag-orange { background: #fce8e6; color: #c5221f; }
+  .tag-yellow { background: #fef9c3; color: #854d0e; }
+
+  /* MEMO */
+  .memo { background: #f8f9fa; border-radius: 10px; padding: 10px 13px; font-size: 13px; line-height: 1.7; color: #444; border-left: 3px solid #1a73e8; margin-bottom: 12px; }
+
+  /* BUTTONS */
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-map {
+    background: #1a73e8; color: white; border: none; border-radius: 10px;
+    padding: 9px 14px; font-size: 13px; font-weight: 700; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+    transition: background 0.15s;
+  }
+  .btn-map:hover { background: #1557b0; }
+  .btn-copy {
+    background: #f1f3f4; color: #444; border: none; border-radius: 10px;
+    padding: 9px 14px; font-size: 13px; font-weight: 700; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: background 0.15s;
+  }
+  .btn-copy:hover { background: #e2e6ea; }
+  .btn-copy.copied { background: #e6f4ea; color: #137333; }
+  .btn-done {
+    background: #f1f3f4; color: #444; border: none; border-radius: 10px;
+    padding: 9px 14px; font-size: 13px; font-weight: 700; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: background 0.15s; margin-left: auto;
+  }
+  .btn-done:hover { background: #e2e6ea; }
+  .card.done .btn-done { background: #e6f4ea; color: #137333; }
+
+  .footer { text-align: center; padding: 32px 16px; color: #aaa; font-size: 12px; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>✈️ 다낭 가족여행</h1>
+  <p>구글맵 즐겨찾기 저장 가이드<br>60대 어르신 + 8세 미만 아이 동반 기준</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">저장할 장소</div></div>
+    <div class="stat"><div class="stat-num" id="doneCount">0</div><div class="stat-label">완료</div></div>
+    <div class="stat"><div class="stat-num" id="leftCount">30</div><div class="stat-label">남은 곳</div></div>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <span class="progress-text">진행률 <span id="pct">0</span>%</span>
+  <div class="bar-bg"><div class="bar-fill" id="barFill"></div></div>
+</div>
+
+<div class="guide">
+  <strong>📌 사용법</strong><br>
+  ① <b>[지도 열기]</b> 클릭 → 구글맵에서 장소 열림<br>
+  ② ⭐저장 클릭 → <b>즐겨찾기</b> 선택<br>
+  ③ <b>[메모 복사]</b> → 저장된 장소의 메모란에 붙여넣기<br>
+  ④ <b>[✓ 완료]</b> 눌러서 체크!
+</div>
+
+<!-- ===== 관광지 ===== -->
+<div class="section-title">🌴 관광지 / 명소</div>
+
+<div class="card" id="card-0">
+  <div id="img-0"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🎢</span> 바나힐 (Ba Na Hills)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 아이 최고</span>
+      <span class="tag tag-green">👴 어르신 OK</span>
+      <span class="tag tag-yellow">하루코스</span>
+      <span class="tag tag-orange">예매 필수</span>
+    </div>
+    <div class="memo">케이블카 + 골든브릿지 필수코스. 오전 일찍 가야 덜 붐빔. 아이 놀이공원 있어 좋아함. 어르신은 케이블카라 이동 편함. 하루 전체 코스. 입장료 미리 온라인 예매 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Ba+Na+Hills+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,0)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(0)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-1">
+  <div id="img-1"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌉</span> 골든브릿지 (Golden Bridge)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">📸 인생샷</span>
+      <span class="tag tag-yellow">바나힐 내부</span>
+    </div>
+    <div class="memo">손 모양이 다리를 받치는 인생샷 명소. 바나힐 내부에 위치. 안개 많으면 뷰 안 보임(날씨 확인 필수). 아이들 사진 찍기 좋아함. 바나힐 입장권으로 함께 관람 가능.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Golden+Bridge+Ba+Na+Hills+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,1)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(1)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-2">
+  <div id="img-2"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏖️</span> 미케 비치 (My Khe Beach)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 물놀이</span>
+      <span class="tag tag-yellow">이른 아침·저녁 추천</span>
+    </div>
+    <div class="memo">다낭 대표 해변. 모래 부드럽고 깨끗함. 해질녘 석양 최고. 아이 물놀이·모래놀이 최적. 낮엔 너무 더움 → 이른 아침 or 저녁 추천. 근처 카페·식당 많음.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/My+Khe+Beach+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,2)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(2)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-3">
+  <div id="img-3"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🐉</span> 용다리 (Dragon Bridge)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 불쇼 최고</span>
+      <span class="tag tag-green">무료</span>
+      <span class="tag tag-orange">주말 밤 9시</span>
+    </div>
+    <div class="memo">주말 밤 9시 불·물 쇼 있음(토·일). 야경 필수 코스. 아이: 불쇼 매우 좋아함. 무료 관람. 근처 야시장·카페 함께 즐길 수 있음. 주말 저녁 방문 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Dragon+Bridge+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,3)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(3)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-4">
+  <div id="img-4"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌊</span> 한강 (Han River)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">👴 산책 OK</span>
+      <span class="tag tag-yellow">저녁 추천</span>
+    </div>
+    <div class="memo">저녁 산책 명소. 유람선 탑승 가능(약 1시간). 한강다리 야경 예쁨. 어르신: 산책하기 좋음. 용다리와 함께 저녁 코스로 묶기 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Han+River+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,4)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(4)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-5">
+  <div id="img-5"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">💒</span> 다낭 대성당 (핑크성당)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">📸 포토존</span>
+      <span class="tag tag-green">접근 쉬움</span>
+    </div>
+    <div class="memo">핑크색 프랑스 고딕 양식 성당. 내부 관람은 미사 시간 외에만 가능. 중심가 위치라 접근 쉬움. 아이 사진 찍기 좋음. 주변 카페 많음.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Da+Nang+Cathedral" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,5)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(5)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-6">
+  <div id="img-6"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">⛰️</span> 오행산 (Marble Mountains)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 탐험 느낌</span>
+      <span class="tag tag-orange">👴 엘리베이터 이용</span>
+      <span class="tag tag-yellow">반나절</span>
+    </div>
+    <div class="memo">동굴+사원+뷰포인트. 계단 많음. 어르신: 엘리베이터 있음(별도 요금, 이용 추천). 시원한 동굴 내부. 아이: 탐험 느낌으로 좋아함. 오전 추천. 반나절 코스.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Marble+Mountains+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,6)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(6)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-7">
+  <div id="img-7"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏮</span> 호이안 올드타운 (Hoi An)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 랜턴 체험</span>
+      <span class="tag tag-green">세계문화유산</span>
+      <span class="tag tag-orange">저녁 필수</span>
+    </div>
+    <div class="memo">세계문화유산. 랜턴거리 야경 최고. 아이: 소원 랜턴 날리기 체험 가능. 저녁 방문 필수. 다낭에서 차로 약 30분. 소원배 체험 근처.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Hoi+An+Ancient+Town" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,7)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(7)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-8">
+  <div id="img-8"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🛶</span> 바구니배 (Coconut Village)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 체험 1위</span>
+      <span class="tag tag-yellow">옷 젖을 수 있음</span>
+    </div>
+    <div class="memo">코코넛 숲 속 둥근 바구니배 체험. 아이: 최고 인기 체험. 뱃사공 춤 공연 있음. 흥정 가능. 호이안에서 가까움. 옷 젖을 수 있으니 여벌 준비.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Coconut+Village+Cam+Thanh+Hoi+An" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,8)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(8)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-9">
+  <div id="img-9"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏛️</span> 참 박물관</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">❄️ 에어컨</span>
+      <span class="tag tag-yellow">약 1시간</span>
+    </div>
+    <div class="memo">참파 왕국 유물 박물관. 에어컨 있어 더위 피하기 좋음. 어르신: 문화유산 관심 있으면 추천. 입장료 저렴. 약 1시간 코스.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Museum+of+Cham+Sculpture+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,9)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(9)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-10">
+  <div id="img-10"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🙏</span> 린응사 (Linh Ung Pagoda)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">👴 어르신 인기</span>
+      <span class="tag tag-blue">무료</span>
+      <span class="tag tag-yellow">드라이브 코스</span>
+    </div>
+    <div class="memo">67m 거대 관세음보살상. 바다뷰+사원 분위기. 무료 입장. 어르신: 매우 좋아함. 손트라 반도 드라이브+린응사+손트라마리나 코스로 묶기 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Linh+Ung+Pagoda+Son+Tra+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,10)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(10)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 맛집 ===== -->
+<div class="section-title">🍜 맛집</div>
+
+<div class="card" id="card-11">
+  <div id="img-11"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🥖</span> 반미 프엉 (Banh Mi Phuong)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">베트남 1등 반미</span>
+      <span class="tag tag-yellow">호이안</span>
+    </div>
+    <div class="memo">베트남 1등 반미. 오바마도 방문. 추천메뉴: 스페셜 반미. 줄 길지만 회전 빠름. 오전 일찍 가야 덜 기다림. 아이: 먹기 좋은 맛.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Banh+Mi+Phuong+Hoi+An" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,11)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(11)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-12">
+  <div id="img-12"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🍲</span> 마담란 (Madame Lan)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">가족 추천</span>
+      <span class="tag tag-blue">❄️ 에어컨</span>
+    </div>
+    <div class="memo">깔끔한 베트남 전통 음식. 한국인 입맛에 잘 맞음. 추천메뉴: 쌀국수·반쎄오·분짜. 어르신·아이 모두 먹을 수 있는 메뉴. 가족 단위 OK.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Madame+Lan+Restaurant+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,12)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(12)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-13">
+  <div id="img-13"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🍜</span> 미꽝 바무아 (Mi Quang Ba Mua)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-yellow">현지 맛집</span>
+      <span class="tag tag-green">저렴</span>
+    </div>
+    <div class="memo">다낭 대표 미꽝(비빔쌀국수) 현지 맛집. 추천메뉴: 미꽝 돼지고기. 가격 매우 저렴. 아침·점심 추천. 현지인도 많이 오는 진짜 맛집.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Mi+Quang+Ba+Mua+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,13)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(13)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-14">
+  <div id="img-14"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🍥</span> 분짜까 109 (Bun Cha Ca 109)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-yellow">현지 인기</span>
+      <span class="tag tag-green">아침 추천</span>
+    </div>
+    <div class="memo">어묵 쌀국수(분짜까) 현지 인기 맛집. 추천메뉴: 분짜까. 가격 매우 저렴. 아침식사용으로 딱. 어르신도 무난하게 먹을 수 있음.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Bun+Cha+Ca+109+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,14)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(14)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-15">
+  <div id="img-15"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🍕</span> 피자포피스 (Pizza 4P's)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 아이 강추</span>
+      <span class="tag tag-orange">예약 추천</span>
+    </div>
+    <div class="memo">다낭 인기 피자 레스토랑. 예약 추천. 추천메뉴: 반반 피자·치즈 피자. 아이: 매우 좋아함. 에어컨 완비. 여행 중 아이 달래기용으로 최고.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Pizza+4Ps+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,15)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(15)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-16">
+  <div id="img-16"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🕯️</span> 넨 레스토랑 (Nen Restaurant)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">👴 특별한 날</span>
+      <span class="tag tag-orange">예약 필수</span>
+    </div>
+    <div class="memo">베트남 파인다이닝. 전통 요리를 현대식으로 재해석. 분위기 고급. 예약 필수. 어르신 대접하기 좋은 특별한 날 식당. 가격 높은 편.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Nen+Restaurant+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,16)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(16)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-17">
+  <div id="img-17"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🦐</span> 해산물 베만 (Hai San Be Man)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">👴 어르신 인기</span>
+      <span class="tag tag-orange">흥정 필수</span>
+    </div>
+    <div class="memo">신선한 해산물 맛집. 새우·게·조개 등. 가격 흥정 필수(주문 전 가격 확인). 야외 좌석. 저녁 추천. 미케비치 근처.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Hai+San+Be+Man+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,17)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(17)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-18">
+  <div id="img-18"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌿</span> 응온빌라 (Ngon Villa)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">가족 단위 OK</span>
+      <span class="tag tag-blue">정원 분위기</span>
+    </div>
+    <div class="memo">다양한 베트남 음식. 정원 분위기 좋음. 에어컨+야외석. 추천메뉴: 쌀국수·분짜. 가격 중간대. 어르신·아이 모두 무난.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Ngon+Villa+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,18)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(18)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-19">
+  <div id="img-19"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌹</span> 모닝글로리 (Morning Glory)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-yellow">호이안 대표</span>
+      <span class="tag tag-orange">예약 추천</span>
+    </div>
+    <div class="memo">호이안 대표 인기 식당. 추천메뉴: 화이트로즈 만두·반쎄오. 예약 추천. 호이안 방문 시 필수. 위생 깔끔. 가족 여행객 많음.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Morning+Glory+Restaurant+Hoi+An" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,19)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(19)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 카페 ===== -->
+<div class="section-title">☕ 카페</div>
+
+<div class="card" id="card-20">
+  <div id="img-20"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">☕</span> 콩카페 (Cong Caphe)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">코코넛커피 필수</span>
+      <span class="tag tag-green">저렴</span>
+    </div>
+    <div class="memo">베트남 감성 카페 체인. 군대 컨셉 인테리어. 추천메뉴: 코코넛 스무디 커피(필수). 가격 저렴. 다낭 여행 시 꼭 한 번은 들를 것. 여러 지점 있음.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Cong+Caphe+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,20)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(20)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-21">
+  <div id="img-21"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🫘</span> 43 팩토리 커피 (43 Factory)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">스페셜티</span>
+      <span class="tag tag-green">❄️ 에어컨</span>
+    </div>
+    <div class="memo">다낭 대표 스페셜티 카페. 커피 퀄리티 매우 높음. 추천: 콜드브루·핸드드립. 힙한 인테리어. 낮 더울 때 휴식 최적.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/43+Factory+Coffee+Roaster+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,21)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(21)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-22">
+  <div id="img-22"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">⛵</span> 손트라 마리나 (Son Tra Marina)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">📸 인생샷</span>
+      <span class="tag tag-yellow">드라이브 코스</span>
+    </div>
+    <div class="memo">바다뷰 카페+마리나. 하얀 그리스풍 건물. 인생샷 명소. 음료+식사 가능. 린응사 드라이브 코스와 연계 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Son+Tra+Marina+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,22)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(22)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-23">
+  <div id="img-23"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏝️</span> 안방 비치 (An Bang Beach)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 모래놀이</span>
+      <span class="tag tag-green">한산함</span>
+      <span class="tag tag-yellow">호이안 근처</span>
+    </div>
+    <div class="memo">호이안 근처 조용한 해변. 미케보다 한산하고 깨끗함. 아이: 모래놀이 최적. 어르신: 조용히 쉬기 좋음. 호이안과 함께 묶기 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/An+Bang+Beach+Hoi+An" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,23)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(23)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 쇼핑 ===== -->
+<div class="section-title">🛍️ 쇼핑 / 마트</div>
+
+<div class="card" id="card-24">
+  <div id="img-24"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏪</span> 한시장 (Han Market)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-orange">흥정 필수</span>
+      <span class="tag tag-yellow">오전 추천</span>
+    </div>
+    <div class="memo">다낭 대표 재래시장. 기념품·옷·망고·커피 등. 흥정 필수. 오전 일찍 추천(덜 더움). 쇼핑 추천: 말린 망고·드립백 커피·캐슈넛.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Han+Market+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,24)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(24)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-25">
+  <div id="img-25"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🛒</span> 롯데마트 다낭</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">환전 가능</span>
+      <span class="tag tag-blue">❄️ 에어컨</span>
+      <span class="tag tag-yellow">마지막 날 추천</span>
+    </div>
+    <div class="memo">한국 마트. 기념품+식품 쇼핑. 환전소 있음. 에어컨 완비. 마지막 날 쇼핑 추천. 추천: 말린과일·커피·과자·코코넛오일.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Lotte+Mart+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,25)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(25)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-26">
+  <div id="img-26"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🏬</span> 빈컴 플라자 (Vincom Plaza)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 놀이공간</span>
+      <span class="tag tag-green">❄️ 더위 피난</span>
+    </div>
+    <div class="memo">다낭 대형 쇼핑몰. 에어컨 완비(낮 더위 피난 최적). 식당가+카페+쇼핑. 아이: 놀이공간 있음. 낮 2~3시 더울 때 여기서 쉬다 가는 코스 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Vincom+Plaza+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,26)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(26)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 마사지 ===== -->
+<div class="section-title">💆 마사지 / 스파</div>
+
+<div class="card" id="card-27">
+  <div id="img-27"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌿</span> 허벌스파 (Herbal Spa)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">한국인 인기</span>
+      <span class="tag tag-orange">예약 추천</span>
+    </div>
+    <div class="memo">한국인 리뷰 매우 많음. 예약 추천. 가격 합리적. 전신마사지 60~90분. 어르신: 여행 피로 회복에 딱. 청결한 편. 아이는 동행만 가능.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Herbal+Spa+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,27)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(27)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="card-28">
+  <div id="img-28"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🪷</span> 오키드 스파 (Orchid Spa)</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-green">👴 가족 단위</span>
+      <span class="tag tag-orange">예약 필수</span>
+    </div>
+    <div class="memo">가족 단위 이용 많은 스파. 어르신도 편하게 이용 가능. 예약 필수. 바디마사지+발마사지. 가격 중간대. 여행 중간중간 피로 회복 추천.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Orchid+Spa+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,28)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(28)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 야시장 ===== -->
+<div class="section-title">🌙 야시장</div>
+
+<div class="card" id="card-29">
+  <div id="img-29"></div>
+  <div class="card-body">
+    <div class="card-header">
+      <div class="card-title"><span class="emoji">🌃</span> 용다리 야시장</div>
+      <span class="done-badge">✓ 완료</span>
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">🧒 분위기 좋아함</span>
+      <span class="tag tag-orange">주말 저녁</span>
+    </div>
+    <div class="memo">용다리 근처 야시장. 저녁 먹거리+기념품. 저렴한 현지 음식 체험. 용다리 불·물쇼(주말 9시)와 함께 코스로 추천. 주말 저녁 필수 코스.</div>
+    <div class="btn-row">
+      <a class="btn-map" href="https://www.google.com/maps/search/Dragon+Bridge+Night+Market+Da+Nang" target="_blank">🗺 지도 열기</a>
+      <button class="btn-copy" onclick="copyMemo(this,29)">📋 메모 복사</button>
+      <button class="btn-done" onclick="markDone(29)">✓ 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  ✈️ 즐거운 다낭 가족여행 되세요!<br>
+  🧒 아이도 👴 어르신도 모두 행복한 여행 ❤️
+</div>
+
+<script>
+const memos = [
+  "케이블카 + 골든브릿지 필수코스. 오전 일찍 가야 덜 붐빔. 아이 놀이공원 있어 좋아함. 어르신은 케이블카라 이동 편함. 하루 전체 코스. 입장료 미리 온라인 예매 추천.",
+  "손 모양이 다리를 받치는 인생샷 명소. 바나힐 내부에 위치. 안개 많으면 뷰 안 보임(날씨 확인 필수). 아이들 사진 찍기 좋아함. 바나힐 입장권으로 함께 관람 가능.",
+  "다낭 대표 해변. 모래 부드럽고 깨끗함. 해질녘 석양 최고. 아이 물놀이·모래놀이 최적. 낮엔 너무 더움 → 이른 아침 or 저녁 추천. 근처 카페·식당 많음.",
+  "주말 밤 9시 불·물 쇼 있음(토·일). 야경 필수 코스. 아이: 불쇼 매우 좋아함. 무료 관람. 근처 야시장·카페 함께 즐길 수 있음. 주말 저녁 방문 추천.",
+  "저녁 산책 명소. 유람선 탑승 가능(약 1시간). 한강다리 야경 예쁨. 어르신: 산책하기 좋음. 용다리와 함께 저녁 코스로 묶기 추천.",
+  "핑크색 프랑스 고딕 양식 성당. 내부 관람은 미사 시간 외에만 가능. 중심가 위치라 접근 쉬움. 아이 사진 찍기 좋음. 주변 카페 많음.",
+  "동굴+사원+뷰포인트. 계단 많음. 어르신: 엘리베이터 있음(별도 요금, 이용 추천). 시원한 동굴 내부. 아이: 탐험 느낌으로 좋아함. 오전 추천. 반나절 코스.",
+  "세계문화유산. 랜턴거리 야경 최고. 아이: 소원 랜턴 날리기 체험 가능. 저녁 방문 필수. 다낭에서 차로 약 30분. 소원배 체험 근처.",
+  "코코넛 숲 속 둥근 바구니배 체험. 아이: 최고 인기 체험. 뱃사공 춤 공연 있음. 흥정 가능. 호이안에서 가까움. 옷 젖을 수 있으니 여벌 준비.",
+  "참파 왕국 유물 박물관. 에어컨 있어 더위 피하기 좋음. 어르신: 문화유산 관심 있으면 추천. 입장료 저렴. 약 1시간 코스.",
+  "67m 거대 관세음보살상. 바다뷰+사원 분위기. 무료 입장. 어르신: 매우 좋아함. 손트라 반도 드라이브+린응사+손트라마리나 코스로 묶기 추천.",
+  "베트남 1등 반미. 오바마도 방문. 추천메뉴: 스페셜 반미. 줄 길지만 회전 빠름. 오전 일찍 가야 덜 기다림. 아이: 먹기 좋은 맛.",
+  "깔끔한 베트남 전통 음식. 한국인 입맛에 잘 맞음. 추천메뉴: 쌀국수·반쎄오·분짜. 어르신·아이 모두 먹을 수 있는 메뉴. 가족 단위 OK.",
+  "다낭 대표 미꽝(비빔쌀국수) 현지 맛집. 추천메뉴: 미꽝 돼지고기. 가격 매우 저렴. 아침·점심 추천. 현지인도 많이 오는 진짜 맛집.",
+  "어묵 쌀국수(분짜까) 현지 인기 맛집. 추천메뉴: 분짜까. 가격 매우 저렴. 아침식사용으로 딱. 어르신도 무난하게 먹을 수 있음.",
+  "다낭 인기 피자 레스토랑. 예약 추천. 추천메뉴: 반반 피자·치즈 피자. 아이: 매우 좋아함. 에어컨 완비. 여행 중 아이 달래기용으로 최고.",
+  "베트남 파인다이닝. 전통 요리를 현대식으로 재해석. 분위기 고급. 예약 필수. 어르신 대접하기 좋은 특별한 날 식당. 가격 높은 편.",
+  "신선한 해산물 맛집. 새우·게·조개 등. 가격 흥정 필수(주문 전 가격 확인). 야외 좌석. 저녁 추천. 미케비치 근처.",
+  "다양한 베트남 음식. 정원 분위기 좋음. 에어컨+야외석. 추천메뉴: 쌀국수·분짜. 가격 중간대. 어르신·아이 모두 무난.",
+  "호이안 대표 인기 식당. 추천메뉴: 화이트로즈 만두·반쎄오. 예약 추천. 호이안 방문 시 필수. 위생 깔끔. 가족 여행객 많음.",
+  "베트남 감성 카페 체인. 군대 컨셉 인테리어. 추천메뉴: 코코넛 스무디 커피(필수). 가격 저렴. 다낭 여행 시 꼭 한 번은 들를 것. 여러 지점 있음.",
+  "다낭 대표 스페셜티 카페. 커피 퀄리티 매우 높음. 추천: 콜드브루·핸드드립. 힙한 인테리어. 낮 더울 때 휴식 최적.",
+  "바다뷰 카페+마리나. 하얀 그리스풍 건물. 인생샷 명소. 음료+식사 가능. 린응사 드라이브 코스와 연계 추천.",
+  "호이안 근처 조용한 해변. 미케보다 한산하고 깨끗함. 아이: 모래놀이 최적. 어르신: 조용히 쉬기 좋음. 호이안과 함께 묶기 추천.",
+  "다낭 대표 재래시장. 기념품·옷·망고·커피 등. 흥정 필수. 오전 일찍 추천(덜 더움). 쇼핑 추천: 말린 망고·드립백 커피·캐슈넛.",
+  "한국 마트. 기념품+식품 쇼핑. 환전소 있음. 에어컨 완비. 마지막 날 쇼핑 추천. 추천: 말린과일·커피·과자·코코넛오일.",
+  "다낭 대형 쇼핑몰. 에어컨 완비(낮 더위 피난 최적). 식당가+카페+쇼핑. 아이: 놀이공간 있음. 낮 2~3시 더울 때 여기서 쉬다 가는 코스 추천.",
+  "한국인 리뷰 매우 많음. 예약 추천. 가격 합리적. 전신마사지 60~90분. 어르신: 여행 피로 회복에 딱. 청결한 편. 아이는 동행만 가능.",
+  "가족 단위 이용 많은 스파. 어르신도 편하게 이용 가능. 예약 필수. 바디마사지+발마사지. 가격 중간대. 여행 중간중간 피로 회복 추천.",
+  "용다리 근처 야시장. 저녁 먹거리+기념품. 저렴한 현지 음식 체험. 용다리 불·물쇼(주말 9시)와 함께 코스로 추천. 주말 저녁 필수 코스."
+];
+
+// Wikipedia 썸네일 API로 사진 로드
+const wikiTitles = [
+  "Bà Nà Hills", "Golden Bridge (Vietnam)", "Mỹ Khê Beach",
+  "Dragon Bridge (Da Nang)", "Da Nang", "Da Nang Cathedral",
+  "Marble Mountains (Vietnam)", "Hội An", "Cẩm Thanh",
+  "Museum of Cham Sculpture", "Linh Ứng Pagoda",
+  "Bánh mì Phượng", "Vietnamese cuisine", "Mì Quảng",
+  "Bún chả cá", "Pizza 4P's", "Vietnamese cuisine",
+  "Seafood", "Vietnamese cuisine", "Hội An",
+  "Cộng Cà Phê", "Specialty coffee", "Da Nang",
+  "An Bàng Beach", "Han Market", "Lotte Mart",
+  "Vincom Retail", "Spa", "Massage",
+  "Night market"
+];
+
+const emojiFallbacks = [
+  "🎢","🌉","🏖️","🐉","🌊","💒","⛰️","🏮","🛶","🏛️","🙏",
+  "🥖","🍲","🍜","🍥","🍕","🕯️","🦐","🌿","🌹",
+  "☕","🫘","⛵","🏝️","🏪","🛒","🏬","🌿","🪷","🌃"
+];
+
+async function loadWikiImage(idx) {
+  const title = wikiTitles[idx];
+  const container = document.getElementById('img-' + idx);
+  try {
+    const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(title)}&prop=pageimages&format=json&pithumbsize=600&origin=*`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const pages = data.query.pages;
+    const page = Object.values(pages)[0];
+    if (page.thumbnail && page.thumbnail.source) {
+      const img = document.createElement('img');
+      img.className = 'card-img';
+      img.src = page.thumbnail.source;
+      img.alt = title;
+      img.loading = 'lazy';
+      img.onerror = () => showFallback(idx);
+      container.appendChild(img);
+      return;
+    }
+  } catch(e) {}
+  showFallback(idx);
+}
+
+function showFallback(idx) {
+  const container = document.getElementById('img-' + idx);
+  if (container.children.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'card-img-placeholder';
+    div.textContent = emojiFallbacks[idx];
+    container.appendChild(div);
+  }
+}
+
+// 모든 이미지 로드
+for (let i = 0; i < 30; i++) loadWikiImage(i);
+
+// 완료 체크
+const done = new Array(30).fill(false);
+
+function updateProgress() {
+  const n = done.filter(Boolean).length;
+  document.getElementById('doneCount').textContent = n;
+  document.getElementById('leftCount').textContent = 30 - n;
+  document.getElementById('pct').textContent = Math.round(n / 30 * 100);
+  document.getElementById('barFill').style.width = (n / 30 * 100) + '%';
+}
+
+function copyMemo(btn, idx) {
+  navigator.clipboard.writeText(memos[idx]).then(() => {
+    btn.textContent = '✅ 복사됨!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 메모 복사'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function markDone(idx) {
+  done[idx] = !done[idx];
+  const card = document.getElementById('card-' + idx);
+  card.classList.toggle('done', done[idx]);
+  const btn = card.querySelector('.btn-done');
+  btn.textContent = done[idx] ? '↩ 취소' : '✓ 완료';
+  updateProgress();
+}
+</script>
+</body>
+</html>
