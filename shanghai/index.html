@@ -33,6 +33,7 @@
           sans-serif;
         background: var(--bg);
         color: var(--text);
+        overflow-x: hidden;
       }
 
       /* HERO */
@@ -97,8 +98,14 @@
         background: white;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .nav-tabs::-webkit-scrollbar {
+        display: none;
       }
       .nav-tabs a {
         padding: 14px 28px;
