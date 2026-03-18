@@ -1,0 +1,3271 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>🇨🇳 상하이 여행 가이드 | 2025.03.27~29</title>
+    <style>
+      :root {
+        --red: #e84040;
+        --gold: #c9a84c;
+        --dark: #1a1a2e;
+        --card-bg: #ffffff;
+        --bg: #f5f5f0;
+        --text: #333;
+        --sub: #666;
+        --tag-bg: #fff3f3;
+        --tag-color: #e84040;
+        --border: #e8e0d0;
+        --day2: #7c5cbf;
+        --day3: #2196f3;
+        --day4: #e84040;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          "Apple SD Gothic Neo",
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* HERO */
+      .hero {
+        background: linear-gradient(
+          160deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        color: white;
+        text-align: center;
+        padding: 60px 20px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=1400&q=80")
+          center/cover no-repeat;
+        opacity: 0.3;
+      }
+      .hero > * {
+        position: relative;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      }
+      .hero h1 span {
+        color: #ffd700;
+      }
+      .hero .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.85;
+        margin-bottom: 20px;
+      }
+      .hero .dates {
+        display: inline-flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero .date-badge {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        backdrop-filter: blur(4px);
+      }
+
+      /* NAV TABS */
+      .nav-tabs {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: white;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        gap: 0;
+      }
+      .nav-tabs a {
+        padding: 14px 28px;
+        text-decoration: none;
+        color: var(--sub);
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .nav-tabs a:hover {
+        color: var(--red);
+      }
+      .nav-tabs a.active {
+        color: var(--red);
+        border-bottom-color: var(--red);
+      }
+
+      /* TRANSPORT SECTION */
+      .section {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px 16px;
+      }
+      .section-title {
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background: linear-gradient(to right, var(--border), transparent);
+      }
+
+      /* TRANSPORT TABLE */
+      .transport-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+      .transport-card {
+        background: white;
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--gold);
+      }
+      .transport-card.best {
+        border-top-color: var(--red);
+      }
+      .transport-card .tc-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .transport-card .tc-icon {
+        font-size: 1.6rem;
+      }
+      .transport-card h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+      .transport-card .tc-sub {
+        font-size: 0.75rem;
+        color: var(--sub);
+      }
+      .transport-card .tc-info {
+        font-size: 0.82rem;
+        line-height: 1.7;
+      }
+      .transport-card .tc-info .row {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+      .transport-card .tc-info .label {
+        color: var(--sub);
+        min-width: 44px;
+      }
+      .transport-card .pros {
+        color: #22a349;
+        font-size: 0.8rem;
+        margin-top: 10px;
+        line-height: 1.6;
+      }
+      .transport-card .cons {
+        color: #e84040;
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+      .best-badge {
+        background: var(--red);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-left: auto;
+      }
+
+      /* DAY HEADER */
+      .day-header {
+        background: var(--dark);
+        color: white;
+        padding: 18px 20px;
+        margin: 30px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .day-header .day-num {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: var(--gold);
+      }
+      .day-header .day-info h2 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+      .day-header .day-info p {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 2px;
+      }
+
+      /* TIMELINE */
+      .timeline {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px 16px;
+      }
+      .tl-item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+      .tl-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 56px;
+      }
+      .tl-time {
+        font-size: 0.75rem;
+        color: var(--sub);
+        font-weight: 600;
+        white-space: nowrap;
+        margin-bottom: 6px;
+      }
+      .tl-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 800;
+        color: white;
+        flex-shrink: 0;
+      }
+      .tl-dot.purple {
+        background: var(--day2);
+      }
+      .tl-dot.blue {
+        background: var(--day3);
+      }
+      .tl-dot.red {
+        background: var(--day4);
+      }
+      .tl-dot.gray {
+        background: #aaa;
+        font-size: 0.7rem;
+      }
+      .tl-line {
+        flex: 1;
+        width: 2px;
+        background: var(--border);
+        margin-top: 4px;
+      }
+      .tl-dist {
+        font-size: 0.7rem;
+        color: var(--sub);
+        background: #f0f0f0;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin: 6px 0;
+      }
+
+      /* PLACE CARD */
+      .place-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        flex: 1;
+        margin-bottom: 0;
+      }
+      .place-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #eee;
+        display: block;
+      }
+      .place-img-wrap {
+        position: relative;
+      }
+      .ig-hint {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 0.7rem;
+        padding: 3px 8px;
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
+      }
+      .place-body {
+        padding: 16px;
+      }
+      .place-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .tag {
+        font-size: 0.72rem;
+        padding: 3px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+        background: var(--tag-bg);
+        color: var(--tag-color);
+      }
+      .tag.green {
+        background: #f0faf3;
+        color: #22a349;
+      }
+      .tag.blue {
+        background: #f0f6ff;
+        color: #1976d2;
+      }
+      .tag.gold {
+        background: #fffbf0;
+        color: #b8860b;
+      }
+      .tag.gray {
+        background: #f5f5f5;
+        color: #666;
+      }
+      .place-name-kr {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .place-name-cn {
+        font-size: 0.85rem;
+        color: var(--red);
+        font-weight: 600;
+      }
+      .place-name-en {
+        font-size: 0.8rem;
+        color: var(--sub);
+        margin-bottom: 12px;
+      }
+      .place-desc {
+        font-size: 0.85rem;
+        line-height: 1.7;
+        color: #555;
+        margin-bottom: 14px;
+      }
+
+      .info-block {
+        margin-bottom: 14px;
+      }
+      .info-block h4 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--sub);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .info-block h4 span {
+        font-size: 0.9rem;
+      }
+
+      /* MENU LIST */
+      .menu-list {
+        list-style: none;
+      }
+      .menu-list li {
+        font-size: 0.83rem;
+        padding: 7px 0;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        line-height: 1.5;
+      }
+      .menu-list li:last-child {
+        border-bottom: none;
+      }
+      .menu-list .m-icon {
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .menu-list .m-name {
+        font-weight: 600;
+      }
+      .menu-list .m-cn {
+        color: var(--red);
+        font-size: 0.78rem;
+      }
+      .menu-list .m-desc {
+        color: var(--sub);
+        font-size: 0.78rem;
+        display: block;
+      }
+      .must {
+        color: #e84040;
+        font-size: 0.7rem;
+        font-weight: 700;
+        background: #fff0f0;
+        padding: 1px 6px;
+        border-radius: 6px;
+      }
+
+      /* TIPS */
+      .tips-list {
+        list-style: none;
+      }
+      .tips-list li {
+        font-size: 0.83rem;
+        padding: 5px 0;
+        padding-left: 20px;
+        position: relative;
+        line-height: 1.6;
+        color: #444;
+      }
+      .tips-list li::before {
+        content: "💡";
+        position: absolute;
+        left: 0;
+        font-size: 0.75rem;
+        top: 6px;
+      }
+
+      /* NEARBY */
+      .nearby-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nearby-item {
+        background: #f8f8f8;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+      .nearby-item .ni-name {
+        font-weight: 600;
+      }
+      .nearby-item .ni-dist {
+        color: var(--sub);
+        font-size: 0.75rem;
+      }
+
+      /* MAP SEARCH BOX */
+      .map-box {
+        background: #f0f6ff;
+        border: 1px solid #c0d8f0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin-top: 12px;
+        font-size: 0.82rem;
+      }
+      .map-box .map-label {
+        color: #1976d2;
+        font-weight: 700;
+        margin-bottom: 6px;
+        font-size: 0.8rem;
+      }
+      .map-box .kw-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .kw {
+        background: white;
+        border: 1px solid #c0d8f0;
+        padding: 3px 10px;
+        border-radius: 8px;
+        font-size: 0.78rem;
+      }
+
+      /* TIME ESTIMATE */
+      .time-est {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #fffbf0;
+        border: 1px solid #f0e0a0;
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+        color: #8b6914;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      /* DIVIDER between tl items */
+      .tl-spacer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 56px;
+      }
+
+      /* NOTE card */
+      .note-card {
+        background: #fff9e6;
+        border: 1px solid #ffe08a;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 0.83rem;
+        line-height: 1.6;
+        color: #7a5f00;
+        flex: 1;
+      }
+      .note-card .note-title {
+        font-weight: 700;
+        margin-bottom: 6px;
+        font-size: 0.85rem;
+      }
+
+      /* APPS SECTION */
+      .apps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+      .app-card {
+        background: white;
+        border-radius: 14px;
+        padding: 14px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+      .app-icon {
+        font-size: 2rem;
+        margin-bottom: 6px;
+      }
+      .app-name {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .app-desc {
+        font-size: 0.75rem;
+        color: var(--sub);
+        line-height: 1.5;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 30px;
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.8rem;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 600px) {
+        .hero h1 {
+          font-size: 1.7rem;
+        }
+        .nav-tabs a {
+          padding: 12px 16px;
+          font-size: 0.85rem;
+        }
+        .transport-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .place-img {
+          height: 160px;
+        }
+        .tl-left {
+          min-width: 44px;
+        }
+        .tl-dot {
+          width: 30px;
+          height: 30px;
+          font-size: 0.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <h1>🇨🇳 <span>상하이</span> 여행 가이드</h1>
+      <p class="subtitle">2025년 3월 27일(금) ~ 3월 29일(일) · 2박 3일</p>
+      <div class="dates">
+        <span class="date-badge"
+          >Day 2 · 3/27 금 — 도착 · 예원 · 홍쿠이지아</span
+        >
+        <span class="date-badge">Day 3 · 3/28 토 — 디즈니랜드 · 양꼬치</span>
+        <span class="date-badge">Day 4 · 3/29 일 — 딤섬 · 와이탄 · 훠궈</span>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav-tabs" id="nav">
+      <a href="#transport" onclick="setActive(this)">✈️ 공항교통</a>
+      <a href="#day2" onclick="setActive(this)" class="active">Day 2</a>
+      <a href="#day3" onclick="setActive(this)">Day 3</a>
+      <a href="#day4" onclick="setActive(this)">Day 4</a>
+      <a href="#apps" onclick="setActive(this)">📱 필수앱</a>
+      <a href="#kakao" onclick="setActive(this)">💬 카톡정리</a>
+    </nav>
+
+    <!-- TRANSPORT SECTION -->
+    <div id="transport">
+      <div class="section">
+        <h2 class="section-title">✈️ 푸동공항 → 시내 교통수단</h2>
+        <div class="transport-grid">
+          <div class="transport-card best">
+            <div class="tc-header">
+              <span class="tc-icon">🚄</span>
+              <div>
+                <h3>마그레브 (자기부상열차)</h3>
+                <div class="tc-sub">磁浮列车 · Maglev</div>
+              </div>
+              <span class="best-badge">✨ 추천</span>
+            </div>
+            <div class="tc-info">
+              <div class="row">
+                <span class="label">요금</span> 50위안 (항공권 당일 40위안)
+              </div>
+              <div class="row">
+                <span class="label">시간</span> 7~8분 (룽양루까지)
+              </div>
+              <div class="row"><span class="label">운행</span> 06:45~21:50</div>
+              <div class="row">
+                <span class="label">환승</span> 룽양루역 → 지하철 2호선
+              </div>
+            </div>
+            <p class="pros">
+              ✅ 세계 최고속 431km/h 경험<br />✅ 교통 체증 없음, 확정 시간<br />✅
+              첫 방문자에게 특별한 경험
+            </p>
+            <p class="cons">
+              ❌ 룽양루에서 환승 필요<br />❌ 짐 많으면 다소 불편
+            </p>
+          </div>
+
+          <div class="transport-card">
+            <div class="tc-header">
+              <span class="tc-icon">🚇</span>
+              <div>
+                <h3>지하철 2호선</h3>
+                <div class="tc-sub">地铁2号线 · Metro Line 2</div>
+              </div>
+            </div>
+            <div class="tc-info">
+              <div class="row"><span class="label">요금</span> 7~8위안</div>
+              <div class="row">
+                <span class="label">시간</span> 약 60~70분 (인민광장까지)
+              </div>
+              <div class="row"><span class="label">운행</span> 05:45~22:50</div>
+              <div class="row"><span class="label">결제</span> 알리페이 OK</div>
+            </div>
+            <p class="pros">
+              ✅ 가장 저렴<br />✅ 직접 인민광장·난징동루 연결<br />✅
+              교통카드/알리페이 모두 가능
+            </p>
+            <p class="cons">
+              ❌ 소요 시간 김<br />❌ 피크 시간대 혼잡<br />❌ 짐 많으면 매우
+              불편
+            </p>
+          </div>
+
+          <div class="transport-card">
+            <div class="tc-header">
+              <span class="tc-icon">🚕</span>
+              <div>
+                <h3>택시 / 디디</h3>
+                <div class="tc-sub">出租车 / 滴滴</div>
+              </div>
+            </div>
+            <div class="tc-info">
+              <div class="row"><span class="label">요금</span> 150~250위안</div>
+              <div class="row">
+                <span class="label">시간</span> 40~90분 (교통 따라 다름)
+              </div>
+              <div class="row">
+                <span class="label">결제</span> 알리페이 / 현금
+              </div>
+              <div class="row">
+                <span class="label">앱</span> 디디(滴滴) 추천
+              </div>
+            </div>
+            <p class="pros">
+              ✅ 짐 많을 때 편리<br />✅ 문 앞 픽업<br />✅ 디디 앱으로 한국카드
+              결제 가능
+            </p>
+            <p class="cons">❌ 교통 체증 시 1.5~2시간<br />❌ 가장 비쌈</p>
+          </div>
+
+          <div class="transport-card">
+            <div class="tc-header">
+              <span class="tc-icon">🚌</span>
+              <div>
+                <h3>공항 리무진 버스</h3>
+                <div class="tc-sub">机场大巴 · Airport Bus</div>
+              </div>
+            </div>
+            <div class="tc-info">
+              <div class="row"><span class="label">요금</span> 22~30위안</div>
+              <div class="row"><span class="label">시간</span> 60~90분</div>
+              <div class="row">
+                <span class="label">노선</span> 여러 노선 (호텔 경유)
+              </div>
+            </div>
+            <p class="pros">
+              ✅ 저렴<br />✅ 짐 보관 공간<br />✅ 주요 호텔 정류장
+            </p>
+            <p class="cons">
+              ❌ 정류장 확인 필요<br />❌ 교통 상황 따라 변동<br />❌ 내리는
+              정류장 미리 파악 필수
+            </p>
+          </div>
+        </div>
+
+        <div
+          style="
+            background: #fff3f3;
+            border: 1px solid #ffcccc;
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 0.83rem;
+            line-height: 1.8;
+            color: #c00;
+          "
+        >
+          <strong>💡 추천 루트 (이번 일정 기준)</strong><br />
+          <strong>은별·유니 (14:15 도착)</strong> → 마그레브 타고 룽양루 →
+          2호선으로 이동 (특별한 경험 + 확정 시간)<br />
+          <strong>성민 (15:50 도착)</strong> → 동일 루트 or 짐 많으면 디디
+          앱으로 택시<br />
+          두 팀 모두 <strong>왕홍에서 17:00 합류</strong> 예정이므로 마그레브
+          시간 맞추기
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div id="day2">
+      <div class="day-header">
+        <div class="day-num">DAY 2</div>
+        <div class="day-info">
+          <h2>3월 27일 (금) — 도착의 날</h2>
+          <p>공항 → 왕홍 합류 → 예원 → 홍쿠이지아 → 헤이티</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <!-- 공항 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">14:15</div>
+            <div class="tl-dot purple">1</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card" style="margin-bottom: 10px">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1583418855676-b9f2e6a9f4e5?w=800&q=80"
+                alt="상하이 푸동 국제공항"
+                onerror="
+                  this.style.background = '#e0e8f0';
+                  this.style.display = 'block';
+                  this.alt = '상하이 푸동 국제공항';
+                "
+              />
+              <div class="ig-hint">📷 #浦东机场 #PudongAirport</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">출발지</span>
+                <span class="tag blue">관광명소 아님</span>
+              </div>
+              <div class="place-name-kr">상하이 푸동 국제공항</div>
+              <div class="place-name-cn">
+                上海浦东国际机场 · Shànghǎi Pǔdōng Guójì Jīchǎng
+              </div>
+              <div class="place-name-en">
+                Shanghai Pudong International Airport (PVG)
+              </div>
+              <div class="time-est">
+                ⏱ 은별·유니 14:15 도착 / 성민 15:50 도착
+              </div>
+
+              <div class="info-block">
+                <h4><span>📋</span> 도착 직후 체크리스트</h4>
+                <ul class="tips-list">
+                  <li>
+                    유심 or 포켓와이파이 수령/개통 (공항 내 카운터, 또는
+                    한국에서 미리 구매 추천)
+                  </li>
+                  <li>
+                    알리페이 실명인증 미리 완료 필수 (위안화 결제 위해 해외카드
+                    연동)
+                  </li>
+                  <li>위챗 설치 및 로그인 확인 (예약 앱으로 활용)</li>
+                  <li>
+                    환전: 공항 환전소보다 시내가 유리. 소액만 공항에서 환전
+                  </li>
+                  <li>수하물 수령 후 1터미널↔2터미널 이동 시 셔틀버스 이용</li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap/고덕지도 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">浦东国际机场</span>
+                  <span class="kw">PVG Airport</span>
+                  <span class="kw">磁浮列车</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 거리 표시 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time"></div>
+            <div class="tl-dist">31.1km</div>
+          </div>
+          <div
+            style="flex: 1; display: flex; align-items: center; padding: 4px 0"
+          >
+            <div style="font-size: 0.78rem; color: #999">
+              마그레브+지하철 약 50분 / 택시 약 50~90분
+            </div>
+          </div>
+        </div>
+
+        <!-- 왕홍 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">17:00</div>
+            <div class="tl-dot gray">📍</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">🤝 왕홍 — 합류 포인트</div>
+            세 명 합류 후 함께 이동 시작.<br />
+            <strong>인민광장 주변</strong>에서 합류하면 예원·홍쿠이지아 이동이
+            편리합니다.<br />
+            <span style="font-size: 0.78rem; color: #aa9000"
+              >※ 왕홍 = 유명 인플루언서 팔로우 장소 or 특정 약속 장소로 추정.
+              정확한 위치 재확인 권장.</span
+            >
+          </div>
+        </div>
+
+        <!-- 거리 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time"></div>
+            <div class="tl-dist">이동</div>
+          </div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 예원 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">19:00</div>
+            <div class="tl-dot purple">2</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                alt="예원"
+                onerror="
+                  this.style.background = '#e8f0e0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #豫园 #YuyuanGarden</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">관광명소</span>
+                <span class="tag gold">역사유적</span>
+                <span class="tag green">야간 추천</span>
+              </div>
+              <div class="place-name-kr">예원 (豫园)</div>
+              <div class="place-name-cn">豫园 · Yùyuán</div>
+              <div class="place-name-en">Yuyuan Garden</div>
+              <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
+              <p class="place-desc">
+                명나라 시대(1559년) 조성된 상하이 대표 전통 정원. 4.7헥타르
+                규모의 고전 강남 정원 양식으로, 굽이치는 회랑과 연못, 정자가
+                어우러진 상하이의 역사적 심장부입니다. 성황묘(城隍庙)와 연결된
+                상업지구도 함께 둘러볼 수 있어 저녁 시간에 특히 예쁩니다.
+              </p>
+
+              <div class="info-block">
+                <h4><span>⏰</span> 운영 정보</h4>
+                <ul class="tips-list" style="list-style: none">
+                  <li>운영시간: 09:00~17:30 (마지막 입장 17:00)</li>
+                  <li>입장료: 성인 40위안 (성황묘 상업지구는 무료)</li>
+                  <li>야간 조명: 저녁에 성황묘 거리가 특히 아름다움</li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>🍴</span> 예원 내/주변 먹거리</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥟</span>
+                    <div>
+                      <span class="m-name">난샹만터우뎬 소롱포</span>
+                      <span class="must">MUST</span><br />
+                      <span class="m-cn">南翔馒头店 · 小笼包</span>
+                      <span class="m-desc"
+                        >예원 내 100년 전통 소롱포 전문점. 줄이 길지만 가치
+                        있음. 2층 자리 추천.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍡</span>
+                    <div>
+                      <span class="m-name">성황묘 탕후루 / 간식</span><br />
+                      <span class="m-cn">城隍庙小吃</span>
+                      <span class="m-desc"
+                        >사탕 고구마꼬치, 당호로(糖葫芦) 등 길거리 간식
+                        구경</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 꿀팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    저녁 시간 성황묘 거리 조명이 켜지면 정말 예쁨. 사진 필수
+                  </li>
+                  <li>
+                    예원 내부보다 주변 상업거리 자체만 봐도 충분히 볼거리 많음
+                  </li>
+                  <li>평일 저녁은 상대적으로 한산해서 사진 찍기 좋음</li>
+                  <li>성황묘 거리에서 기념품 쇼핑 가능 (가격 흥정 가능)</li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>📍</span> 주변에 함께 가면 좋은 곳</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🏛 성황묘 (城隍庙)</div>
+                    <div class="ni-dist">바로 옆 · 도보 1분</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🛍 예원 상업가</div>
+                    <div class="ni-dist">연결됨 · 무료</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🌉 외탄 (와이탄)</div>
+                    <div class="ni-dist">도보 20분 / 택시 5분</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">豫园</span>
+                  <span class="kw">Yuyuan Garden</span>
+                  <span class="kw">城隍庙</span>
+                  <span class="kw">南翔馒头店</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 거리 -->
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">1.1km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 홍쿠이지아 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">18:00~</div>
+            <div class="tl-dot red">3</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80"
+                alt="홍쿠이지아 본방요리"
+                onerror="
+                  this.style.background = '#f5e8e0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #洪桂枝家 #本帮菜 #红烧肉</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🍽 음식점</span>
+                <span class="tag gold">본방요리</span>
+                <span class="tag green">인기 맛집</span>
+                <span class="tag">따종디엔핑 필수</span>
+              </div>
+              <div class="place-name-kr">홍쿠이지아 인민광장점</div>
+              <div class="place-name-cn">
+                洪桂枝家 · Hóng Guì Zhī Jiā (人民广场店)
+              </div>
+              <div class="place-name-en">
+                Hong Gui Zhi Jia — People's Square Branch
+              </div>
+              <div class="time-est">⏱ 예상 소요 1.5~2시간 (대기 포함)</div>
+              <p class="place-desc">
+                상하이 정통 가정식 본방요리(本帮菜) 전문점. 현지인들 사이에서
+                손꼽히는 맛집으로, 고소하고 달달한 상하이식 간장 조림 요리들이
+                대표 메뉴입니다. 인기가 많아 항상 대기 줄이 있으니 따종디엔핑
+                원격줄서기 필수입니다.
+              </p>
+
+              <div class="info-block">
+                <h4><span>🍜</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥩</span>
+                    <div>
+                      <span class="m-name">홍사오로우</span>
+                      <span class="must">MUST</span><br />
+                      <span class="m-cn">红烧肉 · Hóngshāo ròu</span>
+                      <span class="m-desc"
+                        >상하이식 삼겹살 간장 조림. 달콤하고 윤기 나는 대표
+                        본방요리. 무조건 주문</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🐟</span>
+                    <div>
+                      <span class="m-name">홍사오 생선 조림</span><br />
+                      <span class="m-cn">红烧鱼 · Hóngshāo yú</span>
+                      <span class="m-desc"
+                        >간장 소스로 졸인 생선 요리. 밥도둑</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🦆</span>
+                    <div>
+                      <span class="m-name">백숙 닭 (바이잔지)</span><br />
+                      <span class="m-cn">白斩鸡 · Báizhǎn jī</span>
+                      <span class="m-desc"
+                        >삶은 닭에 간장소스. 담백하고 부드러운 맛</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🥬</span>
+                    <div>
+                      <span class="m-name">채소 볶음 (칭차오)</span><br />
+                      <span class="m-cn">清炒时蔬 · Qīngchǎo shíshu</span>
+                      <span class="m-desc"
+                        >신선한 제철 채소 볶음. 육류 요리와 균형 맞추기</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍲</span>
+                    <div>
+                      <span class="m-name">짜사이 두부국</span><br />
+                      <span class="m-cn">榨菜豆腐汤 · Zhàcài dòufutāng</span>
+                      <span class="m-desc"
+                        >짜사이(절임 채소)와 두부가 들어간 개운한 국물</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 꿀팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    <strong>따종디엔핑(大众点评) 앱</strong>에서 "洪桂枝家" 검색
+                    후 원격줄서기 미리 등록 (가능하면 당일 오전)
+                  </li>
+                  <li>3명 기준 3~4가지 요리 주문이 적당 (요리 양이 넉넉함)</li>
+                  <li>밥(米饭, 미판)은 따로 주문. 1인 2위안 정도</li>
+                  <li>홍사오로우는 짤 수 있으니 밥이랑 같이 먹을 것</li>
+                  <li>예산: 1인 80~120위안 예상</li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">洪桂枝家人民广场</span>
+                  <span class="kw">Hong Gui Zhi Jia</span>
+                  <span class="kw">本帮菜 人民广场</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 거리 -->
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">1.1km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 헤이티 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">식후</div>
+            <div class="tl-dot red">4</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80"
+                alt="헤이티 음료"
+                onerror="
+                  this.style.background = '#f0f0e8';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #喜茶 #HEYTEA #芝芝莓莓</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">☕ 카페/디저트</span>
+                <span class="tag green">알리페이 원격주문</span>
+                <span class="tag blue">신세계백화점</span>
+              </div>
+              <div class="place-name-kr">
+                헤이티 (喜茶) 인민광장 신세계백화점점
+              </div>
+              <div class="place-name-cn">喜茶 · Xǐ Chá (新世界城店)</div>
+              <div class="place-name-en">HEYTEA — Xinshijie Branch</div>
+              <div class="time-est">⏱ 픽업 대기 10~30분 (원격주문 시 단축)</div>
+              <p class="place-desc">
+                중국 MZ세대가 가장 사랑하는 밀크티·과일차 브랜드. 신선한 과일과
+                치즈크림 조합이 시그니처. 알리페이로 미리 원격 주문하고 픽업
+                시간에 맞춰 가면 줄을 많이 줄일 수 있습니다.
+              </p>
+
+              <div class="info-block">
+                <h4><span>🧋</span> 인기 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🍓</span>
+                    <div>
+                      <span class="m-name">치지메이메이</span>
+                      <span class="must">1위</span><br />
+                      <span class="m-cn">芝芝莓莓 · Zhī Zhī Méi Méi</span>
+                      <span class="m-desc"
+                        >딸기 치즈크림 티. 헤이티의 대표 메뉴. 달콤새콤하고
+                        크리미</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍇</span>
+                    <div>
+                      <span class="m-name">다로우포타오</span><br />
+                      <span class="m-cn">多肉葡萄 · Duō Ròu Pútáo</span>
+                      <span class="m-desc"
+                        >포도 치즈크림 티. 포도알갱이 가득. 달지 않고 상큼</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍵</span>
+                    <div>
+                      <span class="m-name">순녹염차</span><br />
+                      <span class="m-cn">纯绿妍茶后传 · Chún lǜ yán chá</span>
+                      <span class="m-desc"
+                        >쓴맛 없는 깔끔한 그린티. 달지 않게 즐기고 싶을 때</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🥥</span>
+                    <div>
+                      <span class="m-name">생코코넛 스무디</span><br />
+                      <span class="m-cn">生打椰椰 · Shēngdǎ yē yē</span>
+                      <span class="m-desc"
+                        >신선한 코코넛 과육 갈아 만든 음료. 여름에 특히
+                        인기</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 주문 팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    알리페이 앱에서 "喜茶GO" 검색 → 매장 선택 → 미리 주문 (줄 안
+                    서도 됨)
+                  </li>
+                  <li>
+                    당도(糖度) 조절: 少糖(소당/덜달게) 또는 半糖(반당) 추천
+                  </li>
+                  <li>얼음(冰): 少冰(소빙) 또는 去冰(노아이스) 선택 가능</li>
+                  <li>L사이즈(大杯) 주문하면 더 이득</li>
+                  <li>가격: 1잔 25~40위안 정도</li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">喜茶新世界城</span>
+                  <span class="kw">HEYTEA People's Square</span>
+                  <span class="kw">新世界城</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 숙소 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">밤</div>
+            <div class="tl-dot purple">5</div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">🏠 숙소 — 183-1 Nan Yang Lu</div>
+            南阳路183弄1号 · 인민광장 근처 위치<br />
+            <strong>지하철:</strong> 1/2/8호선 인민광장역 근처<br />
+            <strong>팁:</strong> 체크인 전 짐 보관 요청 가능한지 미리 문의. 내일
+            디즈니랜드 일찍 출발 고려해서 이른 취침 추천.
+          </div>
+        </div>
+      </div>
+      <!-- /timeline day2 -->
+    </div>
+    <!-- /day2 -->
+
+    <!-- DAY 3 -->
+    <div id="day3">
+      <div
+        class="day-header"
+        style="background: linear-gradient(135deg, #0d47a1, #1976d2)"
+      >
+        <div class="day-num">DAY 3</div>
+        <div class="day-info">
+          <h2>3월 28일 (토) — 디즈니랜드의 날</h2>
+          <p>릴리안베이커리 아침 → 상하이 디즈니랜드 → 헌지우이치엔 양꼬치</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <!-- 아침 배달 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">아침</div>
+            <div class="tl-dot gray">🌅</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag blue">아침식사</span>
+                <span class="tag">배달 옵션</span>
+              </div>
+              <div class="place-name-kr">릴리안베이커리 — 아침 배달</div>
+              <div class="place-name-cn">莉莲蛋挞 / Lily Ann Bakery 系列</div>
+              <div class="time-est">⏱ 전날 밤 미리 주문 추천</div>
+              <p class="place-desc">
+                상하이 현지인들이 즐겨 먹는 베이커리. 수건케이크(毛巾卷),
+                양주깐루(扬州干卤) 등. 어얼머(饿了么) 또는 메이퇀(美团)
+                배달앱으로 숙소 배달 가능.
+              </p>
+              <div class="info-block">
+                <h4><span>🍞</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🎂</span>
+                    <div>
+                      <span class="m-name">수건케이크 (마오진쥐안)</span>
+                      <span class="must">인기</span><br />
+                      <span class="m-cn">毛巾卷 · Máojīn juǎn</span>
+                      <span class="m-desc"
+                        >부드러운 크림 롤케이크. 상하이 베이커리 필수
+                        아이템</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍗</span>
+                    <div>
+                      <span class="m-name">양주깐루</span><br />
+                      <span class="m-cn">扬州干卤 · Yángzhōu gān lǔ</span>
+                      <span class="m-desc"
+                        >양주식 조림 닭고기. 짭짤하고 쫄깃. 아침 든든하게</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>💡</span> 배달 팁</h4>
+                <ul class="tips-list">
+                  <li>어얼머(饿了么) 앱 or 메이퇀(美团) 에서 "莉莲" 검색</li>
+                  <li>
+                    알리페이로 어얼머 바로 접근 가능 (별도 앱 설치 불필요)
+                  </li>
+                  <li>디즈니랜드 가기 전 든든히 먹을 것 — 내부 음식 비쌈!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 디즈니랜드 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">09:00~</div>
+            <div class="tl-dot blue">1</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80"
+                alt="상하이 디즈니랜드"
+                onerror="
+                  this.style.background = '#e0eeff';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #上海迪士尼 #ShanghaiDisneyland</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag blue">테마파크</span>
+                <span class="tag">사전 예약 필수</span>
+                <span class="tag green">하루 종일</span>
+              </div>
+              <div class="place-name-kr">상하이 디즈니랜드</div>
+              <div class="place-name-cn">
+                上海迪士尼乐园 · Shànghǎi Díshìní Lèyuán
+              </div>
+              <div class="place-name-en">Shanghai Disneyland</div>
+              <div class="time-est">⏱ 최소 8~10시간 (하루 종일)</div>
+
+              <div class="info-block">
+                <h4><span>📋</span> 기본 정보</h4>
+                <ul class="tips-list" style="list-style: none">
+                  <li>
+                    운영시간: 보통 09:00~21:00 (날짜별 상이, 공식 앱 확인)
+                  </li>
+                  <li>입장권: 일반 499위안~ (성수기/비수기 상이)</li>
+                  <li>위치: 지하철 11호선 迪士尼站 (디즈니역) 하차</li>
+                  <li>
+                    공식 앱: 上海迪士尼度假区 앱 (한국에서 미리 설치 권장)
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>🎢</span> 핵심 어트랙션 (빠른 순서로 줄 서기)</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">⚡</span>
+                    <div>
+                      <span class="m-name">트론 라이트사이클 런</span>
+                      <span class="must">1순위</span><br />
+                      <span class="m-cn">创极速光轮</span>
+                      <span class="m-desc"
+                        >상하이 디즈니 최고 인기 롤러코스터. 개장 즉시
+                        달려가거나 라이트닝레인 구매</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🚀</span>
+                    <div>
+                      <span class="m-name">레미의 레스토랑</span><br />
+                      <span class="m-cn">雷米的美食历险</span>
+                      <span class="m-desc"
+                        >4D 라이드. 귀여운 인터랙션. 사진 포인트 많음</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🏰</span>
+                    <div>
+                      <span class="m-name">캐리비안의 해적</span><br />
+                      <span class="m-cn">加勒比海盗</span>
+                      <span class="m-desc"
+                        >세계 최대 규모 피라츠 어드벤처. 스케일 압도적</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🦁</span>
+                    <div>
+                      <span class="m-name">라이온킹 뮤지컬</span><br />
+                      <span class="m-cn">狮子王</span>
+                      <span class="m-desc"
+                        >중국어 라이브 뮤지컬. 말 안 통해도 압도적 퀄리티</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🌌</span>
+                    <div>
+                      <span class="m-name">스타워즈: 银河边缘</span><br />
+                      <span class="m-cn">星球大战·银河边缘</span>
+                      <span class="m-desc"
+                        >스타워즈 팬이라면 필수. 라이트세이버 체험 포함</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>🍔</span> 원내 추천 음식</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥟</span>
+                    <div>
+                      <span class="m-name">디즈니 소롱포</span>
+                      <span class="must">인기</span><br /><span class="m-cn"
+                        >小笼包 (원내 판매)</span
+                      ><span class="m-desc"
+                        >디즈니 캐릭터 모양 소롱포. 맛보다 귀여움 포인트</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🦃</span>
+                    <div>
+                      <span class="m-name">터키레그</span><br /><span
+                        class="m-cn"
+                        >火鸡腿</span
+                      ><span class="m-desc"
+                        >디즈니 왕돈까 치킨. 짭짤하고 든든</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍦</span>
+                    <div>
+                      <span class="m-name">미키 아이스크림바</span><br /><span
+                        class="m-cn"
+                        >米奇雪糕</span
+                      ><span class="m-desc"
+                        >미키 모양 초코 아이스크림. 인증샷 필수</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 핵심 꿀팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    <strong>라이트닝레인(闪电通)</strong>: 앱에서 구매 가능한
+                    패스트패스. 트론은 별도 구매 필수 (Lightning Lane Premier)
+                  </li>
+                  <li>개장 30분 전 입구 도착 → 트론 직행이 생존 전략</li>
+                  <li>퍼레이드·불꽃놀이 시간 공식 앱으로 미리 확인</li>
+                  <li>
+                    짐 보관(寄存): 입구 근처 코인로커 이용 (알리페이 결제)
+                  </li>
+                  <li>외부 음식 반입 가능 (소량). 가벼운 간식 챙겨가면 절약</li>
+                  <li>
+                    포토패스 구매 시 포토그래퍼가 찍어주는 사진 무제한 다운로드
+                    가능
+                  </li>
+                  <li>
+                    앱에서 대기시간 실시간 확인 가능. 30분 이하일 때 타는 전략
+                  </li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">上海迪士尼乐园</span>
+                  <span class="kw">Shanghai Disneyland</span>
+                  <span class="kw">迪士尼站</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 거리 -->
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">21.2km</div></div>
+          <div
+            style="
+              flex: 1;
+              font-size: 0.78rem;
+              color: #999;
+              display: flex;
+              align-items: center;
+            "
+          >
+            지하철 11호선 → 환승 약 50분
+          </div>
+        </div>
+
+        <!-- 헌지우이치엔 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">저녁</div>
+            <div class="tl-dot red">2</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80"
+                alt="양꼬치"
+                onerror="
+                  this.style.background = '#f5e8d0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #很久以前羊肉串 #양꼬치上海</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🍢 양꼬치</span>
+                <span class="tag gold">위챗 예약 필수</span>
+                <span class="tag green">현지인 맛집</span>
+              </div>
+              <div class="place-name-kr">헌지우이치엔 상하이 제일백화점점</div>
+              <div class="place-name-cn">
+                很久以前羊肉串 · Hěnjiǔ yǐqián yángròuchuàn (第一百货店)
+              </div>
+              <div class="place-name-en">
+                A Long Time Ago Lamb Skewers — First Dept. Store Branch
+              </div>
+              <div class="time-est">⏱ 예상 소요 1.5~2시간</div>
+              <p class="place-desc">
+                중국 전역에서 유명한 신장식(新疆) 양꼬치 전문 체인. 연기 가득한
+                화로에서 직접 구워주는 스타일로, 현지인들이 줄 서서 먹는
+                맛집입니다. 위챗에서 "很久以前羊肉串"으로 검색해 미리 예약 필수.
+              </p>
+
+              <div class="info-block">
+                <h4><span>🍢</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🐑</span>
+                    <div>
+                      <span class="m-name">양고기 꼬치</span>
+                      <span class="must">MUST</span><br />
+                      <span class="m-cn">羊肉串 · Yángròu chuàn</span>
+                      <span class="m-desc"
+                        >기본 중의 기본. 커민(孜然) 향 가득. 10~15개 주문
+                        추천</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🥩</span>
+                    <div>
+                      <span class="m-name">양갈비 (양파이)</span>
+                      <span class="must">강추</span><br />
+                      <span class="m-cn">羊排 · Yángpái</span>
+                      <span class="m-desc"
+                        >양갈비 통째로 구운 것. 부드럽고 풍미 깊음</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🫘</span>
+                    <div>
+                      <span class="m-name">신장식 난 빵 (카오낭)</span><br />
+                      <span class="m-cn">烤馕 · Kǎo náng</span>
+                      <span class="m-desc"
+                        >화덕에 구운 납작빵. 고기랑 같이 싸서 먹으면 최고</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🫀</span>
+                    <div>
+                      <span class="m-name">신장 꼬치 (허파·연골)</span><br />
+                      <span class="m-cn">板筋/腰子 · Bǎnjīn / Yāozi</span>
+                      <span class="m-desc"
+                        >연골(판진)은 쫄깃. 신장(요자)은 도전 메뉴</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍗</span>
+                    <div>
+                      <span class="m-name">닭다리 꼬치 (샤오지투이)</span><br />
+                      <span class="m-cn">小鸡腿 · Xiǎo jī tuǐ</span>
+                      <span class="m-desc"
+                        >통째로 구운 닭다리. 바삭하고 맛있음</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🧅</span>
+                    <div>
+                      <span class="m-name">파오차이/채소 꼬치</span><br />
+                      <span class="m-cn">蔬菜串 · Shūcài chuàn</span>
+                      <span class="m-desc"
+                        >파·양파·가지 등 채소 꼬치. 고기와 밸런스</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 꿀팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    위챗에서 <strong>"很久以前羊肉串"</strong> 검색 → 공식 계정
+                    팔로우 → 예약 신청
+                  </li>
+                  <li>
+                    맥주(啤酒, 피주) 같이 주문하면 완성. 칭다오(青岛) 또는
+                    하얼빈(哈尔滨) 추천
+                  </li>
+                  <li>
+                    시즈닝: 孜然(커민), 辣椒(라챠오/고추) 골라서 뿌려줌. 맵기
+                    조절 가능
+                  </li>
+                  <li>
+                    디즈니랜드 하루 뒤라 배가 많이 고플 수 있음 — 많이 주문해도
+                    OK
+                  </li>
+                  <li>예산: 1인 60~100위안</li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap / 위챗 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">很久以前羊肉串</span>
+                  <span class="kw">第一百货</span>
+                  <span class="kw">Henjiu Yiqian Lamb Skewers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 숙소 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">밤</div>
+            <div class="tl-dot blue">3</div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">🏠 숙소 복귀 — 183-1 Nan Yang Lu</div>
+            내일(Day 4)은 일정이 많습니다. 점도덕 13:00 예약 기준으로 오전은
+            여유롭게 시작 가능.<br />
+            <strong>내일 미리 준비:</strong> 따종디엔핑에서 점도덕 원격줄서기
+            등록 (당일 오전 10시 이후)
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- DAY 4 -->
+    <div id="day4">
+      <div
+        class="day-header"
+        style="background: linear-gradient(135deg, #b71c1c, #e53935)"
+      >
+        <div class="day-num">DAY 4</div>
+        <div class="day-info">
+          <h2>3월 29일 (일) — 관광 풀코스의 날</h2>
+          <p>
+            딤섬 → 13°C → G3스튜디오 → 임시정부 → 우캉맨션 → 신천지 → 와이탄 →
+            훠궈
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <!-- 아침 배달 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">아침</div>
+            <div class="tl-dot gray">🌅</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">🍱 아점 배달</div>
+            어얼머(饿了么) or 메이퇀(美团)으로 배달 주문.<br />
+            오전 늦게 일어나도 OK. 민정은 오늘 귀국.<br />
+            <strong>배달 추천:</strong> 딤섬류, 죽(粥 zhou), 샌드위치 등 가볍게
+          </div>
+        </div>
+
+        <!-- 점도덕 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">13:00</div>
+            <div class="tl-dot red">1</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80"
+                alt="딘타이펑 소롱포"
+                onerror="
+                  this.style.background = '#fef5e0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #鼎泰丰 #DinTaiFung #小笼包</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🥟 딤섬</span>
+                <span class="tag gold">세계적 명성</span>
+                <span class="tag">따종디엔핑 웨이팅</span>
+              </div>
+              <div class="place-name-kr">점도덕 환위후이점 (딘타이펑)</div>
+              <div class="place-name-cn">
+                鼎泰丰 · Dǐng Tài Fēng (环贸iapm店)
+              </div>
+              <div class="place-name-en">Din Tai Fung — iapm Mall Branch</div>
+              <div class="time-est">⏱ 예상 소요 1~1.5시간 (대기 포함)</div>
+              <p class="place-desc">
+                미슐랭 스타 딤섬 레스토랑. 대만 발상지로 전 세계 체인이지만
+                상하이점도 퀄리티 최고. 얇은 피 안에 육즙 폭발하는 소롱포가 대표
+                메뉴. 따종디엔핑 원격줄서기 필수.
+              </p>
+
+              <div class="info-block">
+                <h4><span>🥟</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥟</span>
+                    <div>
+                      <span class="m-name">샤오롱바오 (소롱포)</span>
+                      <span class="must">MUST</span><br />
+                      <span class="m-cn">小笼包 · Xiǎolóng bāo</span>
+                      <span class="m-desc"
+                        >1인 1세트(10개) 기본. 뜨거운 국물 주의 — 숟가락에 올려
+                        살짝 물어 국물 먼저 흡입</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🦐</span>
+                    <div>
+                      <span class="m-name">새우&돼지고기 샤오마이</span><br />
+                      <span class="m-cn">虾肉烧卖 · Xiā ròu shāomài</span>
+                      <span class="m-desc"
+                        >탱글탱글한 새우가 듬뿍. 소롱포와 함께 필수 주문</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍚</span>
+                    <div>
+                      <span class="m-name">갈비 볶음밥</span>
+                      <span class="must">강추</span><br />
+                      <span class="m-cn">排骨炒饭 · Páigǔ chǎofàn</span>
+                      <span class="m-desc"
+                        >담백하고 고소한 볶음밥. 딤섬과 함께 주문하면 완벽
+                        조합</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍜</span>
+                    <div>
+                      <span class="m-name">우육면</span><br />
+                      <span class="m-cn">牛肉面 · Niúròu miàn</span>
+                      <span class="m-desc"
+                        >진한 소고기 육수. 소롱포 먹고 남은 배 채우기</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🌕</span>
+                    <div>
+                      <span class="m-name">황금 유사 찐빵</span><br />
+                      <span class="m-cn">黄金流沙包 · Huángjīn liúshā bāo</span>
+                      <span class="m-desc"
+                        >살구빛 커스터드가 흘러나오는 디저트 찐빵. 나눠먹기
+                        좋음</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 소롱포 제대로 먹는 법</h4>
+                <ul class="tips-list">
+                  <li>숟가락에 생강채 → 소롱포를 숟가락 위에 올림</li>
+                  <li>위쪽을 살짝 깨물어 구멍 냄 → 국물 조금 흡입</li>
+                  <li>식초+간장을 섞은 소스에 찍어서 한 입에</li>
+                  <li>절대 한입에 통으로 넣지 말 것 — 뜨거운 국물 폭발 주의</li>
+                  <li>따종디엔핑에서 미리 원격줄서기 등록 (당일 오전 10시~)</li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">鼎泰丰环贸iapm</span>
+                  <span class="kw">Din Tai Fung Shanghai</span>
+                  <span class="kw">环贸iapm商场</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">3.5km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 13도 마르조 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">13:00~</div>
+            <div class="tl-dot red">2</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🧇 디저트</span>
+                <span class="tag blue">안푸로드</span>
+                <span class="tag">예약 추천</span>
+              </div>
+              <div class="place-name-kr">13데 마르조 안푸로드점</div>
+              <div class="place-name-cn">13°C · Shísān dù (安福路店)</div>
+              <div class="place-name-en">13°C Dessert — Anfu Road Branch</div>
+              <div class="time-est">⏱ 예상 소요 30~60분</div>
+              <p class="place-desc">
+                상하이에서 핫한 프리미엄 디저트 카페. 수플레 팬케이크와 말차
+                디저트로 유명. 안푸로드(安福路) 거리 자체가 힙하고 예뻐서 산책
+                겸 방문하기 좋습니다.
+              </p>
+              <div class="info-block">
+                <h4><span>🍰</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥞</span>
+                    <div>
+                      <span class="m-name">수플레 팬케이크</span>
+                      <span class="must">인기</span><br /><span class="m-cn"
+                        >舒芙蕾松饼</span
+                      ><span class="m-desc"
+                        >폭신폭신하고 가벼운 수플레 팬케이크. 주문 후 제조 시간
+                        필요</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍵</span>
+                    <div>
+                      <span class="m-name">말차 시리즈</span><br /><span
+                        class="m-cn"
+                        >抹茶系列</span
+                      ><span class="m-desc">진한 말차 크림의 케이크/음료</span>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍮</span>
+                    <div>
+                      <span class="m-name">크림 브륄레</span><br /><span
+                        class="m-cn"
+                        >焦糖布丁</span
+                      ><span class="m-desc"
+                        >겉은 바삭, 속은 부드러운 클래식 디저트</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>📍</span> 안푸로드 주변 볼거리</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🌳 안푸로드 플라타너스 거리</div>
+                    <div class="ni-dist">바로 앞 · 사진 명소</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🏛 우캉맨션</div>
+                    <div class="ni-dist">도보 10분</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">☕ 소규모 카페 거리</div>
+                    <div class="ni-dist">연결됨</div>
+                  </div>
+                </div>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">13°C安福路</span
+                  ><span class="kw">安福路甜品</span
+                  ><span class="kw">Anfu Road Dessert</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 네일 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">중간</div>
+            <div class="tl-dot gray">💅</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">💅 네일 — 유니 &amp; 성민</div>
+            프랑스조계지(法租界) 또는 안푸로드 주변에 고급 네일샵 많음.<br />
+            <strong>추천 검색어:</strong> 大众点评 → "美甲" + 현재 위치 검색<br />
+            예약 시 위챗 또는 따종디엔핑 인앱 예약 가능. 1시간~2시간 소요 예상.
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">1.8km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- G3 스튜디오 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">3</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag blue">포토스튜디오</span>
+                <span class="tag">예약 필수</span>
+                <span class="tag gold">정안구</span>
+              </div>
+              <div class="place-name-kr">G3 스튜디오</div>
+              <div class="place-name-cn">G3 Studio · 静安区延平路443号</div>
+              <div class="place-name-en">
+                G3 Studio — 443 Yanping Road, Jing'an District
+              </div>
+              <div class="time-est">⏱ 예상 소요 1~2시간</div>
+              <p class="place-desc">
+                상하이 트렌디 포토스튜디오. 컨셉 배경에서 전문 조명으로 촬영.
+                정안구 연평로(延平路) 위치로 주변에 힙한 카페와 편집숍이
+                많습니다.
+              </p>
+              <div class="info-block">
+                <h4><span>💡</span> 팁</h4>
+                <ul class="tips-list">
+                  <li>위챗 또는 따종디엔핑으로 사전 예약 필수</li>
+                  <li>의상 준비하거나 스튜디오 제공 의상 활용</li>
+                  <li>결과물 보정 포함 여부 미리 확인</li>
+                  <li>주변: 연평로 카페 거리 함께 산책 추천</li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">延平路443号</span
+                  ><span class="kw">G3 Studio 静安</span
+                  ><span class="kw">Yanping Road Studio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">1.7km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 대한민국 임시정부 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">4</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?w=800&q=80"
+                alt="상하이 대한민국 임시정부"
+                onerror="
+                  this.style.background = '#f0f0f8';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">
+                📷 #대한민국임시정부 #上海临时政府 #独立运动
+              </div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag gold">역사유적</span>
+                <span class="tag green">무료입장</span>
+                <span class="tag">한국 독립운동</span>
+              </div>
+              <div class="place-name-kr">대한민국 임시정부 유적지</div>
+              <div class="place-name-cn">
+                大韩民国临时政府旧址 · Dàhán Mínguó Línshí Zhèngfǔ Jiùzhǐ
+              </div>
+              <div class="place-name-en">
+                Korean Provisional Government Site in Shanghai
+              </div>
+              <div class="time-est">⏱ 예상 소요 40~60분</div>
+              <p class="place-desc">
+                1919년 3.1운동 이후 수립된 대한민국 임시정부의 상하이 청사.
+                마당로 306번지에 위치. 김구 선생 등이 독립운동을 이끈 역사적
+                장소로, 한국인이라면 꼭 방문해야 할 곳입니다. 무료 입장이며
+                한국어 안내 자료 있음.
+              </p>
+              <div class="info-block">
+                <h4><span>📋</span> 방문 정보</h4>
+                <ul class="tips-list" style="list-style: none">
+                  <li>주소: 马当路306弄4号 (마당루 306롱 4호)</li>
+                  <li>운영: 09:00~17:00, 월요일 휴무</li>
+                  <li>입장료: 무료 (예약 필요할 수 있음)</li>
+                  <li>한국어 안내 팸플릿 제공</li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>📍</span> 주변 볼거리</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🏙 신천지 (新天地)</div>
+                    <div class="ni-dist">도보 5~10분</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🌳 타이캉루 (田子坊)</div>
+                    <div class="ni-dist">도보 15분</div>
+                  </div>
+                </div>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">大韩民国临时政府旧址</span
+                  ><span class="kw">马当路306弄</span
+                  ><span class="kw">Korean Provisional Government</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">3.7km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 우캉맨션 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">5</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                alt="우캉맨션"
+                onerror="
+                  this.style.background = '#f5f0e8';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">
+                📷 #武康大楼 #WukangMansion #上海网红打卡
+              </div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">📸 인스타 명소</span>
+                <span class="tag gold">1924년 건축</span>
+                <span class="tag green">무료</span>
+              </div>
+              <div class="place-name-kr">우캉맨션 (武康大楼)</div>
+              <div class="place-name-cn">武康大楼 · Wǔkāng Dàlóu</div>
+              <div class="place-name-en">
+                Wukang Mansion (Normandie Apartments)
+              </div>
+              <div class="time-est">⏱ 예상 소요 20~40분 (사진 포함)</div>
+              <p class="place-desc">
+                1924년 프랑스인 건축가 Hudec가 설계한 노르망디 스타일 아파트.
+                뾰족한 선박 모양의 외관이 특징. 우캉로(武康路)와 화산로(淮海路)
+                교차로에 위치. 상하이 최고의 인스타 포인트 중 하나.
+              </p>
+              <div class="info-block">
+                <h4><span>📸</span> 포토 팁</h4>
+                <ul class="tips-list">
+                  <li>건물 맞은편 횡단보도 건너편이 베스트 포토 스팟</li>
+                  <li>건물 앞 작은 광장에서 위아래 앵글로 촬영</li>
+                  <li>오후 황금시간(골든아워)에 따뜻한 빛으로 더 예쁨</li>
+                  <li>
+                    주변 <strong>우캉로(武康路)</strong> 플라타너스 가로수
+                    거리도 산책 추천
+                  </li>
+                  <li>거리 카페에서 음료 마시며 여유롭게 감상 가능</li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>📍</span> 주변 볼거리</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🌳 우캉로 카페 거리</div>
+                    <div class="ni-dist">바로 주변</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">☕ 질그릇 커피 (陶陶居)</div>
+                    <div class="ni-dist">도보 5분</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🏛 쑹칭링 고거</div>
+                    <div class="ni-dist">도보 10분</div>
+                  </div>
+                </div>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">武康大楼</span
+                  ><span class="kw">Wukang Mansion</span
+                  ><span class="kw">武康路淮海路</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">3.8km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 신천지 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">6</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80"
+                alt="신천지"
+                onerror="
+                  this.style.background = '#e8eff0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #新天地 #Xintiandi #上海</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🏙 복합문화공간</span>
+                <span class="tag gold">1920년대 건축</span>
+                <span class="tag green">카페·쇼핑</span>
+              </div>
+              <div class="place-name-kr">신천지 (新天地)</div>
+              <div class="place-name-cn">新天地 · Xīntiāndì</div>
+              <div class="place-name-en">Xintiandi</div>
+              <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
+              <p class="place-desc">
+                1920년대 석고문(石庫門) 주택을 리노베이션한 트렌디 복합문화공간.
+                카페, 레스토랑, 편집숍, 갤러리가 가득. 낮에는 외관 구경과 카페,
+                저녁에는 조명이 켜져 분위기 있는 산책 코스.
+              </p>
+              <div class="info-block">
+                <h4><span>💡</span> 즐기는 법</h4>
+                <ul class="tips-list">
+                  <li>
+                    South Block: 주요 레스토랑·카페 밀집 지역. 저녁 먹거나 커피
+                    한 잔
+                  </li>
+                  <li>North Block: 역사 보존 구역. 사진 찍기 좋은 골목길</li>
+                  <li>타이핑양 백화점 연결 — 쇼핑 가능</li>
+                  <li>
+                    근처 <strong>타이캉루(田子坊)</strong>도 비슷한 분위기. 좀
+                    더 로컬 감성
+                  </li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">新天地</span
+                  ><span class="kw">Xintiandi Shanghai</span
+                  ><span class="kw">石库门</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">2km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 패왕차희 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">이동중</div>
+            <div class="tl-dot red">7</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🧋 밀크티</span>
+                <span class="tag blue">황푸구</span>
+              </div>
+              <div class="place-name-kr">패왕차희 황푸점</div>
+              <div class="place-name-cn">
+                霸王茶姬 · Bàwáng Chájī (黄浦区店)
+              </div>
+              <div class="place-name-en">Bawang Chaji — Huangpu Branch</div>
+              <div class="time-est">⏱ 테이크아웃 15~20분</div>
+              <p class="place-desc">
+                헤이티(喜茶)와 함께 MZ세대 밀크티 대표 브랜드. 전통 차 문화를
+                현대적으로 재해석. 와이탄 가는 길에 들르기 좋은 위치.
+              </p>
+              <div class="info-block">
+                <h4><span>🧋</span> 추천 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🌸</span>
+                    <div>
+                      <span class="m-name">보야절현</span>
+                      <span class="must">1위</span><br /><span class="m-cn"
+                        >伯牙绝弦 · Bóyá juéxián</span
+                      ><span class="m-desc"
+                        >재스민 밀크티. 은은하고 향긋. 단연 1등 메뉴</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍵</span>
+                    <div>
+                      <span class="m-name">화전우롱</span><br /><span
+                        class="m-cn"
+                        >花田乌龙 · Huātián wūlóng</span
+                      ><span class="m-desc"
+                        >꽃향 우롱 밀크티. 향긋하고 담백</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">霸王茶姬黄浦</span
+                  ><span class="kw">Bawang Chaji Huangpu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">1.3km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 와이탄 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">19:00</div>
+            <div class="tl-dot purple">8</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1538428494232-9c0d8a3ab403?w=800&q=80"
+                alt="와이탄 야경"
+                onerror="
+                  this.style.background = '#1a2a3a';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #外滩 #TheBund #上海夜景</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🌃 야경 명소</span>
+                <span class="tag green">무료</span>
+                <span class="tag gold">17:00 점등 ✨</span>
+              </div>
+              <div class="place-name-kr">와이탄 (外滩)</div>
+              <div class="place-name-cn">外滩 · Wàitān</div>
+              <div class="place-name-en">The Bund</div>
+              <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
+              <p class="place-desc">
+                황푸강을 따라 1.5km 뻗은 상하이의 상징적 산책로. 맞은편
+                루자쭈이(陆家嘴) 금융구의 화려한 야경이 펼쳐집니다. 17:00부터
+                점등이 시작되어 황혼+야경이 가장 아름다운 시간. 전 세계
+                여행자들이 꼽는 상하이 최고의 경관.
+              </p>
+              <div class="info-block">
+                <h4><span>📸</span> 포토 포인트 &amp; 팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    <strong>일몰 30분 후(약 19:00~20:00)</strong>가 황혼+야경
+                    동시에 담을 수 있는 골든타임
+                  </li>
+                  <li>
+                    와이탄 3호(外滩3号) 앞이 루자쭈이 3대 빌딩이 가장 잘 보이는
+                    스팟
+                  </li>
+                  <li>
+                    황푸강 유람선(黄浦江游船) 탑승도 옵션 — 약 1시간, 120위안~
+                  </li>
+                  <li>인파가 많으므로 소지품 조심</li>
+                  <li>
+                    가장 예쁜 포인트: 와이탄 산책로 중간, 세관건물(江海关) 앞
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>📍</span> 루자쭈이 3대 빌딩 (맞은편)</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🏢 동방명주 (东方明珠)</div>
+                    <div class="ni-dist">강 건너편</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🏢 상하이타워 (上海中心)</div>
+                    <div class="ni-dist">강 건너편</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🏢 진마오타워 (金茂大厦)</div>
+                    <div class="ni-dist">강 건너편</div>
+                  </div>
+                </div>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">外滩</span
+                  ><span class="kw">The Bund Shanghai</span
+                  ><span class="kw">黄浦江</span><span class="kw">陆家嘴</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">615m</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 난징동루 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">야간</div>
+            <div class="tl-dot purple">9</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🛍 쇼핑</span>
+                <span class="tag green">보행자 전용</span>
+                <span class="tag blue">야간 화려</span>
+              </div>
+              <div class="place-name-kr">난징동루 (南京东路)</div>
+              <div class="place-name-cn">南京东路 · Nánjīng Dōng Lù</div>
+              <div class="place-name-en">
+                Nanjing East Road (East Nanjing Road)
+              </div>
+              <div class="time-est">⏱ 예상 소요 30~60분 (쇼핑 없을 시)</div>
+              <p class="place-desc">
+                와이탄에서 도보 5분 거리의 보행자 전용 쇼핑 거리. 밤이 되면
+                화려한 네온 조명이 켜지며 활기찬 분위기. 기념품 구입이나 야식
+                먹기 좋은 장소.
+              </p>
+              <div class="info-block">
+                <h4><span>🛍</span> 쇼핑 팁</h4>
+                <ul class="tips-list">
+                  <li>제1백화점(第一百货), 파슨스(百盛) 등 대형 백화점 있음</li>
+                  <li>기념품: 상하이 로고 기념품, 차(茶), 두부 관련 식품 등</li>
+                  <li>야식: 길거리 음식 판매 — 탕후루, 솜사탕, 간식류</li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">南京东路步行街</span
+                  ><span class="kw">Nanjing East Road</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">717m</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 주광위 훠궈 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">저녁</div>
+            <div class="tl-dot red">10</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=800&q=80"
+                alt="훠궈"
+                onerror="
+                  this.style.background = '#3a1010';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #朱光玉火锅 #上海火锅 #麻辣</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🍲 훠궈</span>
+                <span class="tag">인민광장</span>
+                <span class="tag gold">현지 인기</span>
+              </div>
+              <div class="place-name-kr">주광위 훠궈관 인민광장점</div>
+              <div class="place-name-cn">
+                朱光玉火锅馆 · Zhū Guāngyù Huǒguō Guǎn (人民广场店)
+              </div>
+              <div class="place-name-en">
+                Zhu Guangyu Hotpot — People's Square Branch
+              </div>
+              <div class="time-est">⏱ 예상 소요 1.5~2시간</div>
+              <p class="place-desc">
+                상하이에서 현지인들이 찾는 훠궈 전문점. 마라(麻辣) 육수와 맑은
+                육수를 반반(鸳鸯锅)으로 즐기는 것이 정석. 다양한 재료를 직접
+                골라 넣어 먹는 방식. 마지막 날 저녁 최적.
+              </p>
+              <div class="info-block">
+                <h4><span>🥩</span> 추천 재료</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🥩</span>
+                    <div>
+                      <span class="m-name">소고기 (니우로우)</span>
+                      <span class="must">MUST</span><br /><span class="m-cn"
+                        >牛肉 · Niú ròu</span
+                      ><span class="m-desc"
+                        >얇게 썬 훠궈용 소고기. 국물에 살짝 담갔다가 소스에 찍어
+                        먹음</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🐑</span>
+                    <div>
+                      <span class="m-name">양고기 (양로우)</span><br /><span
+                        class="m-cn"
+                        >羊肉 · Yáng ròu</span
+                      ><span class="m-desc"
+                        >훠궈에서 양고기는 독특한 풍미. 마라 육수와 찰떡</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🦐</span>
+                    <div>
+                      <span class="m-name">새우완자 (샤화)</span><br /><span
+                        class="m-cn"
+                        >虾滑 · Xiā huá</span
+                      ><span class="m-desc"
+                        >탱글탱글한 새우 완자. 익으면 통통하게 부풀어 올라 식감
+                        최고</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🐄</span>
+                    <div>
+                      <span class="m-name">소 대장 (마오두)</span><br /><span
+                        class="m-cn"
+                        >毛肚 · Máodǔ</span
+                      ><span class="m-desc"
+                        >쫄깃쫄깃한 식감. 마라 육수에 10초 담갔다 빼서
+                        소스에</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🍄</span>
+                    <div>
+                      <span class="m-name">버섯 모둠</span><br /><span
+                        class="m-cn"
+                        >菌菇拼盘 · Jūngū pīnpán</span
+                      ><span class="m-desc"
+                        >표고·팽이·노루궁뎅이 버섯. 국물 맛 업그레이드</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">🥚</span>
+                    <div>
+                      <span class="m-name">런천미트 (우찬로우)</span><br /><span
+                        class="m-cn"
+                        >午餐肉 · Wǔcān ròu</span
+                      ><span class="m-desc"
+                        >스팸 같은 통조림 육류. 구수하게 익으면 맛있음</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>🥣</span> 육수 &amp; 소스 팁</h4>
+                <ul class="tips-list">
+                  <li>
+                    육수: <strong>원앙궈(鸳鸯锅)</strong> = 마라(麻辣) + 맑은
+                    육수(清汤) 반반 추천
+                  </li>
+                  <li>
+                    맵기 조절: 微辣(약간 맵게) → 中辣(중간) → 特辣(매우 맵게)
+                  </li>
+                  <li>
+                    소스: 참깨소스(芝麻酱, 즈마장) 베이스 + 다진마늘(蒜末) +
+                    고수(香菜) 취향껏
+                  </li>
+                  <li>
+                    음료: 얼그레이 밀크티 or 맥주랑 함께. 맵기 중화용
+                    우유(牛奶)도 OK
+                  </li>
+                  <li>예산: 1인 100~150위안</li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">朱光玉火锅人民广场</span
+                  ><span class="kw">Zhu Guangyu Hotpot</span
+                  ><span class="kw">鸳鸯火锅</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 마사지 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">20:00</div>
+            <div class="tl-dot red">💆</div>
+          </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag green">✅ 예약 확정</span>
+                <span class="tag">💆 두피 마사지</span>
+                <span class="tag blue">황푸 지점</span>
+                <span class="tag gold">4명 · 오후 8시</span>
+              </div>
+              <div class="place-name-kr">
+                MUSIJI 무스지 두피 마사지 — 황푸점
+              </div>
+              <div class="place-name-cn">MUSIJI 慕丝集 · 黄浦店</div>
+              <div class="place-name-en">MUSIJI Head Spa — Huangpu Branch</div>
+              <div class="time-est">⏱ 예약 확정 · 20:00 · 4명</div>
+
+              <div
+                style="
+                  background: #f0faf3;
+                  border: 1px solid #a5d6a7;
+                  border-radius: 10px;
+                  padding: 12px 14px;
+                  margin-bottom: 14px;
+                  font-size: 0.83rem;
+                  line-height: 1.8;
+                "
+              >
+                <strong style="color: #1b5e20">📋 예약 확정 정보</strong><br />
+                🗓 날짜: 2026년 3월 29일 (일) 오후 8시<br />
+                👥 인원: 4명<br />
+                📍 주소: 318 Fuzhou Road, Pu Hui Building 503호
+                (福州路318号普汇大厦503室)<br />
+                📞 전화: +86 13122334188<br />
+                💬 위챗 ID: MUSIJIYAFA<br />
+                💰 할인: 1인당 20위안 (다나 언니가 협상 완료 🙏)
+              </div>
+
+              <div class="info-block">
+                <h4><span>💆</span> 각자 선택 메뉴</h4>
+                <ul class="menu-list">
+                  <li>
+                    <span class="m-icon">🌿</span>
+                    <div>
+                      <span class="m-name">A. 헤드 릴렉스</span> — 다나, 윤희,
+                      성민<br />
+                      <span class="m-cn"
+                        >70분 | 248위안 (약 46,000원) → 할인 후 228위안</span
+                      >
+                      <span class="m-desc"
+                        >두피 딥 클렌징 + 두피 진정 마사지 + 스트레스 해소</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <span class="m-icon">💧</span>
+                    <div>
+                      <span class="m-name">기본 헤드스파</span> — 은별<br />
+                      <span class="m-cn"
+                        >60분 | 158위안 (약 29,000원) → 할인 후 138위안</span
+                      >
+                      <span class="m-desc">기본 두피 클렌징 + 샴푸 케어</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="info-block">
+                <h4><span>💡</span> 팁</h4>
+                <ul class="tips-list">
+                  <li>훠궈 먹고 이동 → 8시 정각 도착 목표로 타임 맞추기</li>
+                  <li>
+                    은별은 60분 코스라 다른 3명보다 10분 먼저 끝남 (대기 필요)
+                  </li>
+                  <li>
+                    마이리얼트립보다 직접 예약이 1인당 70~80위안 저렴 (다나 언니
+                    덕분!)
+                  </li>
+                  <li>
+                    가격 차이 다른 손님에게 말하지 말아달라는 사장님 부탁 있었음
+                  </li>
+                  <li>
+                    끝나고 숙소까지 택시 or 디디 이용 (환위후이점 → 숙소 약
+                    10분)
+                  </li>
+                </ul>
+              </div>
+
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">慕丝集黄浦</span>
+                  <span class="kw">福州路318号</span>
+                  <span class="kw">MUSIJI Head Spa Huangpu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /day4 -->
+
+    <!-- APPS -->
+    <div id="apps">
+      <div class="section" style="margin-top: 30px">
+        <h2 class="section-title">📱 상하이 여행 필수 앱</h2>
+        <div class="apps-grid">
+          <div class="app-card">
+            <div class="app-icon">💙</div>
+            <div class="app-name">알리페이 (支付宝)</div>
+            <div class="app-desc">
+              중국 생활의 핵심. 결제·배달·지하철·택시 모두 가능. 해외카드 연동
+              필수 (출발 전 완료)
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">💚</div>
+            <div class="app-name">위챗 (微信)</div>
+            <div class="app-desc">
+              예약·소통·QR결제. 현지 식당 예약, 메뉴판 스캔에 필수
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🔴</div>
+            <div class="app-name">따종디엔핑 (大众点评)</div>
+            <div class="app-desc">
+              중국판 망고플레이트. 원격줄서기·예약·리뷰 확인. 홍쿠이지아·점도덕
+              필수
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🗺</div>
+            <div class="app-name">고덕지도 (高德地图)</div>
+            <div class="app-desc">
+              중국 내 가장 정확한 지도 앱. 대중교통·도보·차량 경로 모두 지원
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🚕</div>
+            <div class="app-name">디디 (滴滴)</div>
+            <div class="app-desc">
+              중국판 카카오T. 해외카드·알리페이 모두 결제 가능. 택시보다 저렴
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🍱</div>
+            <div class="app-name">어얼머 (饿了么)</div>
+            <div class="app-desc">
+              알리페이 연동 배달 앱. 숙소 배달 시 사용. 아침 배달 추천
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🏰</div>
+            <div class="app-name">상하이 디즈니 앱</div>
+            <div class="app-desc">
+              上海迪士尼度假区. 대기시간 실시간 확인, 라이트닝레인 구매,
+              퍼레이드 시간표
+            </div>
+          </div>
+          <div class="app-card">
+            <div class="app-icon">🌐</div>
+            <div class="app-name">VPN (선택)</div>
+            <div class="app-desc">
+              구글·인스타 사용 시 필요. 출국 전 설치 권장. 중국 내 설치 불가
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            background: #f0faf3;
+            border: 1px solid #b2dfdb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            line-height: 1.8;
+          "
+        >
+          <strong style="color: #1b5e20">💡 출발 전 필수 체크리스트</strong
+          ><br />
+          ☐ 알리페이 실명인증 + 해외카드 연동 완료<br />
+          ☐ 위챗 설치 및 로그인<br />
+          ☐ 고덕지도/따종디엔핑 설치<br />
+          ☐ 디디 앱 설치 + 카드 등록<br />
+          ☐ VPN 설치 (인스타·구글 사용 시)<br />
+          ☐ 상하이 디즈니 공식 앱 설치<br />
+          ☐ 유심 or 포켓와이파이 준비<br />
+          ☐ 따종디엔핑 — 홍쿠이지아/점도덕 원격줄서기 미리 설치
+        </div>
+      </div>
+    </div>
+
+    <!-- KAKAO 정리 탭 -->
+    <div id="kakao">
+      <div class="section" style="margin-top: 30px">
+        <h2 class="section-title">💬 카톡 대화 핵심 정리</h2>
+        <p style="font-size: 0.82rem; color: #999; margin-bottom: 20px">
+          거제옙삐들 단톡방에서 결정된 사항, 팁, 예약 정보 총정리
+        </p>
+
+        <!-- 예약 확정 사항 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #c00;
+            "
+          >
+            ✅ 예약 확정된 것들
+          </h3>
+          <div style="display: grid; gap: 12px">
+            <div
+              style="
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e8e0d0;
+                border-left: 4px solid #7c5cbf;
+                padding: 16px;
+              "
+            >
+              <div
+                style="font-size: 0.9rem; font-weight: 800; margin-bottom: 8px"
+              >
+                👘 위제한푸 왕홍 (Day 2 · 3/27)
+              </div>
+              <div style="font-size: 0.83rem; line-height: 1.8; color: #444">
+                📍 上海市黄浦区丽水路81号紫锦城负一层B39室<br />
+                ☎️ 위챗: 13761665053 | 예약자: 최다혜 (Dana Choi)<br />
+                👥 5명 | 보증금 500위안 선지급 완료<br /><br />
+                <strong>타임라인:</strong><br />
+                🕓 16:00 — 다나, 민정 도착 → 개인촬영 시작<br />
+                🕔 17:00 — 은별, 윤희 도착 → 개인촬영<br />
+                🕕 18:00 — 성민 도착 → 개인촬영 → 단체사진<br /><br />
+                <strong>각자 패키지:</strong><br />
+                • 은별, 은별: 고급한푸 358 + 40분촬영 688 패키지<br />
+                • 윤희, 민정, 성민: 고급한푸 358 + 20분촬영 199 패키지
+                (557위안)<br />
+                • 단체사진 추가금 없음 (다나 촬영시간 일부 차감으로 해결)<br />
+                • 이벤트 할인 적용 전 총액 3,047위안<br /><br />
+                <span
+                  style="
+                    background: #fff3f3;
+                    color: #c00;
+                    font-size: 0.78rem;
+                    padding: 3px 8px;
+                    border-radius: 6px;
+                  "
+                  >⚠️ 프로모션(블로그/인스타/틱톡 링크 제출) → 나중에 알리페이로
+                  환급</span
+                >
+              </div>
+            </div>
+
+            <div
+              style="
+                background: white;
+                border-radius: 14px;
+                border: 1px solid #e8e0d0;
+                border-left: 4px solid #e84040;
+                padding: 16px;
+              "
+            >
+              <div
+                style="font-size: 0.9rem; font-weight: 800; margin-bottom: 8px"
+              >
+                💆 MUSIJI 두피마사지 (Day 4 · 3/29)
+              </div>
+              <div style="font-size: 0.83rem; line-height: 1.8; color: #444">
+                📍 318 Fuzhou Road, Pu Hui Building 503호 (황푸점)<br />
+                ☎️ +86 13122334188 | 위챗: MUSIJIYAFA<br />
+                🕗 오후 8시 | 👥 4명<br /><br />
+                <strong>각자 메뉴:</strong><br />
+                • 다나, 윤희, 성민: A. 헤드릴렉스 70분 248위안 (할인 후
+                228위안)<br />
+                • 은별: 기본 헤드스파 60분 158위안 (할인 후 138위안)<br />
+                • 할인: 1인당 20위안 (4명 총 80위안 절약! 다나 언니 협상 🏆)<br /><br />
+                <span
+                  style="
+                    background: #fff9e6;
+                    color: #7a5f00;
+                    font-size: 0.78rem;
+                    padding: 3px 8px;
+                    border-radius: 6px;
+                  "
+                  >⚠️ 가격 할인 내용 다른 손님에게 말하지 말 것 (사장님
+                  부탁)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 개인별 결정 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #1976d2;
+            "
+          >
+            👥 멤버별 결정 사항
+          </h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+              gap: 10px;
+            "
+          >
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 14px;
+                border: 1px solid #e8e0d0;
+              "
+            >
+              <div style="font-weight: 800; margin-bottom: 6px">
+                🌸 다나 (Dana)
+              </div>
+              <div style="font-size: 0.8rem; line-height: 1.7; color: #555">
+                위제한푸 40분촬영 (688)<br />단체사진 시간 차감 배려 🙏<br />MUSIJI
+                A코스 248위안<br />네일 패스 (손톱 관리 중)<br />Amap 고덕지도
+                저장 완료
+              </div>
+            </div>
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 14px;
+                border: 1px solid #e8e0d0;
+              "
+            >
+              <div style="font-weight: 800; margin-bottom: 6px">⭐ 은별</div>
+              <div style="font-size: 0.8rem; line-height: 1.7; color: #555">
+                위제한푸 40분촬영 (688)<br />MUSIJI 기본 158위안<br />네일 패스
+                (손톱 짧음)<br />13°C 마르조 대신 구경<br />알리페이·위챗페이
+                등록 완료
+              </div>
+            </div>
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 14px;
+                border: 1px solid #e8e0d0;
+              "
+            >
+              <div style="font-weight: 800; margin-bottom: 6px">
+                🌙 윤희 (Uni)
+              </div>
+              <div style="font-size: 0.8rem; line-height: 1.7; color: #555">
+                위제한푸 20분촬영 (557)<br />MUSIJI A코스 248위안<br />네일 YES
+                💅<br />주디 머리띠 살 예정 ㅋㅋ
+              </div>
+            </div>
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 14px;
+                border: 1px solid #e8e0d0;
+              "
+            >
+              <div style="font-weight: 800; margin-bottom: 6px">💪 성민</div>
+              <div style="font-size: 0.8rem; line-height: 1.7; color: #555">
+                위제한푸 20분촬영 (557)<br />18:00 도착 예정<br />MUSIJI A코스
+                248위안<br />디즈니랜드 개별 구매<br />입국신고서 미리 작성
+              </div>
+            </div>
+            <div
+              style="
+                background: white;
+                border-radius: 12px;
+                padding: 14px;
+                border: 1px solid #e8e0d0;
+              "
+            >
+              <div style="font-weight: 800; margin-bottom: 6px">🌺 민정</div>
+              <div style="font-size: 0.8rem; line-height: 1.7; color: #555">
+                위제한푸 20분촬영 (557)<br />16:00 다나랑 먼저 도착<br />Day 4에
+                귀국 (오전 중)<br />MUSIJI 불참 (귀국 후)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 디즈니 팁 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #2196f3;
+            "
+          >
+            🏰 디즈니랜드 결정 사항
+          </h3>
+          <div
+            style="
+              background: white;
+              border-radius: 14px;
+              border: 1px solid #e8e0d0;
+              padding: 16px;
+              font-size: 0.83rem;
+              line-height: 1.8;
+              color: #444;
+            "
+          >
+            <strong>티켓:</strong> 각자 개별 구매 (트립닷컴 or 클룩 or
+            마이리얼트립)<br />
+            → 트립닷컴 3/3 오픈 반값 이벤트 시도했으나 3/28은 해당 없음<br />
+            → 얼리입장 + 식음료 30위안 포함 패키지 가성비 좋음 (약 12만원대)<br /><br />
+            <strong>어트랙션 전략 (성민 꿀팁):</strong><br />
+            🎯 <strong>트론 오전에 제일 먼저!</strong> (개장 즉시 달려가기)<br />
+            🎡 주토피아 아침에 사진찍고 → 저녁에 한 번 더 (클럽 개장)<br />
+            🏴‍☠️ 캐리비안 + 트론 베스트코스<br />
+            🍔 디즈니 밖에서 밥 먹으려면 재입장 가능하나 매우 번거로움<br />
+            → 결국 내부 식당 이용 추천 (마라탕 추천!)<br /><br />
+            <strong>주디 머리띠:</strong> 디즈니 정식 구매 or 미니소 저렴이 or
+            대여 서비스 이용<br />
+            <strong>DPA (빠른입장):</strong> 당일 앱에서 구매 가능. 트론은 별도
+            LLP 구매 필요
+          </div>
+        </div>
+
+        <!-- 보조배터리 팁 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #f57c00;
+            "
+          >
+            🔋 보조배터리 꿀팁 (성민 경험)
+          </h3>
+          <div
+            style="
+              background: white;
+              border-radius: 14px;
+              border: 1px solid #e8e0d0;
+              padding: 16px;
+              font-size: 0.83rem;
+              line-height: 1.8;
+              color: #444;
+            "
+          >
+            <div
+              style="
+                background: #fff3e0;
+                border-radius: 8px;
+                padding: 10px 12px;
+                margin-bottom: 10px;
+              "
+            >
+              ⚠️ 현지 공유 보조배터리 대여는 <strong>시간 단위 과금</strong>!
+              한국이랑 다름<br />
+              성민 멍청비용 2만원 날린 경험 있음 → <strong>구매 추천</strong>
+            </div>
+            <strong>기내 반입 규정:</strong><br />
+            • 100Wh 이하만 가능, 기내수화물에만 가능 (위탁 불가)<br />
+            • 용량 표기 없으면 압수될 수 있음<br />
+            • CCC마크 있으면 통과 가능 (중국 품질기준, 한국 KC인증 유사)<br />
+            • 샤오미 보조배터리 추천 (한국보다 현지가 저렴, 캐릭터 제품도
+            있음)<br /><br />
+            <strong>성민 실제 구매:</strong> 상하이 샤오미 매장 → 32,000원에
+            구매 (한국보다 저렴)
+          </div>
+        </div>
+
+        <!-- 앱 & 준비 체크리스트 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #22a349;
+            "
+          >
+            📋 은별이 공유한 준비 체크리스트
+          </h3>
+          <div
+            style="
+              background: white;
+              border-radius: 14px;
+              border: 1px solid #e8e0d0;
+              padding: 16px;
+              font-size: 0.83rem;
+              line-height: 1.9;
+              color: #444;
+            "
+          >
+            ☐ <strong>알리페이 + 위챗</strong> — 가입, 여권, 카드 등록 완료<br />
+            ☐ 카드 해외결제 문자 오는지 미리 확인<br />
+            ☐ 알리페이 안 될 경우 대비 위챗페이 동일 카드 등록<br />
+            ☐ <strong>호텔 주소 중문/영문 캡처 저장</strong> (택시기사
+            보여주기용)<br />
+            &nbsp;&nbsp;&nbsp;→ 上海市静安区南阳路183弄1号楼9楼905室<br />
+            ☐
+            <strong>고덕지도, 따종디엔핑, 메이투안, 디즈니 상해 앱</strong>
+            설치<br />
+            ☐ <strong>VPN 포함 이심</strong> — 구글/인스타 사용 위해 출국 전
+            설치 (중국 내 설치 불가)<br />
+            ☐ <strong>입국신고서 미리 작성</strong> (성민 알려준 팁)<br />
+            ☐ <strong>왕홍 참고 사진 2~3장 저장</strong> — 핀터레스트에서 추구미
+            골라가기<br />
+            ☐ 보조배터리 확인 (100Wh 이하, CCC마크 or 샤오미 추천)<br />
+            ☐ 따종디엔핑 —
+            <strong>홍쿠이지아 / 점도덕 원격줄서기 미리 등록</strong>
+          </div>
+        </div>
+
+        <!-- 숙소 정보 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #7c5cbf;
+            "
+          >
+            🏠 숙소 정보
+          </h3>
+          <div
+            style="
+              background: white;
+              border-radius: 14px;
+              border: 1px solid #e8e0d0;
+              padding: 16px;
+              font-size: 0.83rem;
+              line-height: 1.8;
+              color: #444;
+            "
+          >
+            <strong>숙소:</strong> 183-1 Nan Yang Lu<br />
+            <strong>중문 주소:</strong>
+            上海市静安区南阳路183弄1号楼9楼905室<br />
+            <strong>영문 주소:</strong> Room 905, Building 1, Lane 183, Nanyang
+            Road, Jing'an District, Shanghai<br />
+            <strong>지하철:</strong> 1/2/8호선 인민광장역 근처<br /><br />
+            <span
+              style="
+                background: #f0f6ff;
+                color: #1976d2;
+                font-size: 0.78rem;
+                padding: 3px 8px;
+                border-radius: 6px;
+              "
+              >💡 택시 기사에게 보여줄 중문 주소 캡처 저장 필수!</span
+            >
+          </div>
+        </div>
+
+        <!-- 기타 재미난 결정들 -->
+        <div style="margin-bottom: 28px">
+          <h3
+            style="
+              font-size: 1rem;
+              font-weight: 800;
+              margin-bottom: 14px;
+              color: #666;
+            "
+          >
+            😂 기타 결정 & 명언
+          </h3>
+          <div
+            style="
+              background: white;
+              border-radius: 14px;
+              border: 1px solid #e8e0d0;
+              padding: 16px;
+              font-size: 0.83rem;
+              line-height: 1.9;
+              color: #444;
+            "
+          >
+            💬
+            <em
+              >"사람이... 사기로 했으면... 실행에 빨리 빨리 옮겨야 할
+              것...."</em
+            >
+            — 성민<br />
+            💬
+            <em
+              >"처음 하는 것은... 현지인이 곁에 없으면... 시도하지 말 것.."</em
+            >
+            — 성민<br /><br />
+            🎭 왕홍 메이크업 상태로 인생네컷 찍고 싶다 — 다나 (예원 내 기계
+            있음)<br />
+            🛍 미니소에서 주디 머리띠 저렴이로 살 수도 있음<br />
+            🌙 와이탄 야경 후 클럽 INS 가는 것도 옵션으로 논의됨<br />
+            💆 헤드스파 끝나고 숙소 돌아가면 몸만 씻으면 됨 (머리는 거기서 해결)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>✈️ 상하이 여행 가이드 · 2025.03.27~29</p>
+      <p style="margin-top: 6px; font-size: 0.75rem">
+        사진 출처: Unsplash | 정보는 방문 전 최신 정보 재확인 권장
+      </p>
+    </footer>
+
+    <script>
+      function setActive(el) {
+        document
+          .querySelectorAll(".nav-tabs a")
+          .forEach((a) => a.classList.remove("active"));
+        el.classList.add("active");
+      }
+      // 스크롤 시 탭 자동 활성화
+      const sections = ["transport", "day2", "day3", "day4", "apps", "kakao"];
+      window.addEventListener("scroll", () => {
+        let current = "transport";
+        sections.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && window.scrollY >= el.offsetTop - 80) current = id;
+        });
+        document.querySelectorAll(".nav-tabs a").forEach((a) => {
+          a.classList.toggle(
+            "active",
+            a.getAttribute("href") === "#" + current,
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
