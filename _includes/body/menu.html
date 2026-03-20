@@ -119,9 +119,13 @@
       var res = await fetch('{{ "/assets/sitedata.json" | relative_url }}');
       searchData = await res.json();
     } catch(e) { searchData = []; }
+    // 데이터 로딩 완료 후 입력값이 있으면 결과 재렌더링
+    var q = searchInput.value.trim();
+    if (q) renderResults(q);
   }
   function doSearch(q) {
-    if (!q || !searchData) return [];
+    if (!q) return [];
+    if (!searchData) return null; // 로딩 중 표시를 위해 null 반환
     var lq = q.toLowerCase();
     return searchData.filter(function(p) {
       return (p.title       || '').toLowerCase().includes(lq) ||
@@ -130,8 +134,12 @@
     }).slice(0, 10);
   }
   function renderResults(q) {
-    var results = doSearch(q);
     if (!q) { searchResults.innerHTML = ''; return; }
+    var results = doSearch(q);
+    if (results === null) {
+      searchResults.innerHTML = '<div class="search-no-result">검색 데이터 로딩 중...</div>';
+      return;
+    }
     if (!results.length) {
       searchResults.innerHTML = '<div class="search-no-result">결과 없음</div>';
       return;
