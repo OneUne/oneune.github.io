@@ -47,3 +47,4 @@ vendor
 _zip
 /stats.json
 .bundle
+.bkit*
