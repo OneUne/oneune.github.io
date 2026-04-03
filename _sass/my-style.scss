@@ -195,6 +195,38 @@ u {
   border-radius: 3px;
 }
 
+// ── Callout blocks ────────────────────────────────────────────────────────────
+.callout {
+  display: block;
+  position: relative;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  border-radius: 8px;
+  margin: 1.25rem 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+
+  &::before {
+    position: absolute;
+    left: 1rem;
+    top: 0.9rem;
+    font-size: 1.1rem;
+  }
+
+  p { margin: 0 0 0.5rem; &:last-child { margin: 0; } }
+
+  &.callout-info    { background: rgba(59,130,246,0.05);  border-left: 3px solid #3b82f6; &::before { content: 'ℹ️'; } }
+  &.callout-tip     { background: rgba(34,197,94,0.05);   border-left: 3px solid #22c55e; &::before { content: '💡'; } }
+  &.callout-warning { background: rgba(245,158,11,0.05);  border-left: 3px solid #f59e0b; &::before { content: '⚠️'; } }
+  &.callout-danger  { background: rgba(239,68,68,0.05);   border-left: 3px solid #ef4444; &::before { content: '🚨'; } }
+}
+
+.dark-mode .callout {
+  &.callout-info    { background: rgba(59,130,246,0.08); }
+  &.callout-tip     { background: rgba(34,197,94,0.08);  }
+  &.callout-warning { background: rgba(245,158,11,0.08); }
+  &.callout-danger  { background: rgba(239,68,68,0.08);  }
+}
+
 .dl-table {
   a {
     @supports ((text-decoration-thickness: initial) and (text-underline-offset: initial)) {

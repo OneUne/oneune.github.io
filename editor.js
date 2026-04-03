@@ -299,6 +299,26 @@ const HTML = `<!DOCTYPE html>
   .editor-statusbar { background: var(--surface) !important; color: var(--muted) !important;
     border-color: var(--border) !important; }
   .CodeMirror-scroll { overflow-y: auto !important; }
+  /* Callout blocks */
+  .editor-preview .callout, .editor-preview-side .callout {
+    display: block !important; position: relative !important;
+    padding: 0.85rem 1rem 0.85rem 2.75rem !important; border-radius: 8px !important;
+    margin: 1.25rem 0 !important; line-height: 1.6 !important; font-size: 0.95rem !important;
+  }
+  .editor-preview .callout::before, .editor-preview-side .callout::before {
+    position: absolute !important; left: 1rem !important; top: 0.9rem !important;
+    font-size: 1.1rem !important;
+  }
+  .editor-preview .callout p, .editor-preview-side .callout p { margin: 0 0 0.5rem !important; }
+  .editor-preview .callout p:last-child, .editor-preview-side .callout p:last-child { margin: 0 !important; }
+  .editor-preview .callout-info,    .editor-preview-side .callout-info    { background: rgba(59,130,246,0.05)  !important; border-left: 3px solid #3b82f6 !important; }
+  .editor-preview .callout-tip,     .editor-preview-side .callout-tip     { background: rgba(34,197,94,0.05)   !important; border-left: 3px solid #22c55e !important; }
+  .editor-preview .callout-warning, .editor-preview-side .callout-warning { background: rgba(245,158,11,0.05)  !important; border-left: 3px solid #f59e0b !important; }
+  .editor-preview .callout-danger,  .editor-preview-side .callout-danger  { background: rgba(239,68,68,0.05)   !important; border-left: 3px solid #ef4444 !important; }
+  .editor-preview .callout-info::before,    .editor-preview-side .callout-info::before    { content: 'ℹ️'; }
+  .editor-preview .callout-tip::before,     .editor-preview-side .callout-tip::before     { content: '💡'; }
+  .editor-preview .callout-warning::before, .editor-preview-side .callout-warning::before { content: '⚠️'; }
+  .editor-preview .callout-danger::before,  .editor-preview-side .callout-danger::before  { content: '🚨'; }
 
   /* Buttons */
   button { cursor: pointer; border: none; font-size: 13px; font-weight: 500;
@@ -424,6 +444,8 @@ const HTML = `<!DOCTYPE html>
     </div>
     <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;">Alt text</label>
     <input type="text" id="imgAlt" placeholder="Image description" style="margin-top:5px;">
+    <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:10px;display:block;">Caption <span style="font-weight:400;text-transform:none;opacity:0.6">(선택)</span></label>
+    <input type="text" id="imgCaption" placeholder="이미지 아래에 표시될 설명" style="margin-top:5px;">
     <div id="imgPreviewWrap" style="display:none;margin-bottom:12px;">
       <img id="imgPreview" style="max-width:100%;border-radius:6px;max-height:160px;object-fit:cover;">
     </div>
@@ -527,6 +549,7 @@ function mountEditor(fm) {
       <button class="btn-ghost btn-sm" onclick="openImageModal()">🖼 Image</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('code')">{ } Code</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('toc')">≡ TOC</button>
+      <button class="btn-ghost btn-sm" onclick="insertSnippet('callout')">💬 Callout</button>
       <div style="flex:1"></div>
       <span id="filenameDisplay" style="font-family:monospace;font-size:11px;color:var(--muted)">\${currentFile || ''}</span>
       <button class="btn-success" onclick="savePost()">Save ⌘S</button>
@@ -583,10 +606,154 @@ function mountEditor(fm) {
     'Cmd-S': savePost, 'Ctrl-S': savePost,
     "Cmd-\\\\": toggleSideBySide, "Ctrl-\\\\": toggleSideBySide,
     'Cmd-B': wrapBold, 'Ctrl-B': wrapBold,
+    'Cmd-I': wrapItalic, 'Ctrl-I': wrapItalic,
     'Cmd-U': wrapUnderline, 'Ctrl-U': wrapUnderline,
     'Cmd-K': insertLink, 'Ctrl-K': insertLink,
     'Cmd-E': wrapCode, 'Ctrl-E': wrapCode,
+    'Enter': function(cm) {
+      const cursor = cm.getCursor();
+      const line = cm.getLine(cursor.line).trim();
+      const slashCallout = {
+        '/callout':         'callout-tip',
+        '/callout-info':    'callout-info',
+        '/callout-tip':     'callout-tip',
+        '/callout-warning': 'callout-warning',
+        '/callout-danger':  'callout-danger',
+      };
+      if (slashCallout[line]) {
+        const cls = slashCallout[line];
+        const start = { line: cursor.line, ch: 0 };
+        const end   = { line: cursor.line, ch: cm.getLine(cursor.line).length };
+        const snippet = '<div class="callout ' + cls + '">\\n내용을 여기에 작성하세요.\\n</div>';
+        cm.replaceRange(snippet, start, end);
+        cm.setCursor({ line: cursor.line + 1, ch: cm.getLine(cursor.line + 1).length });
+        return;
+      }
+      cm.execCommand('newlineAndIndentContinueMarkdownList');
+    },
   });
+
+  // Slash command menu
+  (function() {
+    const SLASH_COMMANDS = [
+      { cmd: '/callout-info',    label: 'ℹ️  Callout — Info',    desc: '파란색 정보 블록' },
+      { cmd: '/callout-tip',     label: '💡 Callout — Tip',      desc: '초록색 팁 블록' },
+      { cmd: '/callout-warning', label: '⚠️  Callout — Warning', desc: '노란색 경고 블록' },
+      { cmd: '/callout-danger',  label: '🚨 Callout — Danger',   desc: '빨간색 위험 블록' },
+      { cmd: '/code',            label: '{ } Code Block',        desc: '코드 블록' },
+      { cmd: '/toc',             label: '≡  Table of Contents',  desc: '목차 삽입' },
+    ];
+
+    let menu = null;
+    let selectedIdx = 0;
+    let filtered = [];
+
+    function removeMenu() {
+      if (menu) { menu.remove(); menu = null; }
+    }
+
+    function applyCommand(cm, cmd) {
+      const cursor = cm.getCursor();
+      const line = cm.getLine(cursor.line);
+      const slashStart = line.lastIndexOf('/');
+      cm.replaceRange('', { line: cursor.line, ch: slashStart }, { line: cursor.line, ch: line.length });
+      removeMenu();
+      // reuse existing Enter logic by setting line content and firing Enter
+      cm.replaceRange(cmd, { line: cursor.line, ch: slashStart }, { line: cursor.line, ch: slashStart });
+      // trigger via extraKeys Enter mapping
+      const fakeCursor = cm.getCursor();
+      const fullLine = cm.getLine(fakeCursor.line).trim();
+      const slashCallout = {
+        '/callout':         'callout-tip',
+        '/callout-info':    'callout-info',
+        '/callout-tip':     'callout-tip',
+        '/callout-warning': 'callout-warning',
+        '/callout-danger':  'callout-danger',
+      };
+      const codeSnippets = {
+        '/code': '\\n\`\`\`javascript\\n// code here\\n\`\`\`\\n',
+        '/toc':  '\\n* toc\\n{:toc}\\n',
+      };
+      if (slashCallout[fullLine]) {
+        const cls = slashCallout[fullLine];
+        const start = { line: fakeCursor.line, ch: 0 };
+        const end   = { line: fakeCursor.line, ch: cm.getLine(fakeCursor.line).length };
+        const snippet = '<div class="callout ' + cls + '">\\n내용을 여기에 작성하세요.\\n</div>';
+        cm.replaceRange(snippet, start, end);
+        cm.setCursor({ line: fakeCursor.line + 1, ch: cm.getLine(fakeCursor.line + 1).length });
+      } else if (codeSnippets[fullLine]) {
+        const start = { line: fakeCursor.line, ch: 0 };
+        const end   = { line: fakeCursor.line, ch: cm.getLine(fakeCursor.line).length };
+        cm.replaceRange('', start, end);
+        cm.replaceSelection(codeSnippets[fullLine]);
+      }
+      cm.focus();
+    }
+
+    function renderMenu(cm) {
+      removeMenu();
+      if (!filtered.length) return;
+      const coords = cm.cursorCoords(true, 'page');
+      menu = document.createElement('div');
+      menu.id = '_slash-menu';
+      Object.assign(menu.style, {
+        position: 'fixed', zIndex: '9999',
+        top: (coords.bottom + 4) + 'px', left: coords.left + 'px',
+        background: '#1e293b', border: '1px solid #334155',
+        borderRadius: '8px', boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+        minWidth: '240px', padding: '4px', fontFamily: 'inherit',
+      });
+      filtered.forEach((item, i) => {
+        const el = document.createElement('div');
+        Object.assign(el.style, {
+          padding: '7px 10px', borderRadius: '5px', cursor: 'pointer',
+          display: 'flex', flexDirection: 'column', gap: '1px',
+          background: i === selectedIdx ? '#334155' : 'transparent',
+        });
+        el.innerHTML =
+          '<span style="font-size:13px;color:#e2e8f0">' + item.label + '</span>' +
+          '<span style="font-size:11px;color:#64748b">' + item.desc + '</span>';
+        el.addEventListener('mousedown', e => { e.preventDefault(); applyCommand(cm, item.cmd); });
+        el.addEventListener('mouseover', () => {
+          selectedIdx = i;
+          renderMenu(cm);
+        });
+        menu.appendChild(el);
+      });
+      document.body.appendChild(menu);
+    }
+
+    editor.codemirror.on('inputRead', function(cm, event) {
+      const cursor = cm.getCursor();
+      const line = cm.getLine(cursor.line);
+      const slashIdx = line.lastIndexOf('/');
+      if (slashIdx === -1) { removeMenu(); return; }
+      const query = line.slice(slashIdx).toLowerCase();
+      filtered = SLASH_COMMANDS.filter(c => c.cmd.startsWith(query));
+      selectedIdx = 0;
+      if (filtered.length) renderMenu(cm); else removeMenu();
+    });
+
+    editor.codemirror.on('keydown', function(cm, e) {
+      if (!menu) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault(); selectedIdx = (selectedIdx + 1) % filtered.length; renderMenu(cm);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault(); selectedIdx = (selectedIdx - 1 + filtered.length) % filtered.length; renderMenu(cm);
+      } else if (e.key === 'Tab') {
+        e.preventDefault(); applyCommand(cm, filtered[selectedIdx].cmd);
+      } else if (e.key === 'Escape') {
+        removeMenu();
+      }
+    });
+
+    editor.codemirror.on('blur', () => setTimeout(removeMenu, 150));
+    editor.codemirror.on('cursorActivity', function(cm) {
+      if (!menu) return;
+      const line = cm.getLine(cm.getCursor().line);
+      if (!line.includes('/')) removeMenu();
+    });
+  })();
 
   // Ctrl+V paste image
   editor.codemirror.on('paste', async (cm, e) => {
@@ -720,6 +887,7 @@ function openImageModal(forThumb = false) {
   pendingImageFile = null;
   document.getElementById('dropText').textContent = 'Click or drag & drop an image here';
   document.getElementById('imgAlt').value = '';
+  document.getElementById('imgCaption').value = '';
   document.getElementById('imgPreviewWrap').style.display = 'none';
   document.getElementById('insertImgBtn').disabled = true;
   document.getElementById('imageModal').classList.remove('hidden');
@@ -745,6 +913,7 @@ async function insertImage() {
   const dateMatch = currentFile && currentFile.match(/^(\\d{4}-\\d{2}-\\d{2})/);
   const date = dateMatch ? dateMatch[1] : today();
   const alt = document.getElementById('imgAlt').value || pendingImageFile.name.replace(/\\.[^.]+$/, '');
+  const caption = document.getElementById('imgCaption').value.trim();
 
   const btn = document.getElementById('insertImgBtn');
   btn.textContent = 'Uploading...'; btn.disabled = true;
@@ -764,7 +933,9 @@ async function insertImage() {
       if (fi) fi.value = data.path;
       markDirty();
     } else if (editor) {
-      const imgMd = \`![\${alt}](\${data.path})\`;
+      const imgMd = caption
+        ? \`![\${alt}](\${data.path})\n\n\${caption}\n\n{:.figcaption}\`
+        : \`![\${alt}](\${data.path})\`;
       editor.codemirror.replaceSelection(imgMd);
     }
     closeModal('imageModal');
@@ -789,11 +960,25 @@ function wrapBold() {
   const cm = editor.codemirror;
   const sel = cm.getSelection();
   if (sel) {
-    cm.replaceSelection('**' + sel + '**');
+    cm.replaceSelection('<b>' + sel + '</b>');
   } else {
     const cur = cm.getCursor();
-    cm.replaceRange('****', cur);
-    cm.setCursor({ line: cur.line, ch: cur.ch + 2 });
+    cm.replaceRange('<b></b>', cur);
+    cm.setCursor({ line: cur.line, ch: cur.ch + 3 });
+  }
+  cm.focus();
+}
+
+function wrapItalic() {
+  if (!editor) return;
+  const cm = editor.codemirror;
+  const sel = cm.getSelection();
+  if (sel) {
+    cm.replaceSelection('*' + sel + '*');
+  } else {
+    const cur = cm.getCursor();
+    cm.replaceRange('**', cur);
+    cm.setCursor({ line: cur.line, ch: cur.ch + 1 });
   }
   cm.focus();
 }
@@ -956,6 +1141,7 @@ function insertSnippet(type) {
   const snippets = {
     code: '\\n\`\`\`javascript\\n// code here\\n\`\`\`\\n',
     toc: '\\n* toc\\n{:toc}\\n',
+    callout: '\\n<div class="callout callout-tip">\\n내용을 여기에 작성하세요.\\n</div>\\n',
   };
   editor.codemirror.replaceSelection(snippets[type] || '');
   editor.codemirror.focus();
