@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -27,10 +27,7 @@
         box-sizing: border-box;
       }
       body {
-        font-family:
-          "Apple SD Gothic Neo",
-          -apple-system,
-          sans-serif;
+        font-family: "Apple SD Gothic Neo", -apple-system, sans-serif;
         background: var(--bg);
         color: var(--text);
         overflow-x: hidden;
@@ -378,10 +375,16 @@
         color: var(--red);
         font-weight: 600;
       }
+      .place-addr-en {
+        font-size: 0.75rem;
+        color: #888;
+        margin-bottom: 12px;
+        margin-top: -8px;
+      }
       .place-name-en {
         font-size: 0.8rem;
         color: var(--sub);
-        margin-bottom: 12px;
+        margin-bottom: 4px;
       }
       .place-desc {
         font-size: 0.85rem;
@@ -645,6 +648,7 @@
       <a href="#day4" onclick="setActive(this)">Day 4</a>
       <a href="#apps" onclick="setActive(this)">📱 필수앱</a>
       <a href="#kakao" onclick="setActive(this)">💬 카톡정리</a>
+      <a href="#chinese" onclick="setActive(this)">🀄 중국어</a>
     </nav>
 
     <!-- TRANSPORT SECTION -->
@@ -788,7 +792,7 @@
         <div class="day-num">DAY 2</div>
         <div class="day-info">
           <h2>3월 27일 (금) — 도착의 날</h2>
-          <p>공항 → 왕홍 합류 → 예원 → 홍쿠이지아 → 헤이티</p>
+          <p>공항 → 왕홍 합류 → 위제한푸 촬영 → 예원 → 홍쿠이지아 → 헤이티</p>
         </div>
       </div>
 
@@ -804,7 +808,7 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1583418855676-b9f2e6a9f4e5?w=800&q=80"
+                src="https://dimg04.tripcdn.com/images/0M73v12000lbf4zhx7D5A.jpg"
                 alt="상하이 푸동 국제공항"
                 onerror="
                   this.style.background = '#e0e8f0';
@@ -895,12 +899,83 @@
           </div>
         </div>
 
-        <!-- 거리 -->
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">이동</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 위제한푸 -->
         <div class="tl-item">
           <div class="tl-left">
-            <div class="tl-time"></div>
-            <div class="tl-dist">이동</div>
+            <div class="tl-time">16:00</div>
+            <div class="tl-dot purple">👘</div>
+            <div class="tl-line"></div>
           </div>
+          <div class="place-card">
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag green">✅ 예약 확정</span>
+                <span class="tag gold">👘 한복 촬영</span>
+                <span class="tag blue">황푸구</span>
+              </div>
+              <div class="place-name-kr">위제한푸 왕홍 — 한복 사진 촬영</div>
+              <div class="place-name-cn">衣锦汇 (王红) · 丽水路81号</div>
+              <div class="place-name-en">
+                Yijinhui (Wang Hong) — Hanfu Photo Studio
+              </div>
+              <div class="place-addr-en">
+                📍 上海市黄浦区丽水路81号紫锦城负一层B39室
+              </div>
+              <div class="time-est">⏱ 16:00~19:00 (순서대로 촬영)</div>
+              <div
+                style="
+                  background: #f0faf3;
+                  border: 1px solid #a5d6a7;
+                  border-radius: 10px;
+                  padding: 12px 14px;
+                  margin: 14px 0;
+                  font-size: 0.83rem;
+                  line-height: 1.9;
+                "
+              >
+                <strong style="color: #1b5e20">📋 예약 확정 정보</strong><br />
+                🗓 2026년 3월 27일 (금) · 보증금 500위안 선지급 완료<br />
+                📞 위챗: <strong>13761665053</strong> · 예약자: 다나 (최다혜)<br />
+                👥 5명 순서대로 개인촬영 → 단체사진<br /><br />
+                <strong>타임라인:</strong><br />
+                🕓 16:00 — 다나, 민정 도착 → 개인촬영 시작<br />
+                🕔 17:00 — 은별, 윤희 도착 → 개인촬영<br />
+                🕕 18:00 — 성민 도착 → 개인촬영 → 단체사진<br /><br />
+                <strong>각자 패키지:</strong><br />
+                • 다나, 은별: 고급한푸 358 + 40분촬영 688 패키지<br />
+                • 윤희, 민정, 성민: 고급한푸 358 + 20분촬영 199 패키지
+                (557위안)<br />
+                • 단체사진 추가금 없음 (다나 촬영시간 일부 차감)<br /><br />
+                <span
+                  style="
+                    background: #fff3f3;
+                    color: #c00;
+                    font-size: 0.78rem;
+                    padding: 3px 8px;
+                    border-radius: 6px;
+                  "
+                  >⚠️ 블로그/인스타/틱톡 링크 제출 → 알리페이로 할인 환급</span
+                >
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">丽水路81号紫锦城</span>
+                  <span class="kw">衣锦汇</span>
+                  <span class="kw">Lishui Road 81</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">이동</div></div>
           <div style="flex: 1"></div>
         </div>
 
@@ -915,7 +990,7 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                src="https://kr.xinhuanet.com/20220928/22214788d3174148a00ed147b37f2235/2022092822214788d3174148a00ed147b37f2235_20220928dd27046c40fa4acd938ae7b034f4090b.jpg"
                 alt="예원"
                 onerror="
                   this.style.background = '#e8f0e0';
@@ -933,6 +1008,9 @@
               <div class="place-name-kr">예원 (豫园)</div>
               <div class="place-name-cn">豫园 · Yùyuán</div>
               <div class="place-name-en">Yuyuan Garden</div>
+              <div class="place-addr-en">
+                📍 278 Anren Street, Huangpu District, Shanghai
+              </div>
               <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
               <p class="place-desc">
                 명나라 시대(1559년) 조성된 상하이 대표 전통 정원. 4.7헥타르
@@ -1042,7 +1120,7 @@
               <img
                 class="place-img"
                 src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80"
-                alt="홍쿠이지아 본방요리"
+                alt="홍쿠이지아 인민광장점"
                 onerror="
                   this.style.background = '#f5e8e0';
                   this.style.minHeight = '160px';
@@ -1063,6 +1141,9 @@
               </div>
               <div class="place-name-en">
                 Hong Gui Zhi Jia — People's Square Branch
+              </div>
+              <div class="place-addr-en">
+                📍 500 Jinling East Road, Huangpu District, Shanghai
               </div>
               <div class="time-est">⏱ 예상 소요 1.5~2시간 (대기 포함)</div>
               <p class="place-desc">
@@ -1150,6 +1231,7 @@
                   <span class="kw">洪桂枝家人民广场</span>
                   <span class="kw">Hong Gui Zhi Jia</span>
                   <span class="kw">本帮菜 人民广场</span>
+                  <span class="kw">中國上海市黄浦区金陵东路500号</span>
                 </div>
               </div>
             </div>
@@ -1173,7 +1255,7 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80"
+                src="https://scontent-ssn1-1.cdninstagram.com/v/t51.82787-15/623658934_18093849556781083_5021088758066232747_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ig_cache_key=MzM4MjA3OTg5NDQ0NzI3OTU1OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=rJGOp1tdknoQ7kNvwG_moaz&_nc_oc=AdorryECm4xlo4nxiDmJJ1WwEpseagowR61A9li_zPepAYojhoo-MT7fzDH9bZLtfh4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ssn1-1.cdninstagram.com&_nc_gid=SznxQEbpnveuX_FQUTUAxw&_nc_ss=7a32e&oh=00_AfyHT2RnnMD4MDIqFP9D38ytzgTeoqXkOyLjUvCFxBOPzw&oe=69C87ACF"
                 alt="헤이티 음료"
                 onerror="
                   this.style.background = '#f0f0e8';
@@ -1193,6 +1275,10 @@
               </div>
               <div class="place-name-cn">喜茶 · Xǐ Chá (新世界城店)</div>
               <div class="place-name-en">HEYTEA — Xinshijie Branch</div>
+              <div class="place-addr-en">
+                📍 168 Xizang Middle Road, Huangpu District, Shanghai (New World
+                City Mall)
+              </div>
               <div class="time-est">⏱ 픽업 대기 10~30분 (원격주문 시 단축)</div>
               <p class="place-desc">
                 중국 MZ세대가 가장 사랑하는 밀크티·과일차 브랜드. 신선한 과일과
@@ -1417,7 +1503,7 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80"
+                src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/40T8/image/sAErXJFFGvb4st4a0s3uQgH5jP4.jpg"
                 alt="상하이 디즈니랜드"
                 onerror="
                   this.style.background = '#e0eeff';
@@ -1437,6 +1523,10 @@
                 上海迪士尼乐园 · Shànghǎi Díshìní Lèyuán
               </div>
               <div class="place-name-en">Shanghai Disneyland</div>
+              <div class="place-addr-en">
+                📍 310 Huancheng East Blvd, Chuansha New Town, Pudong New Area,
+                Shanghai
+              </div>
               <div class="time-est">⏱ 최소 8~10시간 (하루 종일)</div>
 
               <div class="info-block">
@@ -1612,8 +1702,8 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80"
-                alt="양꼬치"
+                src="https://mblogthumb-phinf.pstatic.net/MjAyNDA2MjdfMTg1/MDAxNzE5NDY1NzkyMzI2.MXpnXeracjJKO615X1oxFwfQnCyjvuvHTjFt58bqNuUg.IRjDgrB1aBlTjbo3LnUbo0PAMBOexTW_eY04svqSNhYg.JPEG/IMG_8621.jpg?type=w800"
+                alt="헌지우이치엔 양꼬치"
                 onerror="
                   this.style.background = '#f5e8d0';
                   this.style.minHeight = '160px';
@@ -1634,13 +1724,17 @@
               <div class="place-name-en">
                 A Long Time Ago Lamb Skewers — First Dept. Store Branch
               </div>
+              <div class="place-addr-en">
+                📍 830 Nanjing East Road, Huangpu District, Shanghai (First
+                Department Store)
+              </div>
               <div class="time-est">⏱ 예상 소요 1.5~2시간</div>
               <p class="place-desc">
                 중국 전역에서 유명한 신장식(新疆) 양꼬치 전문 체인. 연기 가득한
                 화로에서 직접 구워주는 스타일로, 현지인들이 줄 서서 먹는
                 맛집입니다. 위챗에서 "很久以前羊肉串"으로 검색해 미리 예약 필수.
                 <strong style="color: #e84040"
-                  >⚠️ 주말에는 사람이 엄청 많을 수 있어서 3시간 전에는 미리
+                  >⚠️ 주말에는 사람이 엄청 많을 수 있어서 6시간 전에는 미리
                   웨이팅 걸어놔야 할 수도 있다고 함!</strong
                 >
               </p>
@@ -1722,16 +1816,27 @@
                     팔로우 → 예약 신청
                   </li>
                   <li>
+                    <strong>웨이팅 전략:</strong> 아침에 먼저 예약 시도 → 안
+                    되면 6시간 전 웨이팅 시도 → 그래도 안 되면 위챗에서 각 지점
+                    웨이팅 현황 확인 후 짧은 곳으로 이동
+                  </li>
+                  <li>
+                    <strong>⚠️ 백화점 폐점 후 입구 주의:</strong> 난징동루
+                    제일백화점점은 밤에 정문이 막힘 →
+                    <strong>KFC 옆 출입구</strong>로 들어갈 것
+                  </li>
+                  <li>
+                    제일백화점점·난징서로 818광장점 웨이팅이 길 경우
+                    <strong>홍커우센터점</strong> 등 웨이팅 짧은 지점 노리는
+                    것도 꿀팁
+                  </li>
+                  <li>
                     맥주(啤酒, 피주) 같이 주문하면 완성. 칭다오(青岛) 또는
                     하얼빈(哈尔滨) 추천
                   </li>
                   <li>
                     시즈닝: 孜然(커민), 辣椒(라챠오/고추) 골라서 뿌려줌. 맵기
                     조절 가능
-                  </li>
-                  <li>
-                    디즈니랜드 하루 뒤라 배가 많이 고플 수 있음 — 많이 주문해도
-                    OK
                   </li>
                   <li>예산: 1인 60~100위안</li>
                 </ul>
@@ -1775,8 +1880,8 @@
         <div class="day-info">
           <h2>3월 29일 (일) — 관광 풀코스의 날</h2>
           <p>
-            딤섬 → 13°C → G3스튜디오 → 임시정부 → 우캉맨션 → 신천지 → 와이탄 →
-            훠궈
+            G3스튜디오 → 점도덕 → 우캉맨션 → 패왕차희(우캉로) → 임시정부 →
+            13데마르조(신천지) → 신천지 → 와이탄 → 훠궈
           </p>
         </div>
       </div>
@@ -1797,19 +1902,100 @@
           </div>
         </div>
 
-        <!-- 점도덕 -->
+        <!-- G3 스튜디오 -->
         <div class="tl-item">
           <div class="tl-left">
-            <div class="tl-time">13:00</div>
-            <div class="tl-dot red">1</div>
+            <div class="tl-time">오전</div>
+            <div class="tl-dot purple">1</div>
             <div class="tl-line"></div>
           </div>
           <div class="place-card">
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=800&q=80"
-                alt="딘타이펑 소롱포"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMLfHoTxXFM1sc7ZGstnNv_jCQopDxa02kmw&s"
+                alt="G3 스튜디오"
+                onerror="
+                  this.style.background = '#e8e8f5';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">
+                📷 #G3Studio #延平路 #상하이포토스튜디오
+              </div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag blue">포토스튜디오</span>
+                <span class="tag">예약 필수</span>
+                <span class="tag gold">정안구</span>
+              </div>
+              <div class="place-name-kr">G3 스튜디오</div>
+              <div class="place-name-cn">G3 Studio · 静安区延平路443号</div>
+              <div class="place-name-en">G3 Studio</div>
+              <div class="place-addr-en">
+                📍 443 Yanping Road, Jing'an District, Shanghai
+              </div>
+              <div class="time-est">⏱ 예상 소요 1~2시간</div>
+              <p class="place-desc">
+                상하이 트렌디 포토스튜디오. 컨셉 배경에서 전문 조명으로 촬영.
+                정안구 연평로(延平路) 위치로 주변에 힙한 카페와 편집숍이
+                많습니다.
+              </p>
+              <div class="info-block">
+                <h4><span>💡</span> 팁</h4>
+                <ul class="tips-list">
+                  <li>위챗 또는 따종디엔핑으로 사전 예약 필수</li>
+                  <li>의상 준비하거나 스튜디오 제공 의상 활용</li>
+                  <li>결과물 보정 포함 여부 미리 확인</li>
+                  <li>주변: 연평로 카페 거리 함께 산책 추천</li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">延平路443号</span
+                  ><span class="kw">G3 Studio 静安</span
+                  ><span class="kw">Yanping Road Studio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 네일 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">중간</div>
+            <div class="tl-dot gray">💅</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="note-card">
+            <div class="note-title">💅 네일 — 유니 &amp; 성민</div>
+            프랑스조계지(法租界) 또는 안푸로드 주변에 고급 네일샵 많음.<br />
+            <strong>추천 검색어:</strong> 大众点评 → "美甲" + 현재 위치 검색<br />
+            예약 시 위챗 또는 따종디엔핑 인앱 예약 가능. 1시간~2시간 소요 예상.
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">3.5km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 점도덕 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">13:00</div>
+            <div class="tl-dot red">2</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/fccd106b-7fa9-4dae-8cc9-6ee7a09ea7b4.jpeg"
+                alt="점도덕 딤섬"
                 onerror="
                   this.style.background = '#fef5e0';
                   this.style.minHeight = '160px';
@@ -1828,6 +2014,9 @@
                 鼎泰丰 · Dǐng Tài Fēng (环贸iapm店)
               </div>
               <div class="place-name-en">Din Tai Fung — iapm Mall Branch</div>
+              <div class="place-addr-en">
+                📍 999 Huaihai Middle Road, Xuhui District, Shanghai (iapm Mall)
+              </div>
               <div class="time-est">⏱ 예상 소요 1~1.5시간 (대기 포함)</div>
               <p class="place-desc">
                 미슐랭 스타 딤섬 레스토랑. 대만 발상지로 전 세계 체인이지만
@@ -1920,248 +2109,7 @@
         </div>
 
         <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">3.5km</div></div>
-          <div style="flex: 1"></div>
-        </div>
-
-        <!-- 13도 마르조 -->
-        <div class="tl-item">
-          <div class="tl-left">
-            <div class="tl-time">13:00~</div>
-            <div class="tl-dot red">2</div>
-            <div class="tl-line"></div>
-          </div>
-          <div class="place-card">
-            <div class="place-body">
-              <div class="place-tags">
-                <span class="tag">🧇 디저트</span>
-                <span class="tag blue">안푸로드</span>
-                <span class="tag">예약 추천</span>
-              </div>
-              <div class="place-name-kr">13데 마르조 안푸로드점</div>
-              <div class="place-name-cn">13°C · Shísān dù (安福路店)</div>
-              <div class="place-name-en">13°C Dessert — Anfu Road Branch</div>
-              <div class="time-est">⏱ 예상 소요 30~60분</div>
-              <p class="place-desc">
-                상하이에서 핫한 프리미엄 디저트 카페. 수플레 팬케이크와 말차
-                디저트로 유명. 안푸로드(安福路) 거리 자체가 힙하고 예뻐서 산책
-                겸 방문하기 좋습니다.
-              </p>
-              <div class="info-block">
-                <h4><span>🍰</span> 추천 메뉴</h4>
-                <ul class="menu-list">
-                  <li>
-                    <span class="m-icon">🥞</span>
-                    <div>
-                      <span class="m-name">수플레 팬케이크</span>
-                      <span class="must">인기</span><br /><span class="m-cn"
-                        >舒芙蕾松饼</span
-                      ><span class="m-desc"
-                        >폭신폭신하고 가벼운 수플레 팬케이크. 주문 후 제조 시간
-                        필요</span
-                      >
-                    </div>
-                  </li>
-                  <li>
-                    <span class="m-icon">🍵</span>
-                    <div>
-                      <span class="m-name">말차 시리즈</span><br /><span
-                        class="m-cn"
-                        >抹茶系列</span
-                      ><span class="m-desc">진한 말차 크림의 케이크/음료</span>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="m-icon">🍮</span>
-                    <div>
-                      <span class="m-name">크림 브륄레</span><br /><span
-                        class="m-cn"
-                        >焦糖布丁</span
-                      ><span class="m-desc"
-                        >겉은 바삭, 속은 부드러운 클래식 디저트</span
-                      >
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="info-block">
-                <h4><span>📍</span> 안푸로드 주변 볼거리</h4>
-                <div class="nearby-grid">
-                  <div class="nearby-item">
-                    <div class="ni-name">🌳 안푸로드 플라타너스 거리</div>
-                    <div class="ni-dist">바로 앞 · 사진 명소</div>
-                  </div>
-                  <div class="nearby-item">
-                    <div class="ni-name">🏛 우캉맨션</div>
-                    <div class="ni-dist">도보 10분</div>
-                  </div>
-                  <div class="nearby-item">
-                    <div class="ni-name">☕ 소규모 카페 거리</div>
-                    <div class="ni-dist">연결됨</div>
-                  </div>
-                </div>
-              </div>
-              <div class="map-box">
-                <div class="map-label">🗺 Amap 검색어</div>
-                <div class="kw-row">
-                  <span class="kw">13°C安福路</span
-                  ><span class="kw">安福路甜品</span
-                  ><span class="kw">Anfu Road Dessert</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 네일 -->
-        <div class="tl-item">
-          <div class="tl-left">
-            <div class="tl-time">중간</div>
-            <div class="tl-dot gray">💅</div>
-            <div class="tl-line"></div>
-          </div>
-          <div class="note-card">
-            <div class="note-title">💅 네일 — 유니 &amp; 성민</div>
-            프랑스조계지(法租界) 또는 안푸로드 주변에 고급 네일샵 많음.<br />
-            <strong>추천 검색어:</strong> 大众点评 → "美甲" + 현재 위치 검색<br />
-            예약 시 위챗 또는 따종디엔핑 인앱 예약 가능. 1시간~2시간 소요 예상.
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">1.8km</div></div>
-          <div style="flex: 1"></div>
-        </div>
-
-        <!-- G3 스튜디오 -->
-        <div class="tl-item">
-          <div class="tl-left">
-            <div class="tl-time">오후</div>
-            <div class="tl-dot purple">3</div>
-            <div class="tl-line"></div>
-          </div>
-          <div class="place-card">
-            <div class="place-body">
-              <div class="place-tags">
-                <span class="tag blue">포토스튜디오</span>
-                <span class="tag">예약 필수</span>
-                <span class="tag gold">정안구</span>
-              </div>
-              <div class="place-name-kr">G3 스튜디오</div>
-              <div class="place-name-cn">G3 Studio · 静安区延平路443号</div>
-              <div class="place-name-en">
-                G3 Studio — 443 Yanping Road, Jing'an District
-              </div>
-              <div class="time-est">⏱ 예상 소요 1~2시간</div>
-              <p class="place-desc">
-                상하이 트렌디 포토스튜디오. 컨셉 배경에서 전문 조명으로 촬영.
-                정안구 연평로(延平路) 위치로 주변에 힙한 카페와 편집숍이
-                많습니다.
-              </p>
-              <div class="info-block">
-                <h4><span>💡</span> 팁</h4>
-                <ul class="tips-list">
-                  <li>위챗 또는 따종디엔핑으로 사전 예약 필수</li>
-                  <li>의상 준비하거나 스튜디오 제공 의상 활용</li>
-                  <li>결과물 보정 포함 여부 미리 확인</li>
-                  <li>주변: 연평로 카페 거리 함께 산책 추천</li>
-                </ul>
-              </div>
-              <div class="map-box">
-                <div class="map-label">🗺 Amap 검색어</div>
-                <div class="kw-row">
-                  <span class="kw">延平路443号</span
-                  ><span class="kw">G3 Studio 静安</span
-                  ><span class="kw">Yanping Road Studio</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">1.7km</div></div>
-          <div style="flex: 1"></div>
-        </div>
-
-        <!-- 대한민국 임시정부 -->
-        <div class="tl-item">
-          <div class="tl-left">
-            <div class="tl-time">오후</div>
-            <div class="tl-dot purple">4</div>
-            <div class="tl-line"></div>
-          </div>
-          <div class="place-card">
-            <div class="place-img-wrap">
-              <img
-                class="place-img"
-                src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?w=800&q=80"
-                alt="상하이 대한민국 임시정부"
-                onerror="
-                  this.style.background = '#f0f0f8';
-                  this.style.minHeight = '160px';
-                "
-              />
-              <div class="ig-hint">
-                📷 #대한민국임시정부 #上海临时政府 #独立运动
-              </div>
-            </div>
-            <div class="place-body">
-              <div class="place-tags">
-                <span class="tag gold">역사유적</span>
-                <span class="tag green">무료입장</span>
-                <span class="tag">한국 독립운동</span>
-              </div>
-              <div class="place-name-kr">대한민국 임시정부 유적지</div>
-              <div class="place-name-cn">
-                大韩民国临时政府旧址 · Dàhán Mínguó Línshí Zhèngfǔ Jiùzhǐ
-              </div>
-              <div class="place-name-en">
-                Korean Provisional Government Site in Shanghai
-              </div>
-              <div class="time-est">⏱ 예상 소요 40~60분</div>
-              <p class="place-desc">
-                1919년 3.1운동 이후 수립된 대한민국 임시정부의 상하이 청사.
-                마당로 306번지에 위치. 김구 선생 등이 독립운동을 이끈 역사적
-                장소로, 한국인이라면 꼭 방문해야 할 곳입니다. 무료 입장이며
-                한국어 안내 자료 있음.
-              </p>
-              <div class="info-block">
-                <h4><span>📋</span> 방문 정보</h4>
-                <ul class="tips-list" style="list-style: none">
-                  <li>주소: 马当路306弄4号 (마당루 306롱 4호)</li>
-                  <li>운영: 09:00~17:00, 월요일 휴무</li>
-                  <li>입장료: 무료 (예약 필요할 수 있음)</li>
-                  <li>한국어 안내 팸플릿 제공</li>
-                </ul>
-              </div>
-              <div class="info-block">
-                <h4><span>📍</span> 주변 볼거리</h4>
-                <div class="nearby-grid">
-                  <div class="nearby-item">
-                    <div class="ni-name">🏙 신천지 (新天地)</div>
-                    <div class="ni-dist">도보 5~10분</div>
-                  </div>
-                  <div class="nearby-item">
-                    <div class="ni-name">🌳 타이캉루 (田子坊)</div>
-                    <div class="ni-dist">도보 15분</div>
-                  </div>
-                </div>
-              </div>
-              <div class="map-box">
-                <div class="map-label">🗺 Amap 검색어</div>
-                <div class="kw-row">
-                  <span class="kw">大韩民国临时政府旧址</span
-                  ><span class="kw">马当路306弄</span
-                  ><span class="kw">Korean Provisional Government</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">3.7km</div></div>
+          <div class="tl-left"><div class="tl-dist">1.5km</div></div>
           <div style="flex: 1"></div>
         </div>
 
@@ -2169,14 +2117,14 @@
         <div class="tl-item">
           <div class="tl-left">
             <div class="tl-time">오후</div>
-            <div class="tl-dot purple">5</div>
+            <div class="tl-dot purple">3</div>
             <div class="tl-line"></div>
           </div>
           <div class="place-card">
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/45db8cb2-3f1c-4fce-ab46-8c9879e76763.jpeg"
                 alt="우캉맨션"
                 onerror="
                   this.style.background = '#f5f0e8';
@@ -2197,6 +2145,9 @@
               <div class="place-name-cn">武康大楼 · Wǔkāng Dàlóu</div>
               <div class="place-name-en">
                 Wukang Mansion (Normandie Apartments)
+              </div>
+              <div class="place-addr-en">
+                📍 376 Wukang Road, Xuhui District, Shanghai
               </div>
               <div class="time-est">⏱ 예상 소요 20~40분 (사진 포함)</div>
               <p class="place-desc">
@@ -2247,99 +2198,48 @@
         </div>
 
         <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">3.8km</div></div>
+          <div class="tl-left"><div class="tl-dist">0.1km</div></div>
           <div style="flex: 1"></div>
         </div>
 
-        <!-- 신천지 -->
+        <!-- 패왕차희 우캉로점 -->
         <div class="tl-item">
           <div class="tl-left">
-            <div class="tl-time">오후</div>
-            <div class="tl-dot purple">6</div>
+            <div class="tl-time">이동중</div>
+            <div class="tl-dot red">4</div>
             <div class="tl-line"></div>
           </div>
           <div class="place-card">
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80"
-                alt="신천지"
+                src="https://www.esquirekorea.co.kr/resources/online/online_image/2025/04/28/2ca2e878-7401-426e-a1ad-ed018d43928d.jpg"
+                alt="패왕차희 밀크티"
                 onerror="
-                  this.style.background = '#e8eff0';
+                  this.style.background = '#f5e8e0';
                   this.style.minHeight = '160px';
                 "
               />
-              <div class="ig-hint">📷 #新天地 #Xintiandi #上海</div>
+              <div class="ig-hint">📷 #패왕차희 #霸王茶姬 #CHAGEE #武康路</div>
             </div>
-            <div class="place-body">
-              <div class="place-tags">
-                <span class="tag">🏙 복합문화공간</span>
-                <span class="tag gold">1920년대 건축</span>
-                <span class="tag green">카페·쇼핑</span>
-              </div>
-              <div class="place-name-kr">신천지 (新天地)</div>
-              <div class="place-name-cn">新天地 · Xīntiāndì</div>
-              <div class="place-name-en">Xintiandi</div>
-              <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
-              <p class="place-desc">
-                1920년대 석고문(石庫門) 주택을 리노베이션한 트렌디 복합문화공간.
-                카페, 레스토랑, 편집숍, 갤러리가 가득. 낮에는 외관 구경과 카페,
-                저녁에는 조명이 켜져 분위기 있는 산책 코스.
-              </p>
-              <div class="info-block">
-                <h4><span>💡</span> 즐기는 법</h4>
-                <ul class="tips-list">
-                  <li>
-                    South Block: 주요 레스토랑·카페 밀집 지역. 저녁 먹거나 커피
-                    한 잔
-                  </li>
-                  <li>North Block: 역사 보존 구역. 사진 찍기 좋은 골목길</li>
-                  <li>타이핑양 백화점 연결 — 쇼핑 가능</li>
-                  <li>
-                    근처 <strong>타이캉루(田子坊)</strong>도 비슷한 분위기. 좀
-                    더 로컬 감성
-                  </li>
-                </ul>
-              </div>
-              <div class="map-box">
-                <div class="map-label">🗺 Amap 검색어</div>
-                <div class="kw-row">
-                  <span class="kw">新天地</span
-                  ><span class="kw">Xintiandi Shanghai</span
-                  ><span class="kw">石库门</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tl-item">
-          <div class="tl-left"><div class="tl-dist">2km</div></div>
-          <div style="flex: 1"></div>
-        </div>
-
-        <!-- 패왕차희 -->
-        <div class="tl-item">
-          <div class="tl-left">
-            <div class="tl-time">이동중</div>
-            <div class="tl-dot red">7</div>
-            <div class="tl-line"></div>
-          </div>
-          <div class="place-card">
             <div class="place-body">
               <div class="place-tags">
                 <span class="tag">🧋 밀크티</span>
-                <span class="tag blue">황푸구</span>
+                <span class="tag blue">우캉로</span>
+                <span class="tag green">우캉맨션 맞은편</span>
               </div>
-              <div class="place-name-kr">패왕차희 황푸점</div>
-              <div class="place-name-cn">
-                霸王茶姬 · Bàwáng Chájī (黄浦区店)
+              <div class="place-name-kr">패왕차희 우캉로점</div>
+              <div class="place-name-cn">CHAGEE 霸王茶姬 (上海武康路店)</div>
+              <div class="place-name-en">CHAGEE — Wukang Road Branch</div>
+              <div class="place-addr-en">
+                📍 396 Xingguo Road, Changning District, Shanghai (Xingguo
+                Mansion F1, opposite Wukang Mansion)
               </div>
-              <div class="place-name-en">Bawang Chaji — Huangpu Branch</div>
               <div class="time-est">⏱ 테이크아웃 15~20분</div>
               <p class="place-desc">
                 헤이티(喜茶)와 함께 MZ세대 밀크티 대표 브랜드. 전통 차 문화를
-                현대적으로 재해석. 와이탄 가는 길에 들르기 좋은 위치.
+                현대적으로 재해석. 우캉맨션 사진 찍고 나서 바로 맞은편에 위치해
+                들르기 최적의 동선.
               </p>
               <div class="info-block">
                 <h4><span>🧋</span> 추천 메뉴</h4>
@@ -2369,10 +2269,239 @@
                 </ul>
               </div>
               <div class="map-box">
+                <div class="map-label">🗺 Amap 링크</div>
+                <div class="kw-row">
+                  <span class="kw">CHAGEE霸王茶姬武康路</span
+                  ><span class="kw">兴国路396号</span
+                  ><a
+                    href="https://surl.amap.com/ayp39zM13aBA"
+                    target="_blank"
+                    class="kw"
+                    style="color: inherit; text-decoration: none"
+                    >고덕지도 바로가기</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">3km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 대한민국 임시정부 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">5</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl84xwcj7_FZdlUHiJJ7B_ohDSKYA-60QI7g&s"
+                alt="상하이 대한민국 임시정부"
+                onerror="
+                  this.style.background = '#f0f0f8';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">
+                📷 #대한민국임시정부 #上海临时政府 #独立运动
+              </div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag gold">역사유적</span>
+                <span class="tag green">무료입장</span>
+                <span class="tag">한국 독립운동</span>
+              </div>
+              <div class="place-name-kr">대한민국 임시정부 유적지</div>
+              <div class="place-name-cn">
+                大韩民国临时政府旧址 · Dàhán Mínguó Línshí Zhèngfǔ Jiùzhǐ
+              </div>
+              <div class="place-name-en">
+                Korean Provisional Government Site in Shanghai
+              </div>
+              <div class="place-addr-en">
+                📍 306 Madang Road, Huangpu District, Shanghai
+              </div>
+              <div class="time-est">⏱ 예상 소요 40~60분</div>
+              <p class="place-desc">
+                1919년 3.1운동 이후 수립된 대한민국 임시정부의 상하이 청사.
+                마당로 306번지에 위치. 김구 선생 등이 독립운동을 이끈 역사적
+                장소로, 한국인이라면 꼭 방문해야 할 곳입니다. 무료 입장이며
+                한국어 안내 자료 있음.
+              </p>
+              <div class="info-block">
+                <h4><span>📋</span> 방문 정보</h4>
+                <ul class="tips-list" style="list-style: none">
+                  <li>주소: 马当路306弄4号 (마당루 306롱 4호)</li>
+                  <li>운영: 09:00~17:00, 월요일 휴무</li>
+                  <li>입장료: 무료 (예약 필요할 수 있음)</li>
+                  <li>한국어 안내 팸플릿 제공</li>
+                </ul>
+              </div>
+              <div class="info-block">
+                <h4><span>📍</span> 주변 볼거리</h4>
+                <div class="nearby-grid">
+                  <div class="nearby-item">
+                    <div class="ni-name">🏙 신천지 (新天地)</div>
+                    <div class="ni-dist">도보 5~10분</div>
+                  </div>
+                  <div class="nearby-item">
+                    <div class="ni-name">🌳 타이캉루 (田子坊)</div>
+                    <div class="ni-dist">도보 15분</div>
+                  </div>
+                </div>
+              </div>
+              <div class="map-box">
                 <div class="map-label">🗺 Amap 검색어</div>
                 <div class="kw-row">
-                  <span class="kw">霸王茶姬黄浦</span
-                  ><span class="kw">Bawang Chaji Huangpu</span>
+                  <span class="kw">大韩民国临时政府旧址</span
+                  ><span class="kw">马当路306弄</span
+                  ><span class="kw">Korean Provisional Government</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">0.3km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 13 DE MARZO 신천지점 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">저녁 전</div>
+            <div class="tl-dot red">6</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mZ0kuoTlo0T2SwqkADrCph4HleymEJB2Cg&s"
+                alt="13 DE MARZO 신천지점"
+                onerror="
+                  this.style.background = '#f0e8f5';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #13DEMARZO #신천지쇼핑 #兴业路</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">👗 패션/의류</span>
+                <span class="tag blue">신천지</span>
+                <span class="tag gold">트렌디</span>
+              </div>
+              <div class="place-name-kr">13 DE MARZO 신천지점</div>
+              <div class="place-name-cn">十三号三月 (兴业路店)</div>
+              <div class="place-name-en">13 DE MARZO — Xintiandi Branch</div>
+              <div class="place-addr-en">
+                📍 Lane 123 Xinye Road No.6, 1F Unit 18, Huangpu District,
+                Shanghai (兴业路123弄6号1楼18单元)
+              </div>
+              <div class="time-est">⏱ 예상 소요 20~40분</div>
+              <p class="place-desc">
+                한국 기반의 트렌디 패션 브랜드. 신천지 내 위치해 쇼핑과 관광을
+                동시에 즐길 수 있음. 신천지 산책 전후로 들르기 좋은 동선.
+              </p>
+              <div class="info-block">
+                <h4><span>💡</span> 팁</h4>
+                <ul class="tips-list">
+                  <li>신천지 South Block 방향에서 도보 이동 가능</li>
+                  <li>영업시간 미리 확인 (보통 11:00~21:00)</li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 링크</div>
+                <div class="kw-row">
+                  <span class="kw">13 DE MARZO 新天地</span
+                  ><span class="kw">兴业路123弄6号</span
+                  ><a
+                    href="https://surl.amap.com/3Pt2mu1abA1"
+                    target="_blank"
+                    class="kw"
+                    style="color: inherit; text-decoration: none"
+                    >고덕지도 바로가기</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dist">0.1km</div></div>
+          <div style="flex: 1"></div>
+        </div>
+
+        <!-- 신천지 -->
+        <div class="tl-item">
+          <div class="tl-left">
+            <div class="tl-time">오후</div>
+            <div class="tl-dot purple">7</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://blog.kakaocdn.net/dna/bPTYci/btsHyl1r8CC/AAAAAAAAAAAAAAAAAAAAAMv00hEDMFH-Ma4jgi_zNd3kvffx6mx2uoBl24tQdQqJ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1774969199&allow_ip=&allow_referer=&signature=GR7vJTSi6rjqgdA%2BLndklySHqe4%3D"
+                alt="신천지"
+                onerror="
+                  this.style.background = '#e8eff0';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #新天地 #Xintiandi #上海</div>
+            </div>
+            <div class="place-body">
+              <div class="place-tags">
+                <span class="tag">🏙 복합문화공간</span>
+                <span class="tag gold">1920년대 건축</span>
+                <span class="tag green">카페·쇼핑</span>
+              </div>
+              <div class="place-name-kr">신천지 (新天地)</div>
+              <div class="place-name-cn">新天地 · Xīntiāndì</div>
+              <div class="place-name-en">Xintiandi</div>
+              <div class="place-addr-en">
+                📍 181 Taicang Road, Huangpu District, Shanghai
+              </div>
+              <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
+              <p class="place-desc">
+                1920년대 석고문(石庫門) 주택을 리노베이션한 트렌디 복합문화공간.
+                카페, 레스토랑, 편집숍, 갤러리가 가득. 낮에는 외관 구경과 카페,
+                저녁에는 조명이 켜져 분위기 있는 산책 코스.
+              </p>
+              <div class="info-block">
+                <h4><span>💡</span> 즐기는 법</h4>
+                <ul class="tips-list">
+                  <li>
+                    South Block: 주요 레스토랑·카페 밀집 지역. 저녁 먹거나 커피
+                    한 잔
+                  </li>
+                  <li>North Block: 역사 보존 구역. 사진 찍기 좋은 골목길</li>
+                  <li>타이핑양 백화점 연결 — 쇼핑 가능</li>
+                  <li>
+                    근처 <strong>타이캉루(田子坊)</strong>도 비슷한 분위기. 좀
+                    더 로컬 감성
+                  </li>
+                </ul>
+              </div>
+              <div class="map-box">
+                <div class="map-label">🗺 Amap 검색어</div>
+                <div class="kw-row">
+                  <span class="kw">新天地</span
+                  ><span class="kw">Xintiandi Shanghai</span
+                  ><span class="kw">石库门</span>
                 </div>
               </div>
             </div>
@@ -2413,6 +2542,9 @@
               <div class="place-name-kr">와이탄 (外滩)</div>
               <div class="place-name-cn">外滩 · Wàitān</div>
               <div class="place-name-en">The Bund</div>
+              <div class="place-addr-en">
+                📍 Zhongshan East 1st Road, Huangpu District, Shanghai
+              </div>
               <div class="time-est">⏱ 예상 소요 1~1.5시간</div>
               <p class="place-desc">
                 황푸강을 따라 1.5km 뻗은 상하이의 상징적 산책로. 맞은편
@@ -2482,6 +2614,18 @@
             <div class="tl-line"></div>
           </div>
           <div class="place-card">
+            <div class="place-img-wrap">
+              <img
+                class="place-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW9yHe99ieVchyn4S-mQmPTJAI5TW9DMazOQ&s"
+                alt="난징동루 야경"
+                onerror="
+                  this.style.background = '#e8eeff';
+                  this.style.minHeight = '160px';
+                "
+              />
+              <div class="ig-hint">📷 #난징동루 #南京东路 #NanjingEastRoad</div>
+            </div>
             <div class="place-body">
               <div class="place-tags">
                 <span class="tag">🛍 쇼핑</span>
@@ -2492,6 +2636,10 @@
               <div class="place-name-cn">南京东路 · Nánjīng Dōng Lù</div>
               <div class="place-name-en">
                 Nanjing East Road (East Nanjing Road)
+              </div>
+              <div class="place-addr-en">
+                📍 Nanjing East Road Pedestrian Street, Huangpu District,
+                Shanghai
               </div>
               <div class="time-est">⏱ 예상 소요 30~60분 (쇼핑 없을 시)</div>
               <p class="place-desc">
@@ -2534,8 +2682,8 @@
             <div class="place-img-wrap">
               <img
                 class="place-img"
-                src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=800&q=80"
-                alt="훠궈"
+                src="https://blog.kakaocdn.net/dna/cRMYu0/btsDoo4gDGO/AAAAAAAAAAAAAAAAAAAAAHMvHaihWwyqyarxAGzoNSIuNndH57Tc1zY12AJfnExh/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1774969199&allow_ip=&allow_referer=&signature=Z6fnnZnQPWkTCYECBcKpGRM9tmM%3D"
+                alt="주광위 훠궈"
                 onerror="
                   this.style.background = '#3a1010';
                   this.style.minHeight = '160px';
@@ -2555,6 +2703,9 @@
               </div>
               <div class="place-name-en">
                 Zhu Guangyu Hotpot — People's Square Branch
+              </div>
+              <div class="place-addr-en">
+                📍 150 Huanghe Road, Huangpu District, Shanghai
               </div>
               <div class="time-est">⏱ 예상 소요 1.5~2시간</div>
               <p class="place-desc">
@@ -2708,7 +2859,6 @@
                 (福州路318号普汇大厦503室)<br />
                 📞 전화: +86 13122334188<br />
                 💬 위챗 ID: MUSIJIYAFA<br />
-                💰 할인: 1인당 20위안 (다나 언니가 협상 완료 🙏)
               </div>
 
               <div class="info-block">
@@ -2993,18 +3143,6 @@
                 • 다나, 윤희, 성민: A. 헤드릴렉스 70분 248위안 (할인 후
                 228위안)<br />
                 • 은별: 기본 헤드스파 60분 158위안 (할인 후 138위안)<br />
-                • 할인: 1인당 20위안 (4명 총 80위안 절약! 다나 언니 협상 🏆)<br /><br />
-                <span
-                  style="
-                    background: #fff9e6;
-                    color: #7a5f00;
-                    font-size: 0.78rem;
-                    padding: 3px 8px;
-                    border-radius: 6px;
-                  "
-                  >⚠️ 가격 할인 내용 다른 손님에게 말하지 말 것 (사장님
-                  부탁)</span
-                >
               </div>
             </div>
           </div>
@@ -3468,6 +3606,485 @@
             🌙 와이탄 야경 후 클럽 INS 가는 것도 옵션으로 논의됨<br />
             💆 헤드스파 끝나고 숙소 돌아가면 몸만 씻으면 됨 (머리는 거기서 해결)
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 필수 중국어 -->
+    <div id="chinese">
+      <div class="section">
+        <h2 class="section-title">🀄 진짜 쓰는 필수 중국어</h2>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px">
+          현지에서 실제로 쓸 것들만. 발음은 굵게 강조 표시.
+        </p>
+
+        <style>
+          .cn-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+          }
+          .cn-table th {
+            background: #1a1a2e;
+            color: white;
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.8rem;
+          }
+          .cn-table td {
+            padding: 9px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            line-height: 1.5;
+          }
+          .cn-table tr:hover td {
+            background: #fafafa;
+          }
+          .cn-kr {
+            color: #333;
+            font-weight: 600;
+          }
+          .cn-zh {
+            color: #c00;
+            font-weight: 700;
+            font-size: 1rem;
+          }
+          .cn-ko {
+            color: #e67e00;
+            font-weight: 700;
+            font-size: 0.88rem;
+          }
+          .cn-py {
+            color: #999;
+            font-size: 0.75rem;
+          }
+          .cn-tip {
+            color: #888;
+            font-size: 0.75rem;
+          }
+          .cn-cat {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin: 20px 0 8px;
+          }
+        </style>
+
+        <!-- 음식점 -->
+        <div class="cn-cat">🍜 음식점에서</div>
+        <table class="cn-table">
+          <tr>
+            <th>상황</th>
+            <th>중국어</th>
+            <th>한국어 발음</th>
+            <th>병음</th>
+            <th>메모</th>
+          </tr>
+          <tr>
+            <td class="cn-kr">이거 주세요</td>
+            <td class="cn-zh">这个</td>
+            <td class="cn-ko">쩌거</td>
+            <td class="cn-py">zhège</td>
+            <td class="cn-tip">손가락으로 가리키며</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">계산해주세요</td>
+            <td class="cn-zh">买单</td>
+            <td class="cn-ko">마이단</td>
+            <td class="cn-py">mǎidān</td>
+            <td class="cn-tip">식당 공용 표현</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">맵지 않게</td>
+            <td class="cn-zh">不辣</td>
+            <td class="cn-ko">부라</td>
+            <td class="cn-py">bù là</td>
+            <td class="cn-tip">주문 시 필수</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">조금만 맵게</td>
+            <td class="cn-zh">微辣</td>
+            <td class="cn-ko">웨이라</td>
+            <td class="cn-py">wēi là</td>
+            <td class="cn-tip">약간 매운 맛</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">덜 달게</td>
+            <td class="cn-zh">少糖</td>
+            <td class="cn-ko">사오탕</td>
+            <td class="cn-py">shǎo táng</td>
+            <td class="cn-tip">밀크티 주문 시</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">얼음 빼주세요</td>
+            <td class="cn-zh">不加冰</td>
+            <td class="cn-ko">부지아빙</td>
+            <td class="cn-py">bù jiā bīng</td>
+            <td class="cn-tip">음료 주문 시</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">물 주세요</td>
+            <td class="cn-zh">要水</td>
+            <td class="cn-ko">야오쉐이</td>
+            <td class="cn-py">yào shuǐ</td>
+            <td class="cn-tip">생수 요청</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">몇 명이요?</td>
+            <td class="cn-zh">几位?</td>
+            <td class="cn-ko">지웨이?</td>
+            <td class="cn-py">jǐ wèi?</td>
+            <td class="cn-tip">식당에서 들을 말</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">3명이요</td>
+            <td class="cn-zh">三位</td>
+            <td class="cn-ko">산웨이</td>
+            <td class="cn-py">sān wèi</td>
+            <td class="cn-tip">사람 수 표현</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">맛있어요!</td>
+            <td class="cn-zh">好吃!</td>
+            <td class="cn-ko">하오츠!</td>
+            <td class="cn-py">hǎo chī!</td>
+            <td class="cn-tip">칭찬 한 마디</td>
+          </tr>
+        </table>
+
+        <!-- 결제/쇼핑 -->
+        <div class="cn-cat">💳 결제 · 쇼핑</div>
+        <table class="cn-table">
+          <tr>
+            <th>상황</th>
+            <th>중국어</th>
+            <th>한국어 발음</th>
+            <th>병음</th>
+            <th>메모</th>
+          </tr>
+          <tr>
+            <td class="cn-kr">얼마예요?</td>
+            <td class="cn-zh">多少钱?</td>
+            <td class="cn-ko">뚜어사오치엔?</td>
+            <td class="cn-py">duōshǎo qián?</td>
+            <td class="cn-tip">가장 많이 쓰는 말</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">알리페이 돼요?</td>
+            <td class="cn-zh">支付宝可以吗?</td>
+            <td class="cn-ko">즈푸바오 커이마?</td>
+            <td class="cn-py">zhīfùbǎo kěyǐ ma?</td>
+            <td class="cn-tip">결제 전 확인</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">위챗페이 돼요?</td>
+            <td class="cn-zh">微信支付可以吗?</td>
+            <td class="cn-ko">웨이신즈푸 커이마?</td>
+            <td class="cn-py">wēixìn zhīfù kěyǐ ma?</td>
+            <td class="cn-tip"></td>
+          </tr>
+          <tr>
+            <td class="cn-kr">QR코드 찍을게요</td>
+            <td class="cn-zh">扫码</td>
+            <td class="cn-ko">사오마</td>
+            <td class="cn-py">sǎo mǎ</td>
+            <td class="cn-tip">QR 결제 시</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">좀 깎아주세요</td>
+            <td class="cn-zh">便宜一点</td>
+            <td class="cn-ko">피엔이 이디엔</td>
+            <td class="cn-py">piányí yīdiǎn</td>
+            <td class="cn-tip">시장에서</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">필요 없어요 / 괜찮아요</td>
+            <td class="cn-zh">不需要</td>
+            <td class="cn-ko">부쉬야오</td>
+            <td class="cn-py">bù xūyào</td>
+            <td class="cn-tip">호객행위 거절 시</td>
+          </tr>
+        </table>
+
+        <!-- 교통/이동 -->
+        <div class="cn-cat">🚕 교통 · 이동</div>
+        <table class="cn-table">
+          <tr>
+            <th>상황</th>
+            <th>중국어</th>
+            <th>한국어 발음</th>
+            <th>병음</th>
+            <th>메모</th>
+          </tr>
+          <tr>
+            <td class="cn-kr">여기로 가주세요</td>
+            <td class="cn-zh">去这里</td>
+            <td class="cn-ko">취쩌리</td>
+            <td class="cn-py">qù zhèlǐ</td>
+            <td class="cn-tip">지도 화면 보여주며</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">여기서 세워주세요</td>
+            <td class="cn-zh">在这里停</td>
+            <td class="cn-ko">짜이쩌리 팅</td>
+            <td class="cn-py">zài zhèlǐ tíng</td>
+            <td class="cn-tip">택시 내릴 때</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">화장실 어디예요?</td>
+            <td class="cn-zh">厕所在哪里?</td>
+            <td class="cn-ko">츠쑤어 짜이나리?</td>
+            <td class="cn-py">cèsuǒ zài nǎlǐ?</td>
+            <td class="cn-tip">어디서든 통함</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">길을 잃었어요</td>
+            <td class="cn-zh">我迷路了</td>
+            <td class="cn-ko">워 미루러</td>
+            <td class="cn-py">wǒ mí lù le</td>
+            <td class="cn-tip">지도 앱 켜는 게 더 빠름</td>
+          </tr>
+        </table>
+
+        <!-- 앱/예약 -->
+        <div class="cn-cat">📱 앱 · 웨이팅</div>
+        <table class="cn-table">
+          <tr>
+            <th>상황</th>
+            <th>중국어</th>
+            <th>한국어 발음</th>
+            <th>병음</th>
+            <th>메모</th>
+          </tr>
+          <tr>
+            <td class="cn-kr">웨이팅 줄 세울게요</td>
+            <td class="cn-zh">排队</td>
+            <td class="cn-ko">파이뚜에이</td>
+            <td class="cn-py">páiduì</td>
+            <td class="cn-tip">줄 서기</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">예약했어요</td>
+            <td class="cn-zh">我预约了</td>
+            <td class="cn-ko">워 위위에러</td>
+            <td class="cn-py">wǒ yùyuē le</td>
+            <td class="cn-tip">체크인 시</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">몇 분 기다려요?</td>
+            <td class="cn-zh">要等多久?</td>
+            <td class="cn-ko">야오덩 뚜어지우?</td>
+            <td class="cn-py">yào děng duōjiǔ?</td>
+            <td class="cn-tip">대기 시간 확인</td>
+          </tr>
+        </table>
+
+        <!-- 소통/긴급 -->
+        <div class="cn-cat">🆘 소통 · 긴급</div>
+        <table class="cn-table">
+          <tr>
+            <th>상황</th>
+            <th>중국어</th>
+            <th>한국어 발음</th>
+            <th>병음</th>
+            <th>메모</th>
+          </tr>
+          <tr>
+            <td class="cn-kr">영어 하세요?</td>
+            <td class="cn-zh">你会说英语吗?</td>
+            <td class="cn-ko">니 후이슈어 잉위마?</td>
+            <td class="cn-py">nǐ huì shuō yīngyǔ ma?</td>
+            <td class="cn-tip"></td>
+          </tr>
+          <tr>
+            <td class="cn-kr">천천히 말해주세요</td>
+            <td class="cn-zh">请说慢一点</td>
+            <td class="cn-ko">칭 슈어만 이디엔</td>
+            <td class="cn-py">qǐng shuō màn yīdiǎn</td>
+            <td class="cn-tip"></td>
+          </tr>
+          <tr>
+            <td class="cn-kr">모르겠어요</td>
+            <td class="cn-zh">不知道</td>
+            <td class="cn-ko">부즈다오</td>
+            <td class="cn-py">bù zhīdào</td>
+            <td class="cn-tip"></td>
+          </tr>
+          <tr>
+            <td class="cn-kr">사진 찍어도 돼요?</td>
+            <td class="cn-zh">可以拍照吗?</td>
+            <td class="cn-ko">커이 파이자오마?</td>
+            <td class="cn-py">kěyǐ pāizhào ma?</td>
+            <td class="cn-tip">명소/실내에서</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">도와주세요!</td>
+            <td class="cn-zh">帮帮我!</td>
+            <td class="cn-ko">방방워!</td>
+            <td class="cn-py">bāng bāng wǒ!</td>
+            <td class="cn-tip">긴급 시</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">경찰 불러주세요</td>
+            <td class="cn-zh">叫警察</td>
+            <td class="cn-ko">지아오 징차</td>
+            <td class="cn-py">jiào jǐngchá</td>
+            <td class="cn-tip">분실·사고</td>
+          </tr>
+          <tr>
+            <td class="cn-kr">병원 어디예요?</td>
+            <td class="cn-zh">医院在哪里?</td>
+            <td class="cn-ko">이위엔 짜이나리?</td>
+            <td class="cn-py">yīyuàn zài nǎlǐ?</td>
+            <td class="cn-tip"></td>
+          </tr>
+        </table>
+
+        <!-- 숫자 빠른 참조 -->
+        <div class="cn-cat">🔢 숫자 (가격·인원 말할 때)</div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
+          "
+        >
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              一
+            </div>
+            <div style="font-size: 0.75rem; color: #555">yī · 1</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              二
+            </div>
+            <div style="font-size: 0.75rem; color: #555">èr · 2</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              三
+            </div>
+            <div style="font-size: 0.75rem; color: #555">sān · 3</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              四
+            </div>
+            <div style="font-size: 0.75rem; color: #555">sì · 4</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              五
+            </div>
+            <div style="font-size: 0.75rem; color: #555">wǔ · 5</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              六
+            </div>
+            <div style="font-size: 0.75rem; color: #555">liù · 6</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              七
+            </div>
+            <div style="font-size: 0.75rem; color: #555">qī · 7</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              八
+            </div>
+            <div style="font-size: 0.75rem; color: #555">bā · 8</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              九
+            </div>
+            <div style="font-size: 0.75rem; color: #555">jiǔ · 9</div>
+          </div>
+          <div
+            style="
+              background: #f5f5f5;
+              border-radius: 8px;
+              padding: 8px;
+              text-align: center;
+            "
+          >
+            <div style="font-size: 1.1rem; font-weight: 800; color: #c00">
+              十
+            </div>
+            <div style="font-size: 0.75rem; color: #555">shí · 10</div>
+          </div>
+        </div>
+        <div style="font-size: 0.78rem; color: #888; margin-bottom: 24px">
+          💡 100 = 一百(yī bǎi) · 1000 = 一千(yī qiān) · 숫자+위안 = 금액 (예:
+          二十 = 20위안)
         </div>
       </div>
     </div>
