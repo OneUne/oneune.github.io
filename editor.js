@@ -367,6 +367,16 @@ const HTML = `<!DOCTYPE html>
     background: rgba(59,130,246,0.05); color: var(--text); }
   .drop-zone input { display: none; }
 
+  /* Thumbnail Generator */
+  .thumb-preset-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .thumb-preset { width: 48px; height: 30px; border-radius: 6px; cursor: pointer;
+    border: 2px solid transparent; transition: all 0.15s; padding: 0; }
+  .thumb-preset.active { border-color: rgba(255,255,255,0.85);
+    box-shadow: 0 0 0 2px var(--accent); }
+  .thumb-canvas-wrap { border-radius: 8px; overflow: hidden; margin-bottom: 14px;
+    background: #000; line-height: 0; border: 1px solid var(--border); }
+  #tgCanvas { width: 100%; height: auto; display: block; }
+
   /* Toast */
   .toast { position: fixed; bottom: 24px; right: 24px; padding: 10px 18px;
     border-radius: 8px; font-size: 13px; z-index: 9999;
@@ -452,6 +462,32 @@ const HTML = `<!DOCTYPE html>
     <div class="modal-actions">
       <button class="btn-ghost" onclick="closeModal('imageModal')">Cancel</button>
       <button class="btn-primary" onclick="insertImage()" id="insertImgBtn" disabled>Insert</button>
+    </div>
+  </div>
+</div>
+
+<!-- Thumbnail Generator Modal -->
+<div class="modal-overlay hidden" id="thumbModal">
+  <div class="modal" style="width:640px;max-width:95vw;">
+    <h2>🎨 Thumbnail Generator</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div class="fm-group">
+        <label>Title</label>
+        <input type="text" id="tgTitle" placeholder="Post title" oninput="drawThumb()">
+      </div>
+      <div class="fm-group">
+        <label>Subtitle <span style="opacity:0.5;font-weight:400;text-transform:none;">(선택)</span></label>
+        <input type="text" id="tgSub" placeholder="oneune.log" oninput="drawThumb()">
+      </div>
+    </div>
+    <label style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:8px;">Color</label>
+    <div id="tgPresets" class="thumb-preset-grid"></div>
+    <div class="thumb-canvas-wrap">
+      <canvas id="tgCanvas"></canvas>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal('thumbModal')">Cancel</button>
+      <button class="btn-primary" id="tgSaveBtn" onclick="saveThumb()">Use as Thumbnail</button>
     </div>
   </div>
 </div>
@@ -547,6 +583,7 @@ function mountEditor(fm) {
   main.innerHTML = \`
     <div class="editor-toolbar-custom">
       <button class="btn-ghost btn-sm" onclick="openImageModal()">🖼 Image</button>
+      <button class="btn-ghost btn-sm" onclick="openThumbModal()">🎨 Thumb</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('code')">{ } Code</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('toc')">≡ TOC</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('callout')">💬 Callout</button>
@@ -1190,6 +1227,132 @@ function updateSidebar() {
   document.querySelectorAll('.post-item').forEach(el => {
     el.classList.toggle('active', el.dataset.file === currentFile);
   });
+}
+
+// ── Thumbnail Generator ───────────────────────────────────────────────────────
+const THUMB_PRESETS = [
+  { label: 'Indigo',  from: '#667eea', to: '#764ba2' },
+  { label: 'Ocean',   from: '#4facfe', to: '#00f2fe' },
+  { label: 'Teal',    from: '#0ba360', to: '#3cba92' },
+  { label: 'Cyan',    from: '#00add8', to: '#007d9c' },
+  { label: 'Sunset',  from: '#f7797d', to: '#f5af19' },
+  { label: 'Night',   from: '#2c3e50', to: '#4ca1af' },
+  { label: 'Purple',  from: '#8b5cf6', to: '#6d28d9' },
+  { label: 'Rose',    from: '#f43f5e', to: '#9f1239' },
+  { label: 'Amber',   from: '#f59e0b', to: '#b45309' },
+  { label: 'Dark',    from: '#1e293b', to: '#0f172a' },
+];
+let thumbPresetIdx = 0;
+
+function openThumbModal() {
+  const title = document.getElementById('fmTitle')?.value || '';
+  document.getElementById('tgTitle').value = title;
+  document.getElementById('tgSub').value = 'oneune.log';
+  thumbPresetIdx = 0;
+  renderPresetBtns();
+  drawThumb();
+  document.getElementById('thumbModal').classList.remove('hidden');
+}
+
+function renderPresetBtns() {
+  const wrap = document.getElementById('tgPresets');
+  wrap.innerHTML = '';
+  THUMB_PRESETS.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'thumb-preset' + (i === thumbPresetIdx ? ' active' : '');
+    btn.style.background = \`linear-gradient(135deg, \${p.from}, \${p.to})\`;
+    btn.title = p.label;
+    btn.onclick = () => { thumbPresetIdx = i; renderPresetBtns(); drawThumb(); };
+    wrap.appendChild(btn);
+  });
+}
+
+function wrapCanvasText(ctx, text, maxWidth) {
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines.slice(0, 4);
+}
+
+function drawThumb() {
+  const canvas = document.getElementById('tgCanvas');
+  if (!canvas) return;
+  const title  = document.getElementById('tgTitle')?.value || '';
+  const sub    = document.getElementById('tgSub')?.value   || '';
+  const preset = THUMB_PRESETS[thumbPresetIdx];
+  const W = 864, H = 486;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Gradient background
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, preset.from);
+  grad.addColorStop(1, preset.to);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Title
+  const pad = 80;
+  const fontSize = title.length > 35 ? 42 : title.length > 22 ? 50 : 60;
+  ctx.font = \`700 \${fontSize}px -apple-system, "Helvetica Neue", Arial, sans-serif\`;
+  const lines  = wrapCanvasText(ctx, title, W - pad * 2);
+  const lineH  = fontSize * 1.4;
+  const totalH = lines.length * lineH;
+  const hasSub = sub.trim().length > 0;
+  const centerY = hasSub ? H / 2 - 24 : H / 2;
+  const startY  = centerY - totalH / 2 + lineH / 2;
+
+  ctx.fillStyle  = 'rgba(255,255,255,0.95)';
+  ctx.textAlign  = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.shadowColor = 'rgba(0,0,0,0.2)';
+  ctx.shadowBlur  = 10;
+  lines.forEach((l, i) => ctx.fillText(l, W / 2, startY + i * lineH));
+
+  // Subtitle
+  if (hasSub) {
+    ctx.shadowBlur = 0;
+    ctx.font = \`400 22px -apple-system, "Helvetica Neue", Arial, sans-serif\`;
+    ctx.fillStyle = 'rgba(255,255,255,0.55)';
+    ctx.fillText(sub, W / 2, centerY + totalH / 2 + 36);
+  }
+}
+
+async function saveThumb() {
+  const canvas = document.getElementById('tgCanvas');
+  if (!canvas) return;
+  const base64 = canvas.toDataURL('image/png').split(',')[1];
+  const dateMatch = currentFile && currentFile.match(/^([0-9]{4}-[0-9]{2}-[0-9]{2})/);
+  const date = dateMatch ? dateMatch[1] : today();
+  const btn  = document.getElementById('tgSaveBtn');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  try {
+    const res = await fetch('/api/upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date, filename: 'thumb.png', base64, mimeType: 'image/png' })
+    });
+    const data = await res.json();
+    if (data.path) {
+      const fi = document.getElementById('fmImage');
+      if (fi) { fi.value = data.path; markDirty(); }
+      closeModal('thumbModal');
+      toast('Thumbnail saved! (' + data.path + ')', 'success');
+    } else {
+      toast('Save failed', 'error');
+    }
+  } catch { toast('Save failed', 'error'); }
+  btn.textContent = 'Use as Thumbnail'; btn.disabled = false;
 }
 </script>
 </body>
