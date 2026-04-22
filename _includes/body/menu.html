@@ -59,7 +59,6 @@
   var body = document.body;
   var html = document.documentElement;
 
-  // Transfer classes from <html> (FOUC prevention) to <body>
   ['focus-mode', 'no-toc'].forEach(function(cls) {
     if (html.classList.contains(cls)) {
       html.classList.remove(cls);
@@ -67,7 +66,6 @@
     }
   });
 
-  // ── Sidebar Toggle ──────────────────────────────────────────────────────────
   var sidebarBtn = document.getElementById('_sidebar-toggle');
   if (sidebarBtn) {
     sidebarBtn.classList.toggle('nav-btn-off', body.classList.contains('focus-mode'));
@@ -78,7 +76,6 @@
     });
   }
 
-  // ── TOC Toggle ──────────────────────────────────────────────────────────────
   var tocBtn = document.getElementById('_toc-toggle');
   if (tocBtn) {
     var hasToc = !!document.getElementById('markdown-toc');
@@ -93,7 +90,6 @@
     }
   }
 
-  // ── Search ──────────────────────────────────────────────────────────────────
   var searchToggle   = document.getElementById('_search-toggle');
   var searchOverlay  = document.getElementById('_search-overlay');
   var searchInput    = document.getElementById('_search-input');
@@ -117,15 +113,15 @@
   async function loadSearchData() {
     try {
       var res = await fetch('{{ "/assets/sitedata.json" | relative_url }}');
+      if (!res.ok) { searchData = []; return; }
       searchData = await res.json();
     } catch(e) { searchData = []; }
-    // 데이터 로딩 완료 후 입력값이 있으면 결과 재렌더링
     var q = searchInput.value.trim();
     if (q) renderResults(q);
   }
   function doSearch(q) {
     if (!q) return [];
-    if (!searchData) return null; // 로딩 중 표시를 위해 null 반환
+    if (!searchData) return null;
     var lq = q.toLowerCase();
     return searchData.filter(function(p) {
       return (p.title       || '').toLowerCase().includes(lq) ||
@@ -170,7 +166,6 @@
 </script>
 
 <script>
-// ── TOC Scroll Spy ────────────────────────────────────────────────────────────
 (function() {
   function initScrollSpy() {
     var toc = document.getElementById('markdown-toc');
@@ -188,7 +183,6 @@
       activeLink = link;
       if (activeLink) {
         activeLink.classList.add('toc-active');
-        // scroll TOC to keep active item visible
         var li = activeLink.parentElement;
         var tocRect = toc.getBoundingClientRect();
         var liRect = li.getBoundingClientRect();
@@ -200,7 +194,7 @@
 
     function onScroll() {
       var scrollY = window.scrollY || window.pageYOffset;
-      var offset = 120; // navbar height buffer
+      var offset = 120;
       var current = null;
       for (var i = headings.length - 1; i >= 0; i--) {
         if (headings[i].getBoundingClientRect().top + scrollY - offset <= scrollY) {
@@ -217,7 +211,6 @@
     onScroll();
   }
 
-  // Run on initial load and on Hydejack push-state navigation
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollSpy);
   } else {
