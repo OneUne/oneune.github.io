@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: JavaScript
-slug: javascript
+title: TypeScript
+slug: typescript
 category: blog
 sidebar: true
 description: >
-  Posts related JavaScript
+  Posts related TypeScript
 ---

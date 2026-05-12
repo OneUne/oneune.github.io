@@ -1,10 +1,10 @@
 ---
 layout: tag-list
 type: tag
-title: JavaScript
-slug: javascript
+title: Node
+slug: node
 category: blog
 sidebar: true
 description: >
-  Posts related JavaScript
+  Posts related Node
 ---
