@@ -48,6 +48,29 @@ function json(res, data, status = 200) {
   res.end(JSON.stringify(data));
 }
 
+// ─── Live reload (SSE) ──────────────────────────────────────────────────────
+
+const sseClients = new Set();
+const recentSelfWrites = new Map(); // filename -> timestamp
+
+function broadcast(event) {
+  const data = `event: ${event.type}\ndata: ${JSON.stringify(event)}\n\n`;
+  for (const res of sseClients) {
+    try { res.write(data); } catch {}
+  }
+}
+
+function markSelfWrite(filename) {
+  recentSelfWrites.set(filename, Date.now());
+  // Cleanup old entries
+  setTimeout(() => recentSelfWrites.delete(filename), 2000);
+}
+
+function isSelfWrite(filename) {
+  const ts = recentSelfWrites.get(filename);
+  return ts && (Date.now() - ts) < 2000;
+}
+
 // ─── API handlers ────────────────────────────────────────────────────────────
 
 function listPosts() {
@@ -76,6 +99,7 @@ function savePost({ filename, content }) {
   const safe = path.basename(filename).replace(/[^a-zA-Z0-9_\-.]/g, '');
   if (!safe.endsWith('.md')) return false;
   if (!fs.existsSync(POSTS_DIR)) fs.mkdirSync(POSTS_DIR, { recursive: true });
+  markSelfWrite(safe);
   fs.writeFileSync(path.join(POSTS_DIR, safe), content, 'utf8');
   return safe;
 }
@@ -505,7 +529,92 @@ let pendingImageFile = null;
 window.onload = () => {
   loadPosts();
   setupDragDrop();
+  setupLiveReload();
 };
+
+// ── Live reload (external file changes) ──────────────────────────────────────
+function setupLiveReload() {
+  if (!window.EventSource) return;
+  const es = new EventSource('/api/events');
+  es.addEventListener('file-changed', (e) => {
+    const { filename } = JSON.parse(e.data);
+    if (filename === currentFile) {
+      reloadCurrentFile();
+    } else {
+      // Different file changed (or new file) — refresh sidebar list
+      loadPosts();
+    }
+  });
+  es.addEventListener('file-deleted', (e) => {
+    const { filename } = JSON.parse(e.data);
+    if (filename === currentFile) {
+      toast('현재 파일이 외부에서 삭제되었습니다.', 'error');
+    }
+    loadPosts();
+  });
+  es.onerror = () => { /* browser auto-reconnects */ };
+}
+
+async function reloadCurrentFile() {
+  if (!currentFile || !editor) return;
+  // If user has unsaved changes, ask before clobbering
+  if (isDirty) {
+    const ok = confirm('외부에서 파일이 변경되었습니다.\\n현재 편집 중인 변경사항이 있습니다. 외부 변경으로 덮어쓸까요?');
+    if (!ok) return;
+  }
+
+  // Snapshot CodeMirror cursor + scroll
+  const cm = editor.codemirror;
+  const cursor = cm.getCursor();
+  const scrollInfo = cm.getScrollInfo();
+  const activeEl = document.activeElement;
+  const activeId = activeEl && activeEl.id;
+  const activeStart = activeEl && typeof activeEl.selectionStart === 'number' ? activeEl.selectionStart : null;
+  const activeEnd = activeEl && typeof activeEl.selectionEnd === 'number' ? activeEl.selectionEnd : null;
+
+  // Fetch fresh content
+  const res = await fetch('/api/post?file=' + encodeURIComponent(currentFile));
+  const data = await res.json();
+  if (!data.content) return;
+
+  const fm = parseFrontmatter(data.content);
+
+  // Update frontmatter inputs in place (avoid full re-mount when possible)
+  const titleEl = document.getElementById('fmTitle');
+  const tagsEl = document.getElementById('fmTags');
+  const imageEl = document.getElementById('fmImage');
+  if (titleEl) titleEl.value = fm.title;
+  if (tagsEl) tagsEl.value = fm.tags;
+  if (imageEl) imageEl.value = fm.image;
+
+  // Replace editor body
+  cm.setValue(fm.body);
+
+  // Restore cursor (clamp to doc bounds)
+  const lastLine = cm.lastLine();
+  const safeLine = Math.min(cursor.line, lastLine);
+  const safeCh = Math.min(cursor.ch, cm.getLine(safeLine).length);
+  cm.setCursor({ line: safeLine, ch: safeCh });
+  cm.scrollTo(scrollInfo.left, scrollInfo.top);
+
+  // Restore focus to whichever input/textarea was active
+  if (activeId && activeId !== 'mdeArea') {
+    const el = document.getElementById(activeId);
+    if (el) {
+      el.focus();
+      if (activeStart !== null && el.setSelectionRange) {
+        try { el.setSelectionRange(activeStart, activeEnd); } catch {}
+      }
+    }
+  } else {
+    cm.focus();
+  }
+
+  isDirty = false;
+  if (typeof markSaved === 'function') markSaved();
+  toast('외부 변경 반영됨', 'success');
+  loadPosts();
+}
 
 // ── Posts List ────────────────────────────────────────────────────────────────
 async function loadPosts() {
@@ -1379,6 +1488,21 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // GET /api/events (Server-Sent Events for live reload)
+  if (req.method === 'GET' && pathname === '/api/events') {
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+      'X-Accel-Buffering': 'no',
+    });
+    res.write('event: connected\ndata: {}\n\n');
+    sseClients.add(res);
+    const ka = setInterval(() => { try { res.write(': keepalive\n\n'); } catch {} }, 25000);
+    req.on('close', () => { clearInterval(ka); sseClients.delete(res); });
+    return;
+  }
+
   // GET /api/post?file=xxx
   if (req.method === 'GET' && pathname === '/api/post') {
     const file = parsed.query.file;
@@ -1456,6 +1580,26 @@ server.listen(PORT, () => {
   console.log(`  Assets dir: ${ASSETS_DIR}`);
   console.log(`\n  Press Ctrl+C to stop\n`);
 });
+
+// Watch posts dir for external changes (e.g., edits made by Claude/other tools)
+if (fs.existsSync(POSTS_DIR)) {
+  // Debounce per-file (some editors fire multiple events for one save)
+  const debounceMap = new Map();
+  fs.watch(POSTS_DIR, { persistent: false }, (eventType, filename) => {
+    if (!filename || !filename.endsWith('.md')) return;
+    if (isSelfWrite(filename)) return;
+    clearTimeout(debounceMap.get(filename));
+    debounceMap.set(filename, setTimeout(() => {
+      debounceMap.delete(filename);
+      const filepath = path.join(POSTS_DIR, filename);
+      const exists = fs.existsSync(filepath);
+      broadcast({
+        type: exists ? 'file-changed' : 'file-deleted',
+        filename,
+      });
+    }, 100));
+  });
+}
 
 function shutdown() {
   server.close(() => process.exit(0));
