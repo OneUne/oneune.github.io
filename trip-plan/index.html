@@ -1,0 +1,89 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여행 계획 모음 ✈️</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b23; --panel2:#1d232d; --line:#2a323d;
+    --tx:#e8edf4; --tx2:#9aa7b8; --acc:#ff7a45; --acc2:#4dd4c0;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--tx);min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:64px 22px 90px}
+  h1{font-size:30px;letter-spacing:-.03em;margin-bottom:8px}
+  h1 .em{color:var(--acc)}
+  .sub{color:var(--tx2);font-size:14px;margin-bottom:40px}
+  .list{display:flex;flex-direction:column;gap:14px}
+  a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:22px 24px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  a.card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .flag{font-size:22px;line-height:1}
+  .name{font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .badge{font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px;letter-spacing:.02em}
+  .badge.up{background:rgba(255,122,69,.16);color:var(--acc)}
+  .badge.done{background:rgba(148,163,184,.16);color:#94a3b8}
+  .when{font-size:13px;color:var(--acc2);font-weight:600;margin-bottom:6px}
+  .desc{font-size:13.5px;color:var(--tx2)}
+  .foot{margin-top:44px;font-size:12px;color:#5f6b7a;line-height:1.8}
+  .foot code{background:var(--panel2);padding:2px 6px;border-radius:5px}
+  @media(max-width:520px){.wrap{padding:40px 18px 70px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>여행 계획 <span class="em">모음</span> ✈️</h1>
+  <div class="sub">직접 짜서 굴린 여행 계획들. 최신순.</div>
+
+  <div class="list">
+
+    <a class="card" href="./chengdu/">
+      <div class="top">
+        <span class="flag">🇨🇳</span>
+        <span class="name">청두 (成都)</span>
+        <span class="badge up">예정</span>
+      </div>
+      <div class="when">2026.09.17(목) ~ 09.20(일) · 3박 4일</div>
+      <div class="desc">
+        구채구 당일치기 포함 일정 · 날짜별 경로 지도 · Reddit 포토스팟 20곳과 인스타 #청두 48곳을
+        중국어 지명·좌표까지 검증한 목록 · 맛집 24곳 대표 메뉴 · 예약/준비물 체크리스트
+      </div>
+    </a>
+
+    <a class="card" href="./shanghai/">
+      <div class="top">
+        <span class="flag">🇨🇳</span>
+        <span class="name">상하이</span>
+        <span class="badge done">다녀옴</span>
+      </div>
+      <div class="when">2025.03.27 ~ 03.29</div>
+      <div class="desc">숙소 출입 안내와 이동 경로 영상까지 넣은 현장용 가이드</div>
+    </a>
+
+    <a class="card" href="./danang/">
+      <div class="top">
+        <span class="flag">🇻🇳</span>
+        <span class="name">다낭 가족여행</span>
+        <span class="badge done">다녀옴</span>
+      </div>
+      <div class="when">구글맵 저장 가이드</div>
+      <div class="desc">가족이 각자 폰에 장소 30곳을 저장하도록 만든 체크리스트형 가이드</div>
+    </a>
+
+  </div>
+
+  <div class="foot">
+    링크가 안 열리면 주소 끝에 <code>/</code>를 붙여보세요.<br>
+    셋 다 <code>noindex</code>라 검색에는 안 잡힙니다.
+  </div>
+</div>
+</body>
+</html>
