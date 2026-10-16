@@ -1,0 +1,682 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수원 행궁동 1박 2일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper:#F6F8F6; --surface:#FFF; --ink:#151F1C; --ink-2:#4A5A55; --ink-3:#7C8C86;
+    --line:#DCE3DE; --line-soft:#E9EEEA;
+    --jade:#1E6F63; --jade-soft:#E3F0EC;
+    --dancheong:#AC3D2C; --dancheong-soft:#F8E7E3;
+    --gold:#9C7520; --gold-soft:#F4EEDC; --night:#D7DEE4;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --paper:#101513; --surface:#19201E; --ink:#E9EFEB; --ink-2:#AEBCB6; --ink-3:#80908A;
+    --line:#2A3431; --line-soft:#222B29;
+    --jade:#63C2B0; --jade-soft:#15302C;
+    --dancheong:#E58268; --dancheong-soft:#33201C;
+    --gold:#D2AB58; --gold-soft:#2C2518; --night:#212C33;
+  }}
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);margin:0;
+    font-family:"IBM Plex Sans KR",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+    font-weight:300;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:44px 72px}
+  h1,h2,h3{font-family:"Gowun Batang","Apple SD Gothic Neo",serif;font-weight:700;text-wrap:balance;margin:0}
+  h1{font-size:2.2rem;line-height:1.22;letter-spacing:-.01em}
+  h2{font-size:1.32rem} h3{font-size:1.05rem}
+  p{margin:0}
+  img{max-width:100%}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-3)}
+  a{color:var(--jade);text-decoration:none;border-bottom:1px solid currentColor}
+  a:focus-visible{outline:2px solid var(--jade);outline-offset:2px}
+  section{margin-top:52px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+
+  header .sub{color:var(--ink-2);font-size:.95rem;margin-top:10px}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:18px;padding-top:16px;
+    border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-2)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .d-see{background:var(--jade)} .d-eat{background:var(--dancheong)}
+  .d-cafe{background:var(--gold)} .d-move{background:var(--ink-3)}
+
+  /* band */
+  .band{display:grid;grid-template-columns:76px 1fr;gap:7px 10px;align-items:center}
+  .band-name{font-size:.82rem;color:var(--ink-2);text-align:right;line-height:1.35}
+  .track{position:relative;height:24px;background:var(--line-soft);border-radius:3px;overflow:hidden}
+  .nightzone{position:absolute;top:0;bottom:0;background:var(--night)}
+  .daysplit{position:absolute;top:0;bottom:0;width:1px;background:var(--ink-3);opacity:.5}
+  .bar{position:absolute;top:4px;bottom:4px;border-radius:3px;display:flex;align-items:center}
+  .bar.full{background:var(--jade)} .bar.late{background:var(--gold)}
+  .bar-label{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:#fff;padding-inline:7px;white-space:nowrap}
+  .solo{position:absolute;top:0;bottom:0;border:1.5px dashed var(--dancheong);border-radius:3px}
+  .ticks{position:relative;height:20px;margin-top:2px}
+  .ticks i{position:absolute;top:0;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+    color:var(--ink-3);transform:translateX(-50%);font-style:normal;white-space:nowrap}
+  .alert{margin-top:20px;padding:14px 16px;background:var(--jade-soft);
+    border-left:3px solid var(--jade);border-radius:2px;font-size:.88rem}
+  .alert b{font-weight:600}
+  .warn{background:var(--dancheong-soft);border-left-color:var(--dancheong)}
+
+  /* timeline */
+  .day{border-top:2px solid var(--ink);padding-top:14px}
+  .day-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:var(--ink-2);margin-top:4px}
+  ol.tl{list-style:none;margin:22px 0 0;padding:0}
+  ol.tl>li{display:grid;grid-template-columns:52px 18px 1fr;gap:0 10px;padding-bottom:22px;position:relative}
+  ol.tl>li:last-child{padding-bottom:0}
+  .t{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:.82rem;
+    color:var(--ink-2);padding-top:2px;text-align:right}
+  .rail{position:relative;display:flex;justify-content:center}
+  .rail::before{content:"";position:absolute;top:12px;bottom:-22px;width:1px;background:var(--line)}
+  ol.tl>li:last-child .rail::before{display:none}
+  .rail .dot{width:9px;height:9px;margin-top:7px;z-index:1;outline:3px solid var(--paper)}
+  .row{display:flex;gap:12px;align-items:flex-start;min-width:0}
+  .row .thumb{width:68px;height:68px;flex:none;object-fit:cover;border-radius:3px}
+  .ttl{font-size:1rem;font-weight:500}
+  .ttl .star{color:var(--gold);font-size:.8rem;letter-spacing:.05em;margin-left:5px}
+  .note{color:var(--ink-2);font-size:.88rem;margin-top:2px}
+  .meta{color:var(--ink-3);font-size:.78rem;margin-top:5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+  .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+  .chip{font-size:.7rem;padding:1px 7px;border-radius:10px;border:1px solid var(--line);color:var(--ink-2)}
+  .chip.on{background:var(--jade-soft);border-color:transparent;color:var(--jade);font-weight:500}
+  .chip.out{background:var(--dancheong-soft);border-color:transparent;color:var(--dancheong);font-weight:500}
+  .pin{background:var(--gold-soft);border-left:3px solid var(--gold);padding:10px 12px;
+    margin-top:8px;font-size:.84rem;border-radius:2px}
+
+  /* spot cards */
+  .spots{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .spot{background:var(--surface);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    display:flex;flex-direction:column}
+  .shots{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:250px;gap:1px;background:var(--line)}
+  .shots img{width:100%;height:100%;object-fit:cover;display:block}
+  .shots.single{grid-template-columns:1fr}
+  .spot-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .spot h3{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .handle{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);font-weight:400}
+  .one{font-size:.9rem;color:var(--ink-2)}
+  .facts{margin:0;font-size:.8rem;color:var(--ink-3);display:grid;gap:2px}
+  .facts b{color:var(--ink-2);font-weight:500}
+  .tagline{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+  .pill{font-size:.68rem;padding:1px 7px;border-radius:3px;background:var(--line-soft);color:var(--ink-2)}
+  .pill.rec{background:var(--gold-soft);color:var(--gold);font-weight:500}
+  details{margin-top:auto;padding-top:10px}
+  summary{cursor:pointer;font-size:.8rem;color:var(--jade);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▶ ";font-size:.7rem}
+  details[open] summary::before{content:"▼ "}
+  .igwrap{margin-top:10px;display:grid;gap:10px}
+  .igwrap iframe{width:100%;height:560px;border:1px solid var(--line);border-radius:3px;background:#fff}
+  .iglinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem}
+
+  .tbl-scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    font-weight:500;border-bottom:1px solid var(--line)}
+  td.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+  ul.plain{margin:0;padding-left:1.1em;color:var(--ink-2);font-size:.88rem}
+  ul.plain li{margin-bottom:5px}
+  ul.plain b{color:var(--ink);font-weight:500}
+  footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-3)}
+  footer p+p{margin-top:8px}
+
+  @media (max-width:640px){
+    h1{font-size:1.8rem}
+    .spots{grid-template-columns:1fr}
+    ol.tl>li{grid-template-columns:44px 16px 1fr}
+    .band{grid-template-columns:58px 1fr}
+    .bar-label{font-size:.6rem;padding-inline:4px}
+    .row .thumb{width:54px;height:54px}
+    .igwrap iframe{height:480px}
+    .shots{grid-template-rows:210px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">1박 2일 · 숙소 교동공영주차장 인근 · 2026.10</p>
+  <h1>수원 행궁동 1박 2일</h1>
+  <p class="sub">인스타 계정을 직접 열어서 <b>최근 게시물과 릴스를 보고</b> 고른 곳들입니다.
+    각 카드에서 <b>인스타 원문을 그 자리에서 펼쳐</b> 볼 수 있습니다.
+    넷이 거의 모든 시간을 같이 보내고, 갈라지는 건 첫날 앞 2시간 20분과 둘째 날 뒤 5시간 반뿐입니다.</p>
+  <div class="legend">
+    <span><i class="dot d-see"></i>관광·전시</span>
+    <span><i class="dot d-eat"></i>식사</span>
+    <span><i class="dot d-cafe"></i>카페·디저트</span>
+    <span><i class="dot d-move"></i>이동</span>
+    <span><b>★★★</b> 진짜 놓치지 말 것</span>
+  </div>
+</header>
+
+<!-- 멤버 밴드 -->
+<section>
+  <div class="sec-head"><h2>누가 언제 있나</h2><p class="eyebrow">Day1 13:00 — Day2 16:00</p></div>
+  <div class="band">
+    <div class="band-name">유니<br>밍이·용이</div>
+    <div class="track">
+      <div class="nightzone" style="left:37%;width:33.4%"></div>
+      <div class="daysplit" style="left:40.7%"></div>
+      <div class="bar full" style="left:.1%;width:99.6%"><span class="bar-label">13:01 → 익일 15:56</span></div>
+    </div>
+    <div class="band-name">져니</div>
+    <div class="track">
+      <div class="nightzone" style="left:37%;width:33.4%"></div>
+      <div class="daysplit" style="left:40.7%"></div>
+      <div class="bar late" style="left:8.7%;width:70.4%"><span class="bar-label">15:21 → 익일 10:22</span></div>
+      <div class="solo" style="left:0;width:8.5%"></div>
+      <div class="solo" style="left:79.3%;right:0"></div>
+    </div>
+    <div></div>
+    <div class="ticks">
+      <i style="left:0">13시</i><i style="left:18.5%">18시</i><i style="left:37%">23시</i>
+      <i style="left:53.7%">—취침—</i><i style="left:70.4%">8시</i><i style="left:85.2%">12시</i><i style="left:100%">16시</i>
+    </div>
+  </div>
+  <div class="alert">
+    <b>붙어 있는 시간이 19시간.</b> 그래서 미술관·야간개장·디저트를 전부 넷이 같이 갑니다.
+    점선 구간만 셋이 움직입니다 — <b>첫날 13:01–15:21</b>은 짐 풀고 점심(져니는 디저트 자리로 바로 합류),
+    <b>둘째 날 10:22–15:56</b>은 져니 배웅 후 남는 5시간 반이라 낮의 화성을 여기 넣었습니다.
+  </div>
+  <div class="alert warn">
+    <b>먼저 확인한 것 — 지금은 안 되는 일정.</b> 인스타에 많이 보이는 <b>‘행궁야화’와 제63회 수원화성문화제</b>는
+    <b>10월 3–11일로 이미 끝났습니다.</b> 야간개장 특별공연 ‘위대한 태권도’는 우천으로 10/18 → <b>11/1(일)로 변경</b>됐습니다.
+    야간개장 자체(달빛화담)는 <b>11월 1일까지</b> 운영합니다.
+  </div>
+</section>
+
+<!-- DAY 1 -->
+<section>
+  <div class="day">
+    <h2>Day 1 — 통닭 · 디저트 · 전시 · 야간 화성</h2>
+    <div class="day-meta"><span class="mono">13:01</span><span>유니·밍이·용이</span>
+      <span class="mono">15:21</span><span>져니 합류</span><span>걷는 거리 약 5km</span></div>
+  </div>
+  <ol class="tl">
+    <li><div class="t">13:01</div><div class="rail"><i class="dot d-move"></i></div>
+      <div class="row"><div>
+        <p class="ttl">수원역 → 숙소에 짐만 내려놓기</p>
+        <p class="note">교동까지 택시 8분. 체크인 전이면 캐리어만 맡기고 바로 나옵니다. 통닭거리가 숙소에서 걸어갈 거리입니다.</p>
+        <div class="chips"><span class="chip on">유니</span><span class="chip on">밍이</span><span class="chip on">용이</span></div>
+      </div></div></li>
+
+    <li><div class="t">13:45</div><div class="rail"><i class="dot d-eat"></i></div>
+      <div class="row"><div>
+        <p class="ttl">통닭거리에서 왕갈비통닭 <span class="star">★★★</span></p>
+        <p class="note">치킨무 대신 양배추 샐러드가 깔리는 옛날식. <b>용성통닭</b>(정조로800번길 15, 11:00–23:00, <b>화 휴무</b>)
+          또는 옆집 <b>진미통닭</b>(월 휴무). 셋이 한 마리면 충분 — 져니 몫은 밤 야식으로 남깁니다.</p>
+        <p class="meta"><span>교동에서 도보 10–15분</span><span>1인 1만 원대</span><span>웨이팅 붙는 집</span></p>
+      </div></div></li>
+
+    <li><div class="t">15:00</div><div class="rail"><i class="dot d-cafe"></i></div>
+      <div class="row">
+        <img class="thumb" src="img/goldies.korea_DdBXgsat0iP.jpg" alt="골디스 도넛 릴스 썸네일">
+        <div>
+          <p class="ttl">행궁동 디저트 — 여기서 져니 합류 <span class="star">★★★</span></p>
+          <p class="note">져니는 15:21 수원역 도착 → 택시 10분이라 <b>카페로 바로 오면 15:40 합류</b>. 역까지 마중 안 가도 됩니다.
+            아래 <a href="#spots">디저트 카드</a>에서 골라 두세요. 1순위는 <b>골디스</b>(도넛)와 <b>스퀘어드</b>(케이크).</p>
+          <div class="chips"><span class="chip on">유니</span><span class="chip on">밍이</span><span class="chip on">용이</span><span class="chip on">져니 15:40</span></div>
+        </div>
+      </div></li>
+
+    <li><div class="t">16:15</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row"><div>
+        <p class="ttl">화서문 성곽 + 소품샵 골목</p>
+        <p class="note">카페에서 미술관까지 걸어가는 길에 끼워 넣는 45분. 소품샵은 목적지로 삼지 말고 지나가며 들르는 게 낫습니다.</p>
+      </div></div></li>
+
+    <li><div class="t">17:00</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row">
+        <img class="thumb" src="img/suwon.museum.of.art_DeirG_BGmH3.jpg" alt="수원시립미술관 최근 게시물 썸네일">
+        <div>
+          <p class="ttl">수원시립미술관 <span class="star">★★★</span></p>
+          <p class="note">화성행궁 옆 행궁 본관. 10월 전시는 소장품 중심의 《블랑 블랙 파노라마》 — 이배·이순종·최병소 등 20점.
+            1시간 10분이면 여유롭게 봅니다. <a href="#suma">카드 보기</a></p>
+          <div class="pin">⚠️ <b>입장 마감 18:00</b>(하절기 3–10월 10:00–19:00, 관람 1시간 전 마감).
+            디저트 자리에서 <b>16:10에는 일어나야</b> 안전합니다. <b>월요일 휴관.</b></div>
+        </div>
+      </div></li>
+
+    <li><div class="t">18:30</div><div class="rail"><i class="dot d-eat"></i></div>
+      <div class="row"><div>
+        <p class="ttl">행궁동에서 저녁</p>
+        <p class="note">점심이 통닭이었으니 가볍게. 미술관에서 행궁동 골목까지 도보 5분.
+          19:00 야간개장 전까지 40분 안에 끝나는 메뉴로.</p>
+      </div></div></li>
+
+    <li><div class="t">19:20</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row">
+        <img class="thumb" src="img/swcf_official_Deiz9p6ExpU.jpg" alt="화성행궁 야간개장 공지 썸네일">
+        <div>
+          <p class="ttl">화성행궁 야간개장 ‘달빛화담’ <span class="star">★★★</span></p>
+          <p class="note">행궁을 환영의 빛·몰입의 빛·놀이마당·사색의 공간 네 테마로 나눠 3D 홀로그램, 레이저,
+            나비 드론, 달빛 윤무 사진관으로 채웁니다. <a href="#dalbit">카드 보기</a></p>
+          <div class="pin"><b>금·토 19:00–21:30(입장 마감 21:00), 11월 1일 종료.</b>
+            성인 2,000원 / 청소년 1,500원 / <b>한복 입으면 무료</b>. ☎ 031-290-3613</div>
+        </div>
+      </div></li>
+
+    <li><div class="t">21:15</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row"><div>
+        <p class="ttl">방화수류정·용연 야경</p>
+        <p class="note">성곽에 조명이 들어오는 시간. 용두 바위 위 정자와 연못이 같이 잡히는 각이 그 사진입니다. 무료.
+          수원천 따라 교동 숙소까지 도보 25분.</p>
+      </div></div></li>
+
+    <li><div class="t">22:20</div><div class="rail"><i class="dot d-eat"></i></div>
+      <div class="row"><div>
+        <p class="ttl">야식 — 져니는 여기서 통닭 <span class="star">★</span></p>
+        <p class="note">용성통닭이 23:00까지. 낮에 못 먹은 져니 몫이자 넷이 앉아 얘기하는 시간.</p>
+        <div class="chips"><span class="chip on">유니</span><span class="chip on">져니</span><span class="chip on">밍이</span><span class="chip on">용이</span></div>
+      </div></div></li>
+  </ol>
+</section>
+
+<!-- DAY 2 -->
+<section>
+  <div class="day">
+    <h2>Day 2 — 져니 배웅, 그리고 낮의 화성</h2>
+    <div class="day-meta"><span class="mono">10:22</span><span>져니 출발</span>
+      <span class="mono">15:56</span><span>유니·밍이·용이 출발</span></div>
+  </div>
+  <ol class="tl">
+    <li><div class="t">08:30</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row"><div><p class="ttl">수원천 아침 산책 — 교동 → 지동교</p>
+        <p class="note">숙소에서 그대로 나와 물길 따라. 져니 열차 때문에 성곽 코스는 오후로 미룹니다.</p></div></div></li>
+
+    <li><div class="t">09:00</div><div class="rail"><i class="dot d-eat"></i></div>
+      <div class="row"><div><p class="ttl">아침은 테이크아웃</p>
+        <p class="note">행궁동 카페는 대부분 11–12시에 엽니다(스퀘어드·공간상점 12:00, 빅팬트리 11:00).
+          아침은 교동·매교역 베이커리나 수원역에서 해결하는 게 안전합니다.</p></div></div></li>
+
+    <li><div class="t">09:50</div><div class="rail"><i class="dot d-move"></i></div>
+      <div class="row"><div><p class="ttl">넷이 같이 수원역 — 져니 배웅</p>
+        <p class="note">셋도 오후에 역으로 와야 하니, 이때 <b>코인락커에 짐을 맡기면</b> 숙소로 되돌아갈 일이 없습니다. 10:22 출발.</p>
+        <div class="chips"><span class="chip on">유니</span><span class="chip out">져니 출발</span><span class="chip on">밍이</span><span class="chip on">용이</span></div>
+      </div></div></li>
+
+    <li><div class="t">10:40</div><div class="rail"><i class="dot d-cafe"></i></div>
+      <div class="row">
+        <img class="thumb" src="img/bigpantry_suwon_DH1E64TOruF.jpg" alt="빅팬트리 릴스 썸네일">
+        <div><p class="ttl">브런치 — 빅팬트리 11:00 오픈 <span class="star">★</span></p>
+        <p class="note">행궁동에서 이 시간에 여는 몇 안 되는 곳. 미국식 팬케이크 전문입니다.
+          아니면 어제 못 간 디저트집을 11–12시 오픈 시간에 맞춰. <a href="#spots">카드 보기</a></p></div>
+      </div></li>
+
+    <li><div class="t">11:40</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row"><div><p class="ttl">화성행궁 주간 관람 <span class="star">★★★</span></p>
+        <p class="note">어젯밤 조명으로 본 그 공간을 낮에 다시 보는 게 이 일정의 숨은 재미입니다.
+          밤엔 연출 때문에 안 보이던 봉수당·낙남헌 구조가 낮에 제대로 보입니다. 1시간 반.</p></div></div></li>
+
+    <li><div class="t">13:20</div><div class="rail"><i class="dot d-eat"></i></div>
+      <div class="row"><div><p class="ttl">점심 — 지동시장 쪽</p>
+        <p class="note">행궁에서 도보 10분. 먹고 선물거리도 같이 보면 동선이 겹치지 않습니다.</p></div></div></li>
+
+    <li><div class="t">14:10</div><div class="rail"><i class="dot d-see"></i></div>
+      <div class="row">
+        <img class="thumb" src="img/flyingsuwon_Cnn3PPeJADX.jpg" alt="플라잉수원 기구와 성곽">
+        <div><p class="ttl">마지막 한 칸 — 셋 중 하나</p>
+        <div class="tbl-scroll"><table>
+          <tr><th>선택</th><th>내용</th><th>리스크</th></tr>
+          <tr><td><b>성곽 걷기</b></td><td>창룡문 → 동북공심돈 → 연무대. 무료, 시간 조절 자유</td><td>없음 — 가장 안전</td></tr>
+          <tr><td><b>플라잉수원</b></td><td>계류식 헬륨기구, 150m 상공에서 화성 전체. 탑승 10분, 2만 원대</td><td>대기 1–2시간 + 기상 결항</td></tr>
+          <tr><td><b>화성어차</b></td><td>연무대 → 화홍문 → 장안문 → 화서문 → 매향교 순환 20분. 어른 6,000원</td><td>10/4–11 중단 후 10/13 재개 — 운행 확인 필수</td></tr>
+        </table></div></div>
+      </div></li>
+
+    <li><div class="t">15:20</div><div class="rail"><i class="dot d-move"></i></div>
+      <div class="row"><div><p class="ttl">수원역 — 15:56 출발</p>
+        <p class="note">행궁동에서 택시 10분. 아침에 맡긴 짐 찾아서 탑승.</p></div></div></li>
+  </ol>
+</section>
+
+<!-- SPOT CARDS -->
+<section id="spots">
+  <div class="sec-head">
+    <h2>인스타에서 직접 꺼내온 곳</h2>
+    <p class="eyebrow">계정 10곳 · 게시물은 썸네일로 확인</p>
+  </div>
+
+  <div class="spots">
+
+    <article class="spot" id="goldies">
+      <div class="shots">
+        <img src="img/goldies.korea_DdBXgsat0iP.jpg" alt="생햄과 크림을 올린 도넛">
+        <img src="img/goldies.korea_DVvOGeVEpoB.jpg" alt="쇼케이스에 늘어선 타르트와 디저트">
+      </div>
+      <div class="spot-body">
+        <h3>골디스 <span class="handle">@goldies.korea</span></h3>
+        <div class="tagline"><span class="pill rec">디저트 1순위</span><span class="pill">도넛</span><span class="pill">연중무휴</span></div>
+        <p class="one">수제 도넛·베이커리. 최근 릴스가 전부 도넛인데, 생햄과 크림을 올린 세이보리 쪽이 간판처럼 올라옵니다.
+          쇼케이스에는 과일 타르트가 가득합니다.</p>
+        <div class="facts">
+          <span><b>행궁동 본점</b> 10:30–22:00 연중무휴</span>
+          <span>수원 타임빌라스점 3층에도 있음</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DdBXgsat0iP/" target="_blank" rel="noopener">▶ 릴스 원문</a>
+            <a href="https://www.instagram.com/goldies.korea/" target="_blank" rel="noopener">@goldies.korea</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DdBXgsat0iP/embed/captioned" scrolling="no" title="골디스 릴스"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/DVvOGeVEpoB/embed/captioned" scrolling="no" title="골디스 쇼케이스"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="sqd">
+      <div class="shots">
+        <img src="img/sqdcoffee_DcTKsfDJjQ7.jpg" alt="테이블 위에 늘어놓은 조각 케이크들">
+        <img src="img/sqdcoffee_Ddxt2JvJkl3.jpg" alt="창이 큰 넓은 카페 내부">
+      </div>
+      <div class="spot-body">
+        <h3>스퀘어드 <span class="handle">@sqdcoffee</span></h3>
+        <div class="tagline"><span class="pill rec">디저트 1순위</span><span class="pill">케이크</span><span class="pill">연중무휴</span></div>
+        <p class="one">조각 케이크를 한 상에 늘어놓은 릴스가 대표 이미지. 공간이 넓고 창가 자리가 많아
+          넷이 앉기 좋습니다. 홀케이크는 네이버 예약.</p>
+        <div class="facts">
+          <span><b>팔달구 신풍로 30, 2층</b></span>
+          <span>12:00–21:00 · 연중무휴</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DcTKsfDJjQ7/" target="_blank" rel="noopener">▶ 릴스 원문</a>
+            <a href="https://www.instagram.com/sqdcoffee/" target="_blank" rel="noopener">@sqdcoffee</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DcTKsfDJjQ7/embed/captioned" scrolling="no" title="스퀘어드 릴스"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/Dd_F7sFpP8Z/embed/captioned" scrolling="no" title="스퀘어드 라떼"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="nuknok">
+      <div class="shots">
+        <img src="img/cafe.nuknok_DeHgCtopxkl.jpg" alt="수플레와 타르트가 담긴 디저트 접시">
+        <img src="img/cafe.nuknok_DT21nREiYSd.jpg" alt="아인슈페너와 디저트">
+      </div>
+      <div class="spot-body">
+        <h3>누크녹 행궁점 <span class="handle">@cafe.nuknok</span></h3>
+        <div class="tagline"><span class="pill">릴스 많음</span><span class="pill">아인슈페너</span></div>
+        <p class="one">연남동에서 건너온 집. 계정에서 릴스 비중이 가장 높고, 시즌 과일 디저트(‘수신멜론을 찾아서’ 같은 것)를
+          릴스로 밀어 올립니다. 아인슈페너가 시그니처.</p>
+        <div class="facts">
+          <span><b>팔달구 화서문로31번길 14-32</b></span>
+          <span>같은 동네에 카라멜하우스 행궁점도 운영</span>
+        </div>
+        <details><summary>인스타 원문 3개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DeHgCtopxkl/" target="_blank" rel="noopener">▶ 릴스 원문</a>
+            <a href="https://www.instagram.com/cafe.nuknok/" target="_blank" rel="noopener">@cafe.nuknok</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DeHgCtopxkl/embed/captioned" scrolling="no" title="누크녹 디저트 릴스"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/DbQZsLHJ3WA/embed/captioned" scrolling="no" title="누크녹 멜론 릴스"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/DT21nREiYSd/embed/captioned" scrolling="no" title="누크녹 아인슈페너"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="ssovely">
+      <div class="shots">
+        <img src="img/cafe_ssovely_Dd-_Gq5IM2u.jpg" alt="색색의 미니 케이크들">
+        <img src="img/cafe_ssovely_DdjAbwbBCSh.jpg" alt="원데이 클래스 예약 시간 안내">
+      </div>
+      <div class="spot-body">
+        <h3>쏘블리 <span class="handle">@cafe_ssovely</span></h3>
+        <div class="tagline"><span class="pill rec">넷이 할 거리</span><span class="pill">원데이 클래스</span></div>
+        <p class="one">카페이자 디저트 원데이 클래스. 계정 게시물의 절반이 클래스 예약 안내고, 나머지가 수강생이 만든
+          색색의 미니 케이크입니다. <b>“디저트 먹기”를 “디저트 만들기”로 바꾸고 싶으면 여기.</b></p>
+        <div class="facts">
+          <span><b>팔달구 신풍로 57, 3F</b> · 장안동 공영주차장 도보 1분</span>
+          <span><b>1인 45,000원 / 2인 인당 30,000원</b> · 선입금제</span>
+          <span>평일 12:00·15:00·18:00 / 주말·공휴일 13:00·16:00·19:00</span>
+          <span>예약은 오픈채팅 또는 DM (날짜·시간·인원·디저트 종류)</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DdjAbwbBCSh/" target="_blank" rel="noopener">▶ 10월 클래스 안내 원문</a>
+            <a href="https://www.instagram.com/cafe_ssovely/" target="_blank" rel="noopener">@cafe_ssovely</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DdjAbwbBCSh/embed/captioned" scrolling="no" title="쏘블리 클래스 안내"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/Dd-_Gq5IM2u/embed/captioned" scrolling="no" title="쏘블리 디저트"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="spaceshop">
+      <div class="shots">
+        <img src="img/cafe.spaceshop_DeBULqrPbrR.jpg" alt="유리돔에 담긴 무화과 시폰 케이크">
+        <img src="img/cafe.spaceshop_Dd5W4PITORa.jpg" alt="파라솔과 조명이 있는 야외 테라스">
+      </div>
+      <div class="spot-body">
+        <h3>공간상점 <span class="handle">@cafe.spaceshop</span></h3>
+        <div class="tagline"><span class="pill">야외 자리</span><span class="pill">밤 22시까지</span></div>
+        <p class="one">‘공간을 팝니다’가 소개 문구. 제철 과일 홀케이크와 파라솔·조명 깔린 야외 마당이 번갈아 올라옵니다.
+          행궁에 1·2호점이 따로 있어 한 곳이 꽉 차면 옆으로 옮기면 됩니다.</p>
+        <div class="facts">
+          <span><b>행궁 1·2호점</b> 각 12:00–22:00</span>
+          <span>밤 야경 산책 전후로 끼우기 좋은 시간대</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DeBULqrPbrR/" target="_blank" rel="noopener">▶ 케이크 원문</a>
+            <a href="https://www.instagram.com/cafe.spaceshop/" target="_blank" rel="noopener">@cafe.spaceshop</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DeBULqrPbrR/embed/captioned" scrolling="no" title="공간상점 케이크"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/Dd5W4PITORa/embed/captioned" scrolling="no" title="공간상점 야외"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="terso">
+      <div class="shots">
+        <img src="img/terso_cafe_DeY2xPIOLcD.jpg" alt="카페 안에서 쉬고 있는 고양이들">
+        <img src="img/terso_cafe_DeirPGuGT4_.jpg" alt="가게 입구와 고양이">
+      </div>
+      <div class="spot-body">
+        <h3>테르소 <span class="handle">@terso_cafe</span></h3>
+        <div class="tagline"><span class="pill">수플레</span><span class="pill">고양이</span><span class="pill">화 휴무</span></div>
+        <p class="one">메뉴는 수플레인데 계정은 거의 고양이 계정입니다. 최근 릴스도 고양이 세 마리.
+          <b>고양이 좋아하면 1순위, 아니면 건너뛰어도 됩니다.</b></p>
+        <div class="facts">
+          <span><b>수원시 화서문로48번길 33, 1층</b></span>
+          <span>12:00–20:00 · <b>매주 화요일 휴무</b></span>
+          <span><b>수플레 라스트오더 19:00</b></span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DeY2xPIOLcD/" target="_blank" rel="noopener">▶ 릴스 원문</a>
+            <a href="https://www.instagram.com/terso_cafe/" target="_blank" rel="noopener">@terso_cafe</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DeY2xPIOLcD/embed/captioned" scrolling="no" title="테르소 고양이 릴스"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="bigpantry">
+      <div class="shots single">
+        <img src="img/bigpantry_suwon_DH1E64TOruF.jpg" alt="빅팬트리 릴스 썸네일">
+      </div>
+      <div class="spot-body">
+        <h3>빅팬트리 행궁점 <span class="handle">@bigpantry_suwon</span></h3>
+        <div class="tagline"><span class="pill rec">Day2 브런치</span><span class="pill">11시 오픈</span></div>
+        <p class="one">미국식 팬케이크 전문. 행궁동에서 <b>11시에 여는 몇 안 되는 집</b>이라 둘째 날 브런치 자리에 넣었습니다.
+          최근 게시물은 메뉴보다 공지(협업 핫도그 등)가 많습니다.</p>
+        <div class="facts">
+          <span><b>팔달구 화서문로51번길 19</b></span>
+          <span>화–일 11:00–21:00 · <b>월 휴무</b></span>
+          <span>반려동물 야외 마당 동반 가능</span>
+        </div>
+        <details><summary>인스타 원문 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/bigpantry_suwon/" target="_blank" rel="noopener">@bigpantry_suwon</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DH1E64TOruF/embed/captioned" scrolling="no" title="빅팬트리 릴스"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="dalbit">
+      <div class="shots">
+        <img src="img/swcf_official_Deiz9p6ExpU.jpg" alt="화성행궁 야간개장 특별공연 일정 변경 안내">
+        <img src="img/swcf_official_DeS2u7YEb-i.jpg" alt="행궁야화 포스터">
+      </div>
+      <div class="spot-body">
+        <h3>화성행궁 야간개장 ‘달빛화담’ <span class="handle">@swcf_official</span></h3>
+        <div class="tagline"><span class="pill rec">★★★</span><span class="pill">금·토</span><span class="pill">11/1 종료</span></div>
+        <p class="one">수원문화재단(팔로워 2.4만) 공식 계정. 지금 피드에 올라오는 건
+          <b>야간개장 특별공연 일정 변경 안내</b>와 이미 끝난 행궁야화 아카이브입니다.</p>
+        <div class="facts">
+          <span><b>금·토 19:00–21:30</b> · 입장 마감 21:00 · <b>11월 1일 종료</b></span>
+          <span>성인 2,000원 / 청소년 1,500원 / <b>한복 착용 무료</b></span>
+          <span>특별공연 ‘위대한 태권도’ 10/18 → <b>11/1(일)</b>로 변경</span>
+          <span>☎ 031-290-3613 · 경기 수원시 팔달구 정조로 825</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/Deiz9p6ExpU/" target="_blank" rel="noopener">▶ 일정 변경 공지</a>
+            <a href="https://www.instagram.com/swcf_official/" target="_blank" rel="noopener">@swcf_official</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/Deiz9p6ExpU/embed/captioned" scrolling="no" title="야간개장 공지"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/DeS2u7YEb-i/embed/captioned" scrolling="no" title="행궁야화 릴스"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="suma">
+      <div class="shots">
+        <img src="img/suwon.museum.of.art_DeirG_BGmH3.jpg" alt="수원시립미술관 왕의 산책 프로그램 안내">
+        <img src="img/suwon.museum.of.art_DefzvGDE6mt.jpg" alt="수원시립미술관 릴스 썸네일">
+      </div>
+      <div class="spot-body">
+        <h3>수원시립미술관 <span class="handle">@suwon.museum.of.art</span></h3>
+        <div class="tagline"><span class="pill rec">★★★</span><span class="pill">월 휴관</span><span class="pill">18:00 입장 마감</span></div>
+        <p class="one">팔로워 1.9만. 피드는 전시보다 교육·프로그램 공지가 많습니다. 10월 전시는
+          《블랑 블랙 파노라마》 — 소장품 중심으로 흑과 백을 축에 둔 이배·이순종·최병소 등 20점.</p>
+        <div class="facts">
+          <span><b>화성행궁 옆 행궁 본관</b></span>
+          <span>하절기(3–10월) 10:00–19:00 · <b>입장 마감 18:00</b></span>
+          <span><b>월요일 휴관</b> · 매월 마지막 수요일(문화가 있는 날) 전시 무료</span>
+          <span>프로그램 ‘왕의 산책’ 10.23(금)·10.28(화)·11.6(목) 10:30–12:00</span>
+        </div>
+        <details><summary>인스타 원문 2개 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/p/DeirG_BGmH3/" target="_blank" rel="noopener">▶ 왕의 산책 안내</a>
+            <a href="https://www.instagram.com/suwon.museum.of.art/" target="_blank" rel="noopener">@suwon.museum.of.art</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/DeirG_BGmH3/embed/captioned" scrolling="no" title="미술관 프로그램"></iframe>
+            <iframe loading="lazy" src="https://www.instagram.com/p/DefzvGDE6mt/embed/captioned" scrolling="no" title="미술관 릴스"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+    <article class="spot" id="flying">
+      <div class="shots">
+        <img src="img/flyingsuwon_Cnn3PPeJADX.jpg" alt="성곽 위로 떠 있는 기구">
+        <img src="img/flyingsuwon_Cnl_kwdJzWU.jpg" alt="기구에서 내려다본 수원 시내">
+      </div>
+      <div class="spot-body">
+        <h3>플라잉수원 <span class="handle">@flyingsuwon</span></h3>
+        <div class="tagline"><span class="pill">Day2 선택지</span><span class="pill">결항 위험</span></div>
+        <p class="one">열기구가 아니라 <b>계류식 헬륨기구</b>. 150m에서 화성을 한 장에 담습니다.
+          성곽과 기구가 같이 잡히는 각이 이 계정의 대표 사진입니다.</p>
+        <div class="facts">
+          <span>탑승 약 10분 · 성인 2만 원대(출처마다 달라 현장 확인)</span>
+          <span>창룡문 쪽 · 기상에 따라 운항 중단</span>
+          <span>⚠️ 인스타 계정은 <b>2023년 1월 이후 업데이트 없음</b> — 운영은 홈페이지로 확인</span>
+        </div>
+        <details><summary>인스타 원문 보기</summary>
+          <div class="iglinks">
+            <a href="https://www.instagram.com/flyingsuwon/" target="_blank" rel="noopener">@flyingsuwon</a>
+          </div>
+          <div class="igwrap">
+            <iframe loading="lazy" src="https://www.instagram.com/p/Cnn3PPeJADX/embed/captioned" scrolling="no" title="플라잉수원"></iframe>
+          </div>
+        </details>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- 플랜 B -->
+<section>
+  <div class="sec-head"><h2>플랜 B</h2></div>
+  <div class="tbl-scroll"><table>
+    <tr><th>이런 경우</th><th>이렇게 바꿉니다</th></tr>
+    <tr><td><b>금·토가 아닌 날</b></td><td>야간개장 없음 → 저녁 먹고 바로 방화수류정·용연 야경(무료). 비는 시간에 공간상점(22시까지)을 넣습니다.</td></tr>
+    <tr><td><b>월요일에 걸림</b></td><td>미술관 휴관 + 빅팬트리 휴무 → Day1 17:00을 화성행궁 주간 관람으로 당기고, Day2 11:40은 성곽 걷기로.</td></tr>
+    <tr><td><b>화요일에 걸림</b></td><td>용성통닭·테르소 휴무 → 통닭은 진미통닭(월 휴무라 화요일은 영업)으로.</td></tr>
+    <tr><td><b>비</b></td><td>성곽·용연을 빼고 미술관 체류를 늘리고 실내 카페 두 곳. 통닭거리는 비와 무관.</td></tr>
+    <tr><td><b>디저트를 먹지 말고 만들고 싶으면</b></td><td>Day1 15:00 자리를 쏘블리 원데이 클래스로 교체(주말 13·16·19시, 1인 45,000원). 선입금 예약 필요.</td></tr>
+  </table></div>
+</section>
+
+<!-- 예산 -->
+<section>
+  <div class="sec-head"><h2>돈과 준비물</h2></div>
+  <div class="tbl-scroll"><table>
+    <tr><th>항목</th><th>1인</th><th>메모</th></tr>
+    <tr><td>화성행궁 야간개장</td><td class="num">2,000원</td><td>한복 착용 시 무료</td></tr>
+    <tr><td>수원시립미술관</td><td class="num">4,000원대</td><td>현장 확인 · 문화가 있는 날 무료</td></tr>
+    <tr><td>화성행궁 주간 관람</td><td class="num">1,500원대</td><td>Day2</td></tr>
+    <tr><td>화성어차 / 플라잉수원 (선택)</td><td class="num">6,000 / 20,000원대</td><td>운행·결항 확인</td></tr>
+    <tr><td>쏘블리 원데이 클래스 (선택)</td><td class="num">30,000–45,000원</td><td>2인 이상이면 인당 30,000원</td></tr>
+    <tr><td>택시 4~5회</td><td class="num">6,000원×5</td><td>나눠 타면 1인 부담 1/3~1/4</td></tr>
+    <tr><td>식사 + 디저트 2회</td><td class="num">60,000원대</td><td>통닭 두 번(점심·야식) 포함</td></tr>
+  </table></div>
+  <ul class="plain" style="margin-top:16px">
+    <li><b>미리 확인</b> — 야간개장 운영일(금·토, 11/1 종료), 미술관 휴관일, 통닭집 휴무(용성 화 / 진미 월), 테르소 화 휴무, 빅팬트리 월 휴무.</li>
+    <li><b>한복 대여</b>를 하면 야간개장 입장료가 무료입니다.</li>
+    <li><b>Day2 짐</b> — 아침에 수원역 코인락커에 맡기면 숙소로 되돌아갈 일이 없습니다.</li>
+    <li><b>신발과 겉옷</b> — Day1 걷는 거리 5km, 10월 야간 성곽은 쌀쌀합니다.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><b>이 페이지의 인스타 정보가 나온 경로</b> · 해시태그·탐색 탭은 로그인해야 열려서 쓰지 않았습니다.
+    대신 <b>공개 계정 10곳을 직접 열어</b> 최근 게시물·릴스의 코드와 썸네일을 받아오고,
+    썸네일을 눈으로 확인해 분류했습니다. <b>캡션 본문은 비로그인 상태에서 읽히지 않아</b>
+    각 카드의 설명은 썸네일에 적힌 글자와 계정 소개글을 근거로 썼습니다 —
+    정확한 문구는 카드의 임베드를 펼쳐서 원문으로 확인해 주세요.</p>
+  <p><b>그 밖의 근거</b> · 운영시간·요금·휴관일은
+    <a href="https://suma.suwon.go.kr/views/info.do" target="_blank" rel="noopener">수원시립미술관</a>,
+    <a href="https://www.swcf.or.kr/?p=29_view&amp;idx=2970&amp;listUrl=118_month" target="_blank" rel="noopener">수원문화재단</a>,
+    <a href="https://www.diningcode.com/list.dc?query=%EC%88%98%EC%9B%90%ED%86%B5%EB%8B%AD%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener">다이닝코드</a>에서 확인했습니다.</p>
+  <p><b>확인 안 된 것</b> · 미술관·행궁 입장료, 플라잉수원 요금, 화성어차 재개 여부,
+    숙소 정확한 위치와 체크인 시간, 여행 날짜의 요일. 임베드가 안 열리면 각 카드의 ‘원문’ 링크로 여세요.</p>
+</footer>
+
+</div>
+</body>
+</html>
