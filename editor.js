@@ -314,6 +314,7 @@ const HTML = `<!DOCTYPE html>
   .editor-preview #markdown-toc a:hover, .editor-preview-side #markdown-toc a:hover {
     text-decoration: underline !important;
   }
+  .editor-preview p > img, .editor-preview-side p > img { display: block; margin-left: auto; margin-right: auto; }
   /* figcaption */
   .editor-preview .figcaption, .editor-preview-side .figcaption {
     text-align: center !important; color: #777 !important;
@@ -692,6 +693,8 @@ function mountEditor(fm) {
   main.innerHTML = \`
     <div class="editor-toolbar-custom">
       <button class="btn-ghost btn-sm" onclick="openImageModal()">🖼 Image</button>
+      <button class="btn-ghost btn-sm" onclick="cycleImageWidth()" title="커서가 있는 줄의 이미지 너비: 원본 → 300 → 500 → 원본">↔ Size</button>
+      <button class="btn-ghost btn-sm" onclick="insertFigcaption()" title="커서가 있는 이미지 아래에 캡션 추가">📝 Caption</button>
       <button class="btn-ghost btn-sm" onclick="openThumbModal()">🎨 Thumb</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('code')">{ } Code</button>
       <button class="btn-ghost btn-sm" onclick="insertSnippet('toc')">≡ TOC</button>
@@ -742,9 +745,13 @@ function mountEditor(fm) {
     minHeight: '200px',
     previewRender: renderPreview,
     renderingConfig: { breaks: true },
+    syncSideBySidePreviewScroll: false,
   });
 
+  // CodeMirror는 화면에 보이는 줄만 DOM에 그려서 브라우저 찾기(⌘F)에 안 걸린다 → 전부 그리게 한다
+  editor.codemirror.setOption('viewportMargin', Infinity);
   editor.codemirror.on('change', markDirty);
+  editor.codemirror.on('scroll', syncPreviewByHeading);
   loadExistingTags().then(checkNewTags);
 
   // Keyboard shortcuts
@@ -754,6 +761,8 @@ function mountEditor(fm) {
     'Cmd-B': wrapBold, 'Ctrl-B': wrapBold,
     'Cmd-I': wrapItalic, 'Ctrl-I': wrapItalic,
     'Cmd-U': wrapUnderline, 'Ctrl-U': wrapUnderline,
+    'Shift-Cmd-X': wrapStrike, 'Shift-Ctrl-X': wrapStrike,
+    'Cmd-Alt-X': wrapSmallStrike, 'Ctrl-Alt-X': wrapSmallStrike,
     'Cmd-K': insertLink, 'Ctrl-K': insertLink,
     'Cmd-E': wrapCode, 'Ctrl-E': wrapCode,
     'Enter': function(cm) {
@@ -1150,11 +1159,40 @@ function wrapUnderline() {
   const cm = editor.codemirror;
   const sel = cm.getSelection();
   if (sel) {
-    cm.replaceSelection('<u>' + sel + '</u>');
+    cm.replaceSelection('<ins>' + sel + '</ins>');
   } else {
     const cur = cm.getCursor();
-    cm.replaceRange('<u></u>', cur);
-    cm.setCursor({ line: cur.line, ch: cur.ch + 3 });
+    cm.replaceRange('<ins></ins>', cur);
+    cm.setCursor({ line: cur.line, ch: cur.ch + 5 });
+  }
+  cm.focus();
+}
+
+function wrapSmallStrike() {
+  if (!editor) return;
+  const cm = editor.codemirror;
+  const sel = cm.getSelection();
+  if (sel) {
+    cm.replaceSelection('<small><del>' + sel + '</del></small>');
+  } else {
+    const cur = cm.getCursor();
+    cm.replaceRange('<small><del></del></small>', cur);
+    cm.setCursor({ line: cur.line, ch: cur.ch + 12 });
+  }
+  cm.focus();
+}
+
+// kramdown이 ~~ 를 취소선으로 처리하지 않아 <del> 로 감싼다
+function wrapStrike() {
+  if (!editor) return;
+  const cm = editor.codemirror;
+  const sel = cm.getSelection();
+  if (sel) {
+    cm.replaceSelection('<del>' + sel + '</del>');
+  } else {
+    const cur = cm.getCursor();
+    cm.replaceRange('<del></del>', cur);
+    cm.setCursor({ line: cur.line, ch: cur.ch + 5 });
   }
   cm.focus();
 }
@@ -1255,6 +1293,19 @@ function renderPreview(text) {
     svgBlocks.push(match);
     return 'SVGBLOCK' + (svgBlocks.length - 1) + 'ENDSVG';
   });
+  // 1-1. marked(CommonMark)는 '(output)*에' 처럼 문장부호 뒤에서 닫히고 바로 조사가 붙는 강조를 강조로 보지 않는다.
+  //      실제 블로그(kramdown)는 강조로 렌더링하므로 미리 태그로 바꿔 맞춘다. 코드는 건드리지 않는다.
+  const codeBlocks = [];
+  md = md.replace(/\`\`\`[\\s\\S]*?\`\`\`|\`[^\`\\n]*\`/g, (match) => {
+    codeBlocks.push(match);
+    return 'CODEBLOCK' + (codeBlocks.length - 1) + 'ENDCODE';
+  });
+  md = md.replace(/\\*\\*(?=[^\\s*])([^*\\n]*?[^\\s*])\\*\\*/g, '<strong>$1</strong>');
+  md = md.replace(/(^|[^*\\\\])\\*(?=[^\\s*])((?:[^*\\n]*?[^\\s*])?)\\*(?!\\*)/gm, '$1<em>$2</em>');
+  md = md.replace(/CODEBLOCK(\\d+)ENDCODE/g, (_, i) => codeBlocks[+i]);
+  // 1-2. marked는 kramdown 속성 {:width="300"} 을 몰라 글자로 찍는다 → img width 로 바꾼다
+  md = md.replace(/!\\[([^\\]]*)\\]\\(([^)\\s]+)\\)\\{:\\s*width="?(\\d+%?)"?\\s*\\}/g,
+    (_, alt, src, w) => '<img src="' + src + '" alt="' + alt + '" width="' + w + '">');
   // 2. Pre-process TOC: * toc\\n{:toc}
   md = md.replace(/^\\*\\s+toc\\s*\\n\\{:toc\\}/gm, '\\nXTOCPLACEHOLDERX\\n');
   let html = editor.markdown(md);
@@ -1264,6 +1315,8 @@ function renderPreview(text) {
   // 4. Post-process figcaption: marked renders {:.figcaption} as <p>{:.figcaption}</p>
   html = html.replace(/(<p>(?:(?!<p>|<\\/p>)[\\s\\S])*?<\\/p>)\\s*<p>\\{:\\.figcaption\\}<\\/p>/g,
     (match, prevP) => '<p class="figcaption">' + prevP.slice(3));
+  //    캡션을 이미지 바로 아래 줄에 붙여 쓰면 한 문단 안에 {:.figcaption} 이 들어간다
+  html = html.replace(/<p>([\\s\\S]*?)(?:<br>|\\n)\\s*\\{:\\.figcaption\\}<\\/p>/g, '<p class="figcaption">$1</p>');
   // 5. Add IDs to headings (for TOC anchor links)
   html = html.replace(/<(h[1-6])>([\\s\\S]*?)<\\/\\1>/g, (match, tag, content) => {
     const id = tocId(content.replace(/<[^>]+>/g, '').trim());
@@ -1279,6 +1332,75 @@ function toggleSideBySide() {
   if (!editor) return;
   const btn = document.querySelector('.editor-toolbar .side-by-side');
   if (btn) btn.click();
+}
+
+// EasyMDE 기본 동기화는 스크롤 비율 기준이라, TOC·이미지처럼 양쪽 높이가 다른 블록이 있으면 어긋난다.
+// 헤딩을 기준점으로 삼아 헤딩 사이 구간만 비율로 맞춘다.
+function syncPreviewByHeading() {
+  if (!editor || !editor.isSideBySideActive()) return;
+  const cm = editor.codemirror;
+  const preview = editor.gui.sideBySide;
+  const info = cm.getScrollInfo();
+  const srcMax = info.height - info.clientHeight;
+  const prevMax = preview.scrollHeight - preview.clientHeight;
+  if (srcMax <= 0 || prevMax <= 0) return;
+
+  const srcLines = [];
+  let inFence = false;
+  cm.eachLine(h => {
+    if (/^\\s*\`\`\`/.test(h.text)) inFence = !inFence;
+    else if (!inFence && /^#{1,6}\\s/.test(h.text)) srcLines.push(cm.getLineNumber(h));
+  });
+  const heads = preview.querySelectorAll('h1,h2,h3,h4,h5,h6');
+
+  const src = [0], prev = [0];
+  if (heads.length === srcLines.length) {
+    const base = preview.getBoundingClientRect().top - preview.scrollTop;
+    srcLines.forEach((line, i) => {
+      src.push(Math.min(cm.heightAtLine(line, 'local'), srcMax));
+      prev.push(Math.min(heads[i].getBoundingClientRect().top - base, prevMax));
+    });
+  }
+  src.push(srcMax); prev.push(prevMax);
+
+  const top = info.top;
+  let i = 0;
+  while (i < src.length - 2 && src[i + 1] <= top) i++;
+  const span = src[i + 1] - src[i];
+  const ratio = span > 0 ? (top - src[i]) / span : 0;
+  preview.scrollTop = prev[i] + ratio * (prev[i + 1] - prev[i]);
+}
+
+const IMAGE_LINE = /^(\\s*!\\[[^\\]]*\\]\\([^)]+\\))(\\{:[^}]*\\})?\\s*$/;
+const IMAGE_WIDTHS = [null, '300', '500'];
+
+function cycleImageWidth() {
+  if (!editor) return;
+  const cm = editor.codemirror;
+  const lineNo = cm.getCursor().line;
+  const m = cm.getLine(lineNo).match(IMAGE_LINE);
+  if (!m) { toast('이미지 줄에 커서를 두고 눌러 주세요.', 'error'); return; }
+  const cur = (m[2] || '').match(/width="?(\\d+%?)"?/);
+  const idx = IMAGE_WIDTHS.indexOf(cur ? cur[1] : null);
+  const next = IMAGE_WIDTHS[(idx + 1) % IMAGE_WIDTHS.length];
+  const text = m[1] + (next ? '{:width="' + next + '"}' : '');
+  cm.replaceRange(text, { line: lineNo, ch: 0 }, { line: lineNo, ch: cm.getLine(lineNo).length });
+  toast(next ? '너비 ' + next + 'px' : '원본 크기', 'success');
+  cm.focus();
+}
+
+// Hydejack 캡션 규칙: 이미지 바로 다음 줄에 캡션, 그다음 줄에 {:.figcaption}
+function insertFigcaption() {
+  if (!editor) return;
+  const cm = editor.codemirror;
+  const lineNo = cm.getCursor().line;
+  if (!IMAGE_LINE.test(cm.getLine(lineNo))) { toast('이미지 줄에 커서를 두고 눌러 주세요.', 'error'); return; }
+  if ((cm.getLine(lineNo + 2) || '').trim() === '{:.figcaption}') { toast('이미 캡션이 있어요.', 'error'); return; }
+  const placeholder = '캡션을 입력하세요';
+  const eol = { line: lineNo, ch: cm.getLine(lineNo).length };
+  cm.replaceRange('\\n' + placeholder + '\\n{:.figcaption}', eol);
+  cm.setSelection({ line: lineNo + 1, ch: 0 }, { line: lineNo + 1, ch: placeholder.length });
+  cm.focus();
 }
 
 // ── Snippets ──────────────────────────────────────────────────────────────────

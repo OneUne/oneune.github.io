@@ -187,7 +187,8 @@ body.focus-mode #_toc-toggle {
   }
 }
 
-u {
+// kramdown은 <u> 안의 마크다운을 해석하지 않아 밑줄 강조는 <ins> 를 쓴다 (기존 글 호환용으로 u 유지)
+u, ins {
   text-decoration: none;
   border-bottom: none;
   background-color: rgba(253, 224, 71, 0.85);
@@ -241,4 +242,11 @@ u {
   .btn, .gumroad-button  {
     margin: 1rem 0;
   }
+}
+
+// 본문 이미지는 기본 가운데 정렬
+.page p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
